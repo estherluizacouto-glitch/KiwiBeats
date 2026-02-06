@@ -393,6 +393,10 @@
           } else {
             escrevendo = true;
             fraseIndex = (fraseIndex + 1) % frases.length;
+            charIndex = 0;
+              
+            textarea.placeholder = '';
+              
             setTimeout(digitar, 300);
           }
         }
