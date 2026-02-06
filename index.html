@@ -376,8 +376,34 @@
       let fraseIndex = 0;
       let charIndex = 0;
       let escrevendo = true;
+      let animandoPlaceholder = true;
     
+      // Função para ajustar altura da textarea
+      function ajustarAltura() {
+        textarea.style.height = 'auto';
+        const maxHeight = 240;
+        if (textarea.scrollHeight <= maxHeight) {
+          textarea.style.height = textarea.scrollHeight + 'px';
+          textarea.style.overflowY = 'hidden';
+        } else {
+          textarea.style.height = maxHeight + 'px';
+          textarea.style.overflowY = 'auto';
+        }
+      }
+    
+      // Evento para ajustar altura e desativar animação da placeholder ao digitar
+      textarea.addEventListener('input', () => {
+        ajustarAltura();
+        if (animandoPlaceholder && textarea.value.length > 0) {
+          animandoPlaceholder = false;
+          textarea.setAttribute('placeholder', '');
+        }
+      });
+    
+      // Função da animação da placeholder
       function digitar() {
+        if (!animandoPlaceholder) return; // para a animação se usuário digitou
+    
         if (escrevendo) {
           if (charIndex <= frases[fraseIndex].length) {
             textarea.setAttribute('placeholder', frases[fraseIndex].slice(0, charIndex));
@@ -400,6 +426,8 @@
         }
       }
     
+      // Inicializa altura e animação
+      ajustarAltura();
       digitar();
     </script>
 
