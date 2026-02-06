@@ -350,20 +350,16 @@
     
       textarea.addEventListener('input', () => {
         textarea.style.height = 'auto';
-
-          const maxHeight = 240;
-          if (textarea.scrollHeight <= maxHeight) {
-              textarea.style.height = textarea.scrollHeight + 'px';
-              textarea.style.overflowY = 'hidden';
-            } else {
-              textarea.style.height = maxHeight + 'px';
-              textarea.style.overflowY = 'auto';
-            }  
-        });
-    </script>
-
-   <script>
-      const textarea = document.querySelector('.cta-box textarea');
+        const maxHeight = 240;
+        if (textarea.scrollHeight <= maxHeight) {
+          textarea.style.height = textarea.scrollHeight + 'px';
+          textarea.style.overflowY = 'hidden';
+        } else {
+          textarea.style.height = maxHeight + 'px';
+          textarea.style.overflowY = 'auto';
+        }
+      });
+    
       const frases = [
         'Descreva sua ideia...',
         'Faça uma música no estilo samba com a seguinte letra...',
@@ -377,7 +373,6 @@
       let escrevendo = true;
       let animandoPlaceholder = true;
     
-      // Função que anima a placeholder
       function digitar() {
         if (!animandoPlaceholder) return;
     
@@ -403,13 +398,11 @@
         }
       }
     
-      // Interrompe animação quando usuário digitar e limpa placeholder
       textarea.addEventListener('input', () => {
         if (textarea.value.length > 0) {
           animandoPlaceholder = false;
           textarea.placeholder = '';
         } else if (!animandoPlaceholder) {
-          // Se apagar todo texto, reinicia animação
           animandoPlaceholder = true;
           fraseIndex = 0;
           charIndex = 0;
@@ -417,7 +410,7 @@
           digitar();
         }
       });
-    
+
       digitar();
     </script>
 
