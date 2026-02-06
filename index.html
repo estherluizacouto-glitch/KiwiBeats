@@ -194,26 +194,24 @@
 
         
         .cta-box {
-          position: relative;
+          display: grid;
+          grid-template-columns: 1fr auto; /* texto | botão */
+          gap: 16px;
+        
           background: rgba(18, 18, 18, 0.65);
           border-radius: 24px;
-            width: 100%;
-          margin: 0 auto
-              
-          padding: 0px;
-          min-height: 160px;
+          padding: 24px;
         
           box-shadow:
             0 20px 40px rgba(0, 0, 0, 0.55),
             0 0 0 1px rgba(255, 255, 255, 0.04);
         }
 
+
         
        .cta-box textarea {
           width: 100%;
-          min-height: 160px;
-        
-          padding: 24px 140px 24px 24px;
+          min-height: 120px;
         
           background: transparent;
           border: none;
