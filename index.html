@@ -211,17 +211,21 @@
 
         
         /* Input */
-        .cta-inner input {
+        .cta-inner textarea {
             flex: 1;
             background: transparent;
             border: none;
             outline: none;
-            padding: 0 24px;
+            padding: 14px 24px;
             font-size: 16px;
             color: white;
+            resize: none;
+            font-family: inherit;
+            line-height: 1.4;
         }
 
-        .cta-inner input::placeholder {
+
+        .cta-inner textarea::placeholder {
             color: rgba(255, 255, 255, 0.75);
         }
         
@@ -306,7 +310,7 @@
             <div class="cta-wrapper">
                 <div class="cta-outer">
                     <div class="cta-inner">
-                        <input type="text" placeholder="Descreva sua ideia...">
+                        <textarea placeholder="Descreva sua ideia..."></textarea>
                         <button>Criar música</button>
                     </div>
                 </div>
