@@ -362,9 +362,8 @@
         });
     </script>
 
-    <script>
+   <script>
       const textarea = document.querySelector('.cta-box textarea');
-    
       const frases = [
         'Descreva sua ideia...',
         'Faça uma música no estilo samba com a seguinte letra...',
@@ -378,44 +377,22 @@
       let escrevendo = true;
       let animandoPlaceholder = true;
     
-      // Função para ajustar altura da textarea
-      function ajustarAltura() {
-        textarea.style.height = 'auto';
-        const maxHeight = 240;
-        if (textarea.scrollHeight <= maxHeight) {
-          textarea.style.height = textarea.scrollHeight + 'px';
-          textarea.style.overflowY = 'hidden';
-        } else {
-          textarea.style.height = maxHeight + 'px';
-          textarea.style.overflowY = 'auto';
-        }
-      }
-    
-      // Evento para ajustar altura e desativar animação da placeholder ao digitar
-      textarea.addEventListener('input', () => {
-        ajustarAltura();
-        if (animandoPlaceholder && textarea.value.length > 0) {
-          animandoPlaceholder = false;
-          textarea.setAttribute('placeholder', '');
-        }
-      });
-    
-      // Função da animação da placeholder
+      // Função que anima a placeholder
       function digitar() {
-        if (!animandoPlaceholder) return; // para a animação se usuário digitou
+        if (!animandoPlaceholder) return;
     
         if (escrevendo) {
           if (charIndex <= frases[fraseIndex].length) {
-            textarea.setAttribute('placeholder', frases[fraseIndex].slice(0, charIndex));
+            textarea.placeholder = frases[fraseIndex].slice(0, charIndex);
             charIndex++;
             setTimeout(digitar, 80);
           } else {
             escrevendo = false;
-            setTimeout(digitar, 1500); // pausa antes de apagar
+            setTimeout(digitar, 1500);
           }
         } else {
           if (charIndex >= 0) {
-            textarea.setAttribute('placeholder', frases[fraseIndex].slice(0, charIndex));
+            textarea.placeholder = frases[fraseIndex].slice(0, charIndex);
             charIndex--;
             setTimeout(digitar, 40);
           } else {
@@ -426,8 +403,21 @@
         }
       }
     
-      // Inicializa altura e animação
-      ajustarAltura();
+      // Interrompe animação quando usuário digitar e limpa placeholder
+      textarea.addEventListener('input', () => {
+        if (textarea.value.length > 0) {
+          animandoPlaceholder = false;
+          textarea.placeholder = '';
+        } else if (!animandoPlaceholder) {
+          // Se apagar todo texto, reinicia animação
+          animandoPlaceholder = true;
+          fraseIndex = 0;
+          charIndex = 0;
+          escrevendo = true;
+          digitar();
+        }
+      });
+    
       digitar();
     </script>
 
