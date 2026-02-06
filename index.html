@@ -83,16 +83,14 @@
         /* Header / Topo */
         header {
             padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
         }
 
         .logo-container {
-            flex: 1;
             display: flex;
             justify-content: center;
-            margin-left: 160px; /* Compensa os botões à direita para centralizar o logo */
         }
 
         .logo {
@@ -277,11 +275,12 @@
     <div class="main-container">
         <!-- Header -->
         <header>
+            <div></div> <!-- espaço vazio à esquerda -->
+        
             <div class="logo-container">
-                <!-- A logo real será inserida aqui -->
-                <!-- Placeholder SVG baseado na imagem -->
                 <img src="logo.png" alt="KiwiBeats" class="logo">
             </div>
+        
             <div class="auth-buttons">
                 <button class="btn btn-entrar">Entrar</button>
                 <button class="btn btn-cadastrar">Cadastrar</button>
