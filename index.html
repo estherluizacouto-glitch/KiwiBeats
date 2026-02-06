@@ -200,7 +200,7 @@
             width: 100%;
           margin: 0 auto
               
-          padding: 22px 76px 22px 24px;
+          padding: 0px;
           min-height: 160px;
         
           box-shadow:
@@ -211,19 +211,24 @@
         
        .cta-box textarea {
           width: 100%;
-          min-height: 120px;
-          max-height: none;
-           padding: 22px 12px 22px 0;
+          min-height: 160px;
+        
+          padding: 24px 140px 24px 24px;
+        
           background: transparent;
           border: none;
           outline: none;
           resize: none;
+        
           color: #fff;
           font-size: 16px;
           line-height: 1.6;
           font-family: inherit;
-          overflow: hidden;
+        
+          overflow-y: hidden;
+          box-sizing: border-box;
         }
+
 
         
         .cta-box textarea::placeholder {
@@ -232,19 +237,22 @@
         
         .cta-box button {
           position: absolute;
-          right: 16px;
-          bottom: 16px;
-          height: 42px;
-          padding: 0 22px;
+          right: 20px;
+          bottom: 20px;
+        
+          padding: 14px 28px;
           border-radius: 999px;
           border: none;
-          background: #417012;
-          color: #FFF;
+        
+          background: linear-gradient(135deg, #6fbf2f, #4e8f1f);
+          color: #fff;
+        
           font-family: 'Genty Sans', sans-serif;
-          font-size: 14px;
+          font-size: 16px;
           font-weight: 400;
           cursor: pointer;
         }
+
 
         
         .cta-box button:hover {
