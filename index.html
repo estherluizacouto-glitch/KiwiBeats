@@ -229,9 +229,14 @@
           font-family: inherit;
         
           overflow-y: auto;
+           scrollbar-width: none;
+          -ms-overflow-style: none;
         }
 
-
+        .cta-box textarea::-webkit-scrollbar {
+          width: 0;
+          height: 0;
+        }
         
         .cta-box textarea::placeholder {
           color: rgba(255, 255, 255, 0.6);
