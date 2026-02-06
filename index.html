@@ -39,13 +39,6 @@
             font-style: italic;
         }
 
-
-        /* 
-        ===========================================
-        BACKGROUND VÍDEO - SERÁ INSERIDO AQUI
-        ===========================================
-        Descomente e adicione o vídeo quando disponível:
-        
         .video-background {
             position: fixed;
             top: 0;
@@ -65,13 +58,18 @@
         HTML:
         <div class="video-background">
             <video autoplay muted loop playsinline>
-                <source src="seu-video.mp4" type="video/mp4">
+                <source src="video.mp4" type="video/mp4">
             </video>
         </div>
-        ===========================================
-        */
 
-        /* Container principal - overlay sobre o vídeo */
+        .video-background::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55); /* controla o escuro aqui */
+        }
+
+    
         .main-container {
             position: relative;
             z-index: 1;
