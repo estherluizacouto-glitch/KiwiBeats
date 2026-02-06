@@ -185,62 +185,56 @@
             max-width: 600px;
         }
 
-
-        .cta-gradient {
-          padding: 2px;
-          border-radius: 28px;
-          background: linear-gradient(
-            135deg,
-            rgba(124, 179, 66, 0.9),
-            rgba(0, 255, 113, 0.6),
-            rgba(124, 179, 66, 0.9)
-          );
-        }
         
         .cta-box {
           position: relative;
-          background: rgba(20, 20, 20, 0.9);
-          border-radius: 26px;
-          padding: 16px 72px 16px 20px;
-        }
+          background: rgba(18, 18, 18, 0.95);
+          border-radius: 24px;
+          padding: 22px 76px 22px 24px;
+          min-height: 96px;
         
-        /* textarea */
-        .cta-box textarea {
+          box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.55),
+            0 0 0 1px rgba(255, 255, 255, 0.04);
+        }
+
+        
+       .cta-box textarea {
           width: 100%;
-          min-height: 56px;
-          max-height: 240px;
+          min-height: 52px;
+          max-height: 260px;
           background: transparent;
           border: none;
           outline: none;
           resize: none;
           color: #fff;
           font-size: 16px;
-          line-height: 1.5;
+          line-height: 1.6;
           font-family: inherit;
           overflow: hidden;
         }
+
         
         .cta-box textarea::placeholder {
           color: rgba(255, 255, 255, 0.6);
         }
         
-        /* botão */
         .cta-box button {
           position: absolute;
-          right: 12px;
-          bottom: 12px;
-          height: 40px;
-          padding: 0 20px;
+          right: 16px;
+          bottom: 16px;
+          height: 42px;
+          padding: 0 22px;
           border-radius: 999px;
           border: none;
-          background: linear-gradient(135deg, #7cb342, #00ff71);
+          background: green(#417012);
           color: #000;
           font-family: 'Genty Sans', sans-serif;
           font-size: 14px;
           font-weight: 600;
           cursor: pointer;
-          white-space: nowrap;
         }
+
         
         .cta-box button:hover {
           filter: brightness(1.1);
@@ -312,7 +306,6 @@
                 Transforme ideias em experiências sonoras.
             </p>
             <div class="cta-wrapper">
-              <div class="cta-gradient">
                 <div class="cta-box">
                   <textarea placeholder="Descreva sua ideia..."></textarea>
                   <button>Criar música</button>
