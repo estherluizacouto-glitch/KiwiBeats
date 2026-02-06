@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KiwiBeats - O ponto de encontro entre ideia e melodia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* 
+        ===========================================
+        BACKGROUND VÍDEO - SERÁ INSERIDO AQUI
+        ===========================================
+        Descomente e adicione o vídeo quando disponível:
+        
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        HTML:
+        <div class="video-background">
+            <video autoplay muted loop playsinline>
+                <source src="seu-video.mp4" type="video/mp4">
+            </video>
+        </div>
+        ===========================================
+        */
+
+        /* Container principal - overlay sobre o vídeo */
+        .main-container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header / Topo */
+        header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            margin-left: 160px; /* Compensa os botões à direita para centralizar o logo */
+        }
+
+        .logo {
+            height: 40px;
+            /* A imagem real da logo será inserida aqui */
+            /* Placeholder: usar a logo do KiwiBeats */
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-entrar {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .btn-entrar:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-cadastrar {
+            background-color: #7cb342;
+            color: #ffffff;
+        }
+
+        .btn-cadastrar:hover {
+            background-color: #8bc34a;
+        }
+
+        /* Hero Section - Centro da tela */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 72px;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-title .highlight {
+            color: #7cb342;
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 48px;
+            max-width: 600px;
+        }
+
+        /* Call to Action */
+        .cta-container {
+            display: flex;
+            gap: 0;
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .cta-input {
+            flex: 1;
+            padding: 18px 28px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border: none;
+            border-radius: 50px 0 0 50px;
+            color: #ffffff;
+            outline: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .cta-button {
+            padding: 18px 36px;
+            font-size: 16px;
+            font-weight: 500;
+            background-color: #7cb342;
+            color: #ffffff;
+            border: none;
+            border-radius: 0 50px 50px 0;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .cta-button:hover {
+            background-color: #8bc34a;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .logo-container {
+                margin-left: 0;
+            }
+
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .hero-subtitle {
+                font-size: 14px;
+            }
+
+            .cta-container {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .cta-input {
+                border-radius: 50px;
+            }
+
+            .cta-button {
+                border-radius: 50px;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            .auth-buttons {
+                gap: 8px;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+    ===========================================
+    VÍDEO DE FUNDO - INSERIR AQUI
+    ===========================================
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="seu-video-background.mp4" type="video/mp4">
+        </video>
+    </div>
+    ===========================================
+    -->
+
+    <div class="main-container">
+        <!-- Header -->
+        <header>
+            <div class="logo-container">
+                <!-- A logo real será inserida aqui -->
+                <!-- Placeholder SVG baseado na imagem -->
+                <svg class="logo" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="20" cy="20" r="16" fill="#7cb342"/>
+                    <text x="45" y="28" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white">beats</text>
+                </svg>
+            </div>
+            <div class="auth-buttons">
+                <button class="btn btn-entrar">Entrar</button>
+                <button class="btn btn-cadastrar">Cadastrar</button>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1 class="hero-title">
+                O ponto de encontro entre<br>
+                ideia e <span class="highlight">melodia</span>.
+            </h1>
+            <p class="hero-subtitle">
+                Crie músicas, trilhas e ideias sonoras em minutos com IA criativa.<br>
+                Transforme ideias em experiências sonoras.
+            </p>
+            <div class="cta-container">
+                <input type="text" class="cta-input" placeholder="Descreva sua ideia...">
+                <button class="cta-button">Criar música</button>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
