@@ -150,49 +150,50 @@
         /* Call to Action */
         .cta-container {
             display: flex;
-            gap: 0;
-            max-width: 700px;
-            width: 100%;
+            align-items: center;
+        
+            width: 720px;
+            height: 56px;
+        
+            background-color: #5f5f5f;
+            border-radius: 999px;
+        
+            padding: 4px;
         }
-
+        
         .cta-input {
             flex: 1;
-            padding: 18px 28px;
-            font-size: 16px;
-
-            background-color: #5f5f5f; /* fundo sólido */
-            color: #ffffff;
-
-            border: 1px solid #7a7a7a; /* BORDA VISÍVEL */
-            border-right: none;
-
-            border-radius: 50px 0 0 50px;
+            height: 100%;
+        
+            background: transparent;
+            border: none;
             outline: none;
+        
+            padding: 0 22px;
+        
+            font-size: 15px;
+            color: #ffffff;
         }
-
-
+        
         .cta-input::placeholder {
             color: rgba(255, 255, 255, 0.7);
         }
-
-
+        
         .cta-button {
-            padding: 18px 36px;
-            font-size: 16px;
-            font-weight: 500;
-
+            height: 100%;
+            padding: 0 28px;
+        
             background-color: #5f8f1f;
             color: #ffffff;
-
-            border: 1px solid #5f8f1f;
-            border-radius: 0 50px 50px 0;
-
+        
+            border: none;
+            border-radius: 999px;
+        
+            font-size: 15px;
+            font-weight: 500;
+        
             cursor: pointer;
             white-space: nowrap;
-        }
-
-        .cta-button:hover {
-            background-color: #6fae25;
         }
 
 
