@@ -228,7 +228,7 @@
           line-height: 1.6;
           font-family: inherit;
         
-          overflow-y: hidden;
+          overflow-y: auto;
         }
 
 
@@ -345,8 +345,16 @@
     
       textarea.addEventListener('input', () => {
         textarea.style.height = 'auto';
-        textarea.style.height = textarea.scrollHeight + 'px';
-      });
+
+          const maxHeight = 240;
+          if (textarea.scrollHeight <= maxHeight) {
+              textarea.style.height = textarea.scrollHeight + 'px';
+              textarea.style.overflowY = 'hidden';
+            } else {
+              textarea.style.height = maxHeight + 'px';
+              textarea.style.overflowY = 'auto';
+            }  
+        });
     </script>
 
 </body>
