@@ -150,62 +150,47 @@
         /* Call to Action */
         /* CTA - estrutura igual à referência */
         .cta-outer {
-            background-color: #3f3f3f; /* cinza MAIS escuro (borda externa) */
+            background: #2a2a2a;
             border-radius: 999px;
-            padding: 4px;
-        
-            width: 720px;
+            padding: 4px; /* espessura da borda */
         }
+
         
         .cta-inner {
             display: flex;
-            align-items: center;
-        
-            background-color: #5f5f5f; /* cinza interno */
+            align-items: stretch;
+            background: #6f6f6f;
             border-radius: 999px;
-        
             height: 56px;
         }
+
         
         /* Input */
         .cta-inner input {
             flex: 1;
-            height: 100%;
-        
-            background-color: #6a6a6a; /* OVAL INTERNO do input */
+            background: transparent;
             border: none;
             outline: none;
-        
-            margin: 6px;
-            padding: 0 22px;
-        
-            border-radius: 999px;
-        
-            font-size: 15px;
-            color: #ffffff;
+            padding: 0 24px;
+            font-size: 16px;
+            color: white;
         }
-        
+
         .cta-inner input::placeholder {
             color: rgba(255, 255, 255, 0.75);
         }
         
         /* Botão */
         .cta-inner button {
-            height: calc(100% - 12px);
-            margin: 6px 6px 6px 0;
-            padding: 0 28px;
-        
-            background-color: #6fae25; /* verde interno */
             border: none;
-            border-radius: 999px;
-        
-            font-size: 15px;
+            background: #7cc51a;
+            color: white;
+            padding: 0 28px;
+            font-size: 16px;
             font-weight: 500;
-            color: #ffffff;
-        
+            border-radius: 999px;
             cursor: pointer;
         }
-
 
 
         /* Responsividade */
