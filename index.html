@@ -336,7 +336,7 @@
             </p>
             <div class="cta-wrapper">
                 <div class="cta-box">
-                  <textarea placeholder="Descreva sua ideia..."></textarea>
+                  <textarea></textarea>
                   <button>Criar música</button>
                 </div>
               </div>
@@ -360,6 +360,47 @@
               textarea.style.overflowY = 'auto';
             }  
         });
+    </script>
+
+    <script>
+      const textarea = document.querySelector('.cta-box textarea');
+    
+      const frases = [
+        'Descreva sua ideia...',
+        'Faça uma música no estilo samba com a seguinte letra...',
+        'Faça uma música de sertanejo universitário sobre um amor não correspondido...',
+        'Coloque o som de guitarra por cima dessa música...',
+        'Transforme essa letra em uma música no estilo rock...'
+      ];
+    
+      let fraseIndex = 0;
+      let charIndex = 0;
+      let escrevendo = true;
+    
+      function digitar() {
+        if (escrevendo) {
+          if (charIndex <= frases[fraseIndex].length) {
+            textarea.setAttribute('placeholder', frases[fraseIndex].slice(0, charIndex));
+            charIndex++;
+            setTimeout(digitar, 80);
+          } else {
+            escrevendo = false;
+            setTimeout(digitar, 1500); // pausa antes de apagar
+          }
+        } else {
+          if (charIndex >= 0) {
+            textarea.setAttribute('placeholder', frases[fraseIndex].slice(0, charIndex));
+            charIndex--;
+            setTimeout(digitar, 40);
+          } else {
+            escrevendo = true;
+            fraseIndex = (fraseIndex + 1) % frases.length;
+            setTimeout(digitar, 300);
+          }
+        }
+      }
+    
+      digitar();
     </script>
 
 </body>
