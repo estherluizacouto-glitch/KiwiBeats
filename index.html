@@ -148,53 +148,64 @@
         }
 
         /* Call to Action */
-        .cta-container {
+        /* CTA - estrutura igual à referência */
+        .cta-outer {
+            background-color: #3f3f3f; /* cinza MAIS escuro (borda externa) */
+            border-radius: 999px;
+            padding: 4px;
+        
+            width: 720px;
+        }
+        
+        .cta-inner {
             display: flex;
             align-items: center;
         
-            width: 720px;
-            height: 56px;
-        
-            background-color: #5f5f5f;
+            background-color: #5f5f5f; /* cinza interno */
             border-radius: 999px;
         
-            padding: 4px;
+            height: 56px;
         }
         
-        .cta-input {
+        /* Input */
+        .cta-inner input {
             flex: 1;
             height: 100%;
         
-            background: transparent;
+            background-color: #6a6a6a; /* OVAL INTERNO do input */
             border: none;
             outline: none;
         
+            margin: 6px;
             padding: 0 22px;
+        
+            border-radius: 999px;
         
             font-size: 15px;
             color: #ffffff;
         }
         
-        .cta-input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
+        .cta-inner input::placeholder {
+            color: rgba(255, 255, 255, 0.75);
         }
         
-        .cta-button {
-            height: 100%;
+        /* Botão */
+        .cta-inner button {
+            height: calc(100% - 12px);
+            margin: 6px 6px 6px 0;
             padding: 0 28px;
         
-            background-color: #5f8f1f;
-            color: #ffffff;
-        
+            background-color: #6fae25; /* verde interno */
             border: none;
             border-radius: 999px;
         
             font-size: 15px;
             font-weight: 500;
+            color: #ffffff;
         
             cursor: pointer;
-            white-space: nowrap;
         }
+
 
 
         /* Responsividade */
@@ -209,19 +220,6 @@
 
             .hero-subtitle {
                 font-size: 14px;
-            }
-
-            .cta-container {
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .cta-input {
-                border-radius: 50px;
-            }
-
-            .cta-button {
-                border-radius: 50px;
             }
 
             header {
