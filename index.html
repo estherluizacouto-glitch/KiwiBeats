@@ -234,9 +234,8 @@
         }
         
         .cta-box button {
-          position: absolute;
-          right: 20px;
-          bottom: 20px;
+          align-self: end;
+          justify-self: end;   
         
           padding: 14px 28px;
           border-radius: 999px;
@@ -250,6 +249,7 @@
           font-weight: 400;
           cursor: pointer;
         }
+
 
 
         
@@ -334,7 +334,7 @@
         </section>
     </div>
     <script>
-      const textarea = document.querySelector('.cta-inner textarea');
+      const textarea = document.querySelector('.cta-box textarea');
     
       textarea.addEventListener('input', () => {
         textarea.style.height = 'auto';
