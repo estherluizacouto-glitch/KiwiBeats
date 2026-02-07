@@ -297,6 +297,176 @@
                 font-size: 13px;
             }
         }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modal Container */
+        .modal-container {
+            background: linear-gradient(180deg, #5a7c4e 0%, #4a6c3e 100%);
+            border-radius: 24px;
+            padding: 48px 40px;
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.3s ease;
+        }
+
+        /* Logo */
+        .logo-container {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .logo-container img {
+            height: 48px;
+            width: auto;
+        }
+
+        /* Título */
+        .modal-title {
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .modal-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 36px;
+            line-height: 1.5;
+        }
+
+        /* Botão Google */
+        .google-btn {
+            width: 100%;
+            padding: 16px;
+            background: white;
+            border: none;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 28px;
+        }
+
+        .google-btn:hover {
+            background: #f8f8f8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .google-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Divisor */
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 28px 0;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 13px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .divider span {
+            padding: 0 16px;
+        }
+
+        /* Botão Entrar */
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 24px;
+        }
+
+        .login-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Termos */
+        .terms {
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .terms a {
+            color: white;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .terms a:hover {
+            opacity: 0.8;
+        }
+
     </style>
 </head>
 <body> 
@@ -345,6 +515,40 @@
 
         </section>
     </div>
+
+    <!-- MODAL DE CADASTRO -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal-container" onclick="event.stopPropagation()">
+    
+        <div class="logo-container">
+          <img src="logo.png" alt="KiwiBeats">
+        </div>
+    
+        <h1 class="modal-title">Crie sua conta</h1>
+        <p class="modal-subtitle">
+          Bem-vindo ao KiwiBeats.<br>
+          Crie sua conta e dê o play na sua criatividade.
+        </p>
+    
+        <button class="google-btn">
+          Google
+        </button>
+    
+        <div class="divider">
+          <span>Já tem uma conta?</span>
+        </div>
+    
+        <button class="login-btn">Entrar</button>
+    
+        <p class="terms">
+          Ao continuar, você aceita nossa
+          <a href="#">Política de Privacidade</a> e
+          <a href="#">Termos de uso</a>.
+        </p>
+    
+      </div>
+    </div>
+
     <script>
       const textarea = document.querySelector('.cta-box textarea');
     
@@ -416,6 +620,28 @@
       });
 
       digitar();
+
+        // ===== MODAL DE CADASTRO =====
+        const modal = document.getElementById('modalOverlay');
+        const btnCadastrar = document.querySelector('.btn-cadastrar');
+        
+        btnCadastrar.addEventListener('click', () => {
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+        
+        modal.addEventListener('click', () => {
+          modal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        });
+        
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+          }
+        });
+
     </script>
 
 </body>
