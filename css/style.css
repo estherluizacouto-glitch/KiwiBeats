@@ -356,13 +356,16 @@ header {
     max-width: 420px;
     position: relative;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    animation: slideUp 0.3s ease;
+
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .modal-container.switching {
     opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transform: translateY(20px);
+}
 
 /* Logo */
 .modal-logo {
