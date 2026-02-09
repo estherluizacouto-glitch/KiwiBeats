@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const textarea = document.querySelector('.cta-box textarea');
   const modal = document.getElementById('modalOverlay');
+  const btnCadastrar = document.querySelector('.btn-cadastrar');
+  const btnEntrar = document.querySelector('.btn-entrar');
+
 
   if (!textarea || !modal || !btnCadastrar) {
     console.error('Elementos não encontrados no DOM');
@@ -76,8 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
   digitar();
 
   // ===== MODAL =====
-  const modal = document.getElementById('modalOverlay');
-
   const modalTitle = document.getElementById('modalTitle');
   const modalSubtitle = document.getElementById('modalSubtitle');
   const modalDividerText = document.getElementById('modalDividerText');
