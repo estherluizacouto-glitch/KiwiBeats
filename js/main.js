@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const textarea = document.querySelector('.cta-box textarea');
   const modal = document.getElementById('modalOverlay');
-  const btnCadastrar = document.querySelector('.btn-cadastrar');
 
   if (!textarea || !modal || !btnCadastrar) {
     console.error('Elementos não encontrados no DOM');
