@@ -83,33 +83,40 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalSubtitle = document.getElementById('modalSubtitle');
   const modalDividerText = document.getElementById('modalDividerText');
   const modalSecondaryBtn = document.getElementById('modalSecondaryBtn');
+  const modalContainer = document.querySelector('.modal-container');
 
   function setModalMode(mode) {
-    if (mode === 'cadastrar') {
-      modalTitle.textContent = 'Crie sua conta';
-      modalSubtitle.innerHTML = `
-        Bem-vindo ao KiwiBeats.<br>
-        Crie sua conta e dê o play na sua criatividade.
-      `;
-  
-      modalDividerText.textContent = 'Já tem uma conta?';
-      modalSecondaryBtn.textContent = 'Entrar';
-  
-      modalSecondaryBtn.onclick = () => setModalMode('entrar');
+    modalContainer.classList.add('switching');
+
+    setTimeout(() => {
+      if (mode === 'cadastrar') {
+        modalTitle.textContent = 'Crie sua conta';
+        modalSubtitle.innerHTML = `
+          Bem-vindo ao KiwiBeats.<br>
+          Crie sua conta e dê o play na sua criatividade.
+        `;
+    
+        modalDividerText.textContent = 'Já tem uma conta?';
+        modalSecondaryBtn.textContent = 'Entrar';
+    
+        modalSecondaryBtn.onclick = () => setModalMode('entrar');
     }
   
-    if (mode === 'entrar') {
-      modalTitle.textContent = 'Entre na sua conta';
-      modalSubtitle.innerHTML = `
-        Que bom te ver de novo.<br>
-        Faça login para continuar criando música.
-      `;
-  
-      modalDividerText.textContent = 'Ainda não tem conta?';
-      modalSecondaryBtn.textContent = 'Criar conta';
-  
-      modalSecondaryBtn.onclick = () => setModalMode('cadastrar');
-    }
+      if (mode === 'entrar') {
+        modalTitle.textContent = 'Entre na sua conta';
+        modalSubtitle.innerHTML = `
+          Que bom te ver de novo.<br>
+          Faça login para continuar criando música.
+        `;
+    
+        modalDividerText.textContent = 'Ainda não tem conta?';
+        modalSecondaryBtn.textContent = 'Criar conta';
+    
+        modalSecondaryBtn.onclick = () => setModalMode('cadastrar');
+      }
+
+      modalContainer.classList.remove('switching');
+    }, 200);
   }
 
 
