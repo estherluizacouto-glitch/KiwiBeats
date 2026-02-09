@@ -13,28 +13,28 @@ body {
 
 @font-face {
     font-family: 'Genty Sans';
-    src: url('fontes/genty-sans-regular.ttf') format('truetype');
+    src: url('../fontes/genty-sans-regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Instrument Serif';
-    src: url('fontes/InstrumentSerif-Regular.ttf') format('truetype');
+    src: url('../fontes/InstrumentSerif-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Instrument Serif';
-    src: url('fontes/InstrumentSerif-Italic.ttf') format('truetype');
+    src: url('../fontes/InstrumentSerif-Italic.ttf') format('truetype');
     font-weight: 400;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'DM Sans';
-    src: url('fontes/DMSans-regular.ttf') format('truetype');
+    src: url('../fontes/DMSans-regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
