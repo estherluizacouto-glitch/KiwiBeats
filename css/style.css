@@ -383,10 +383,10 @@ header {
 .modal-subtitle {
     color: rgba(255, 255, 255, 0.9);
     font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     text-align: center;
     margin-bottom: 36px;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 /* Botão Google */
