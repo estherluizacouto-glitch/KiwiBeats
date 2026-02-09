@@ -78,9 +78,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===== MODAL =====
   const modal = document.getElementById('modalOverlay');
-  const btnCadastrar = document.querySelector('.btn-cadastrar');
+
+  const modalTitle = document.getElementById('modalTitle');
+  const modalSubtitle = document.getElementById('modalSubtitle');
+  const modalDividerText = document.getElementById('modalDividerText');
+  const modalSecondaryBtn = document.getElementById('modalSecondaryBtn');
+
+  function setModalMode(mode) {
+    if (mode === 'cadastrar') {
+      modalTitle.textContent = 'Crie sua conta';
+      modalSubtitle.innerHTML = `
+        Bem-vindo ao KiwiBeats.<br>
+        Crie sua conta e dê o play na sua criatividade.
+      `;
+  
+      modalDividerText.textContent = 'Já tem uma conta?';
+      modalSecondaryBtn.textContent = 'Entrar';
+  
+      modalSecondaryBtn.onclick = () => setModalMode('entrar');
+    }
+  
+    if (mode === 'entrar') {
+      modalTitle.textContent = 'Entre na sua conta';
+      modalSubtitle.innerHTML = `
+        Que bom te ver de novo.<br>
+        Faça login para continuar criando música.
+      `;
+  
+      modalDividerText.textContent = 'Ainda não tem conta?';
+      modalSecondaryBtn.textContent = 'Criar conta';
+  
+      modalSecondaryBtn.onclick = () => setModalMode('cadastrar');
+    }
+  }
+
 
   btnCadastrar.addEventListener('click', () => {
+    setModalMode('cadastrar');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+
+  btnEntrar.addEventListener('click', () => {
+    setModalMode('entrar');
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
   });
