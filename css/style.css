@@ -359,6 +359,11 @@ header {
     animation: slideUp 0.3s ease;
 }
 
+.modal-container.switching {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+
 /* Logo */
 .modal-logo {
     text-align: center;
