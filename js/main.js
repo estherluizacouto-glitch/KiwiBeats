@@ -28,6 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
       textarea.style.height = maxHeight + 'px';
       textarea.style.overflowY = 'auto';
     }
+
+    async function loginWithGoogle() {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google'
+      })
+    
+      if (error) {
+        console.error('Erro no login:', error.message)
+        alert('Erro ao fazer login com Google')
+      }
+    }
   });
 
   const frases = [
