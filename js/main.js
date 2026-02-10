@@ -39,6 +39,27 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Erro ao fazer login com Google')
       }
     }
+
+    const googleLoginBtn = document.getElementById('googleLoginBtn')
+
+    if (googleLoginBtn) {
+      googleLoginBtn.addEventListener('click', loginWithGoogle)
+    }
+
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN') {
+        console.log('Logado:', session.user)
+    
+        modal.classList.remove('active')
+        document.body.style.overflow = 'auto'
+    
+        localStorage.setItem('access_token', session.access_token)
+      }
+    
+      if (event === 'SIGNED_OUT') {
+        localStorage.removeItem('access_token')
+      }
+})
   });
 
   const frases = [
