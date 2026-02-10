@@ -18,21 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  textarea.addEventListener('input', () => {
-    textarea.style.height = 'auto';
-    const maxHeight = 240;
-    if (textarea.scrollHeight <= maxHeight) {
-      textarea.style.height = textarea.scrollHeight + 'px';
-      textarea.style.overflowY = 'hidden';
-    } else {
-      textarea.style.height = maxHeight + 'px';
-      textarea.style.overflowY = 'auto';
-    }
-
   async function loginWithGoogle() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google'
-    })
+    });
   
     if (error) {
       console.error('Erro no login:', error.message)
@@ -40,8 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const googleLoginBtn = document.getElementById('googleLoginBtn')
-
+  const googleLoginBtn = document.getElementById('googleLoginBtn');
   if (googleLoginBtn) {
     googleLoginBtn.addEventListener('click', loginWithGoogle)
   }
@@ -59,7 +47,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event === 'SIGNED_OUT') {
       localStorage.removeItem('access_token')
     }
-})
+  });
+
+  textarea.addEventListener('input', () => {
+    textarea.style.height = 'auto';
+    const maxHeight = 240;
+    if (textarea.scrollHeight <= maxHeight) {
+      textarea.style.height = textarea.scrollHeight + 'px';
+      textarea.style.overflowY = 'hidden';
+    } else {
+      textarea.style.height = maxHeight + 'px';
+      textarea.style.overflowY = 'auto';
+    }
   });
 
   const frases = [
