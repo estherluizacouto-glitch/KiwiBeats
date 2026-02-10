@@ -29,36 +29,36 @@ document.addEventListener('DOMContentLoaded', () => {
       textarea.style.overflowY = 'auto';
     }
 
-    async function loginWithGoogle() {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google'
-      })
-    
-      if (error) {
-        console.error('Erro no login:', error.message)
-        alert('Erro ao fazer login com Google')
-      }
+  async function loginWithGoogle() {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google'
+    })
+  
+    if (error) {
+      console.error('Erro no login:', error.message)
+      alert('Erro ao fazer login com Google')
     }
+  }
 
-    const googleLoginBtn = document.getElementById('googleLoginBtn')
+  const googleLoginBtn = document.getElementById('googleLoginBtn')
 
-    if (googleLoginBtn) {
-      googleLoginBtn.addEventListener('click', loginWithGoogle)
+  if (googleLoginBtn) {
+    googleLoginBtn.addEventListener('click', loginWithGoogle)
+  }
+
+  supabase.auth.onAuthStateChange((event, session) => {
+    if (event === 'SIGNED_IN') {
+      console.log('Logado:', session.user)
+  
+      modal.classList.remove('active')
+      document.body.style.overflow = 'auto'
+  
+      localStorage.setItem('access_token', session.access_token)
     }
-
-    supabase.auth.onAuthStateChange((event, session) => {
-      if (event === 'SIGNED_IN') {
-        console.log('Logado:', session.user)
-    
-        modal.classList.remove('active')
-        document.body.style.overflow = 'auto'
-    
-        localStorage.setItem('access_token', session.access_token)
-      }
-    
-      if (event === 'SIGNED_OUT') {
-        localStorage.removeItem('access_token')
-      }
+  
+    if (event === 'SIGNED_OUT') {
+      localStorage.removeItem('access_token')
+    }
 })
   });
 
