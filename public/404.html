@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KiwiBeats - O ponto de encontro entre ideia e melodia</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body> 
+
+    <div class="video-background">
+        <video class="bg-video" autoplay muted loop playsinline>
+            <source src="assets/videos/video.mp4" type="video/mp4">
+        </video>
+
+    </div>
+    
+
+    <div class="main-container">
+        <!-- Header -->
+        <header>
+            <div></div> <!-- espaço vazio à esquerda -->
+        
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" alt="KiwiBeats" class="logo">
+                </a>
+            </div>
+            
+            <div class="auth-buttons">
+                <button class="btn btn-entrar">Entrar</button>
+                <button class="btn btn-cadastrar">Cadastrar</button>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1 class="hero-title">
+                O ponto de encontro entre<br>
+                ideia e <span class="highlight">melodia</span>.
+            </h1>
+            <p class="hero-subtitle">
+                Crie músicas, trilhas e ideias sonoras em minutos com IA criativa.<br>
+                Transforme ideias em experiências sonoras.
+            </p>
+            <div class="cta-wrapper">
+                <div class="cta-box">
+                  <textarea></textarea>
+                  <button>Criar música</button>
+                </div>
+              </div>
+
+
+        </section>
+    </div>
+
+    <!-- MODAL DE CADASTRO -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal-container" onclick="event.stopPropagation()">
+    
+        <div class="modal-logo">
+          <img src="assets/images/logo.png" alt="KiwiBeats">
+        </div>
+    
+        <h1 class="modal-title" id="modalTitle"></h1>
+          
+        <p class="modal-subtitle" id="modalSubtitle"></p>
+    
+        <button id="googleLoginBtn" class="google-btn">
+          <img src="assets/icons/google-icon.png" alt="Google" class="google-icon">
+          Continuar com Google
+        </button>
+
+    
+        <div class="divider">
+          <span id="modalDividerText"></span>
+        </div>
+    
+        <button class="login-btn" id="modalSecondaryBtn"></button>
+    
+        <p class="terms">
+          Ao continuar, você aceita nossa
+          <a href="#">Política de Privacidade</a> e
+          <a href="#">Termos de uso</a>.
+        </p>
+    
+      </div>
+    </div>
+    
+    <script type="module" src="js/main.js"></script>
+
+</body>
+</html>
