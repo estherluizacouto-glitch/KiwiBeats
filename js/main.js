@@ -19,9 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function loginWithGoogle() {
-    const { error } = await supabase.auth.signInWithOAuth({
+    const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      redirectTo: window.location.origin + '/KiwiBeats'
+      options: {
+        redirectTo: window.location.origin + '/KiwiBeats'
+      }
     });
   
     if (error) {
