@@ -19,18 +19,27 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function loginWithGoogle() {
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: window.location.origin + '/KiwiBeats'
+        redirectTo: window.location.href
       }
     });
+  }
   
     if (error) {
       console.error('Erro no login:', error.message)
       alert('Erro ao fazer login com Google')
     }
   }
+
+  async function debugSession() {
+    const { data, error } = await supabase.auth.getSession();
+    console.log("SESSION:", data);
+    console.log("ERROR:", error);
+  }
+  
+  debugSession();
 
   const googleLoginBtn = document.getElementById('googleLoginBtn');
   if (googleLoginBtn) {
