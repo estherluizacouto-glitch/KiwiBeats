@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
         redirectTo: window.location.href
       }
     });
-  }
   
     if (error) {
       console.error('Erro no login:', error.message)
