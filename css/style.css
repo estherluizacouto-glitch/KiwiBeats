@@ -133,25 +133,28 @@ header {
 
 .sidebar-toggle {
     position: fixed;
-    left: 20px;
-    top: 20px;
+    left: 24px;
+    top: 24px;
 
-    width: 40px;
-    height: 40px;
+    width: 52px;
+    height: 52px;
 
-    background: transparent;
+    background: #7cb342;
     border: none;
+    border-radius: 14px;
 
-    color: #7cb342;
-    font-size: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     cursor: pointer;
-
     z-index: 9999;
-    transition: opacity 0.2s ease;
+    
+    transition: transform 0.2s ease;
 }
 
 .sidebar-toggle:hover {
-    opacity: 0.7;
+    opacity: scale(1.08);
 }
 
 
