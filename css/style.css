@@ -158,6 +158,10 @@ header {
     opacity: scale(1.08);
 }
 
+.sidebar .logo2 {
+    width: 140px;
+}
+
 
 .logo {
     height: 40px;
@@ -172,12 +176,6 @@ header {
 .logo-container a:hover {
     opacity: 0.85;
     cursor: pointer;
-}
-
-.logo2 {
-    width: 160px;
-    height: auto;
-    display: block;
 }
 
 
