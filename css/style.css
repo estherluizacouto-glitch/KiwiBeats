@@ -101,32 +101,34 @@ header {
     justify-self: end;
 }
 
-.sidebar-toggle {
+.sidebar {
     position: fixed;
-    left: 20px;
-    top: 36px; /* ajuste fino aqui se precisar */
+    top: 0;
+    left: -260px; /* começa escondida */
+    width: 260px;
+    height: 100vh;
 
-    width: 50px;
-    height: 50px;
-    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
 
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
+    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 
+    transition: left 0.3s ease;
+    z-index: 9998;
+}
+
+.sidebar a {
     color: white;
-    font-size: 22px;
-    border: 1px solid rgba(255,255,255,0.1);
-    cursor: pointer;
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    transition: all 0.3s ease;
-    z-index: 9999; /* MUITO importante por causa do vídeo */
+    text-decoration: none;
+    font-size: 18px;
 }
 
-.sidebar-toggle:hover {
-    transform: scale(1.1);
+.sidebar.open {
+    left: 0;
 }
-
 
 
 .logo {
