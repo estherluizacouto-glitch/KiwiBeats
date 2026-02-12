@@ -12,12 +12,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnCadastrar = document.querySelector('.btn-cadastrar');
   const btnEntrar = document.querySelector('.btn-entrar');
 
-
-  if (!textarea || !modal || !btnCadastrar) {
-    console.error('Elementos não encontrados no DOM');
-    return;
+  if (textarea) {
+    textarea.addEventListener('input', () => {
+      textarea.style.height = 'auto';
+      const maxHeight = 240;
+      if (textarea.scrollHeight <= maxHeight) {
+        textarea.style.height = textarea.scrollHeight + 'px';
+        textarea.style.overflowY = 'hidden';
+      } else {
+        textarea.style.height = maxHeight + 'px';
+        textarea.style.overflowY = 'auto';
+      }
+    });
   }
-
+  
   async function loginWithGoogle() {
     await supabase.auth.signInWithOAuth({
       provider: 'google',
@@ -195,10 +203,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const sidebarToggle = document.getElementById("sidebarToggle");
   const sidebar = document.getElementById("sidebar");
-  
-  sidebarToggle.addEventListener("click", () => {
-      sidebar.classList.toggle("open");
-  });
+
+  if (sidebarToggle && sidebar) {
+    sidebarToggle.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+    });
+  }
 
 
 });
