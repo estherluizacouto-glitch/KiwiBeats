@@ -134,29 +134,24 @@ header {
 .sidebar-toggle {
     position: fixed;
     left: 20px;
-    top: 320px; /* ajuste fino se quiser */
+    top: 20px;
 
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
 
-    border-radius: 14px;
+    background: transparent;
     border: none;
 
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(10px);
-
-    color: white;
-    font-size: 22px;
+    color: #7cb342;
+    font-size: 26px;
     cursor: pointer;
 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     z-index: 9999;
-
-    transition: transform 0.2s ease;
+    transition: opacity 0.2s ease;
 }
 
 .sidebar-toggle:hover {
-    transform: scale(1.1);
+    opacity: 0.7;
 }
 
 
