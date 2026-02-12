@@ -109,7 +109,7 @@ header {
     width: 260px;
     height: 100vh;
 
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.80);
     backdrop-filter: blur(20px);
 
     padding: 80px 20px;
@@ -133,8 +133,8 @@ header {
 
 .sidebar-toggle {
     position: fixed;
-    left: 24px;
-    top: 24px;
+    left: 30px;
+    top: 20px;
 
     width: 30px;
     height: 30px;
@@ -148,6 +148,11 @@ header {
     
     transition: transform 0.2s ease;
 }
+
+.sidebar-toggle.active {
+  left: 280px;
+}
+
 
 .sidebar-toggle:hover {
     opacity: scale(1.08);
