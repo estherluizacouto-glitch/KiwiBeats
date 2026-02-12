@@ -201,14 +201,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  const sidebarToggle = document.getElementById("sidebarToggle");
+  const toggle = document.getElementById("sidebarToggle");
   const sidebar = document.getElementById("sidebar");
 
-  if (sidebarToggle && sidebar) {
-    sidebarToggle.addEventListener("click", () => {
-        sidebar.classList.toggle("open");
-    });
-  }
+  toggle.addEventListener("click", () => {
+    sidebar.classList.toggle("active");
+    toggle.classList.toggle("active");
+  });
 
 
 });
