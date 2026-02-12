@@ -136,16 +136,12 @@ header {
     left: 24px;
     top: 24px;
 
-    width: 52px;
-    height: 52px;
+    width: 56px;
+    height: 56px;
 
-    background: #7cb342;
     border: none;
-    border-radius: 14px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: none;
+    padding: 0;
 
     cursor: pointer;
     z-index: 9999;
