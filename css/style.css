@@ -105,17 +105,16 @@ header {
 .sidebar {
     position: fixed;
     top: 0;
-    left: -260px; /* começa escondida */
+    left: -260px; 
     width: 260px;
     height: 100vh;
 
     background: rgba(0, 0, 0, 0.80);
     backdrop-filter: blur(20px);
 
-    padding: 80px 20px;
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
 
     transition: left 0.3s ease;
     z-index: 9998;
@@ -167,7 +166,7 @@ header {
 .sidebar-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 30px;
 }
 
 
