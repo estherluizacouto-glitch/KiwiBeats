@@ -112,7 +112,7 @@ header {
     background: rgba(0, 0, 0, 0.80);
     backdrop-filter: blur(20px);
 
-    padding: 0px 30px;
+    padding: 20px 30px;
 
     transition: left 0.3s ease;
     z-index: 9998;
