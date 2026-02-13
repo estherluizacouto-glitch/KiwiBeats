@@ -130,24 +130,23 @@ header {
 
 .sidebar-toggle {
     position: fixed;
-    left: 30px;
     top: 20px;
+    left: 30px;
 
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
 
     border: none;
     background: none;
-    padding: 0;
-
     cursor: pointer;
+
     z-index: 9999;
-    
-    transition: transform 0.3s ease;
+
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .sidebar-toggle.open {
-  left: 200px;
+  transform: translateX(200px);
 }
 
 
