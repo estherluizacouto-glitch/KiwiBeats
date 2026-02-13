@@ -201,13 +201,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  const toggle = document.getElementById("sidebarToggle");
-  const sidebar = document.getElementById("sidebar");
-
-  toggle.addEventListener("click", () => {
-    sidebar.classList.toggle("open");
-    toggle.classList.toggle("open");
+  const openBtn = document.getElementById("sidebarOpenBtn");
+  const closeBtn = document.getElementById("sidebarCloseBtn");
+  const sidebar = document.getElementById("dashboardSidebar");
+  
+  openBtn.addEventListener("click", () => {
+    sidebar.classList.add("open");
   });
+  
+  closeBtn.addEventListener("click", () => {
+    sidebar.classList.remove("open");
+  });
+
 
 
 });
