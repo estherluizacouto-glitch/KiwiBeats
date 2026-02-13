@@ -146,7 +146,7 @@ header {
 }
 
 .sidebar-toggle.open {
-  transform: translateX(200px);
+  transform: translateX(170px);
 }
 
 
