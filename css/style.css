@@ -157,10 +157,14 @@ header {
     opacity: scale(1.08);
 }
 
-.sidebar .logo2 img {
-    width: 140px;
+.logo2 {
+    display: flex;
+    justify-content: center;
+}
+
+.logo2 img {
+    width: 120px;
     height: auto;
-    display: block;
 }
 
 .sidebar-content {
