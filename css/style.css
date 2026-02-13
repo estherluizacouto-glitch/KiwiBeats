@@ -165,10 +165,11 @@ header {
     width: 100%;
 }
 
-.logo2 img {
+.logo2 {
     width: 140px;
     height: auto;
     display: block;
+    margin-top: 20px;
 }
 
 
