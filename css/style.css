@@ -143,11 +143,11 @@ header {
     cursor: pointer;
     z-index: 9999;
     
-    transition: transform 0.2s ease;
+    transition: transform 0.3s ease;
 }
 
-.sidebar-toggle.active {
-  left: 280px;
+.sidebar-toggle.open {
+  left: 290px;
 }
 
 
