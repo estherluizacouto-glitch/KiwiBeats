@@ -158,8 +158,10 @@ header {
     opacity: scale(1.08);
 }
 
-.sidebar .logo2 {
+.sidebar .logo2 img {
     width: 140px;
+    height: auto;
+    display: block;
 }
 
 
