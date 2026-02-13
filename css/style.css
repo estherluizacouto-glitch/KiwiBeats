@@ -102,82 +102,75 @@ header {
     justify-self: end;
 }
 
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: -260px; 
-    width: 260px;
-    height: 100vh;
-
-    background: rgba(0, 0, 0, 0.80);
-    backdrop-filter: blur(20px);
-
-    padding: 20px 30px;
-
-    transition: left 0.3s ease;
-    z-index: 9998;
+.dashboard-sidebar {
+  position: fixed;
+  left: -280px;
+  top: 0;
+  width: 280px;
+  height: 100vh;
+  background: #0d1117;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  transition: transform 0.35s ease;
+  z-index: 999;
 }
 
-.sidebar a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
+.dashboard-sidebar.open {
+  transform: translateX(280px);
 }
 
-.sidebar.open {
-    left: 0;
+.dashboard-sidebar .logo2 {
+  width: 100px;
+  margin: 0 auto;
 }
 
-.sidebar-toggle {
-    position: fixed;
-    top: 20px;
-    left: 30px;
-
-    width: 30px;
-    height: 30px;
-
-    border: none;
-    background: none;
-    cursor: pointer;
-
-    z-index: 9999;
-
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+.dashboard-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.sidebar-toggle.open {
-  transform: translateX(170px);
+.dashboard-nav li a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  padding: 12px 0;
 }
 
-
-.sidebar-toggle:hover {
-    opacity: scale(1.08);
+.dashboard-nav li a:hover {
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding-left: 8px;
 }
 
-.sidebar-content {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    align-items: flex-start;
+#sidebarCloseBtn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  margin-top: auto;
+  cursor: pointer;
 }
+
+#sidebarOpenBtn {
+  font-size: 26px;
+  position: fixed;
+  top: 20px;
+  left: 24px;
+  background: none;
+  border: none;
+  color: #7cb342;
+}
+
 
 .logo2 {
     width: 70px;
     align-self: center;
-}
-
-
-.sidebar nav ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    padding: 0;
-}
-
-.sidebar nav li {
-    font-size: 16px;
-    cursor: pointer;
 }
 
 
