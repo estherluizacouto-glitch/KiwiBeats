@@ -102,75 +102,99 @@ header {
     justify-self: end;
 }
 
-.dashboard-sidebar {
+body {
+  margin: 0;
+  background: #0f1117;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
   position: fixed;
-  left: -280px;
+  left: 0;
   top: 0;
-  width: 280px;
+  width: 88px;
   height: 100vh;
-  background: #0d1117;
-  padding: 32px;
+  background: #151821;
+  padding: 20px 0;
+  transition: width 0.4s cubic-bezier(.77,0,.18,1);
+  overflow: hidden;
+}
+
+.sidebar.open {
+  width: 260px;
+}
+
+.logo2 {
   display: flex;
-  flex-direction: column;
-  gap: 40px;
-  transition: transform 0.35s ease;
-  z-index: 999;
+  justify-content: center;
+  margin-bottom: 40px;
 }
 
-.dashboard-sidebar.open {
-  transform: translateX(280px);
+.logo2 img {
+  width: 40px;
+  transition: 0.3s;
 }
 
-.dashboard-sidebar .logo2 {
-  width: 100px;
-  margin: 0 auto;
+.sidebar.open .logo img {
+  width: 120px;
 }
 
-.dashboard-nav ul {
+.menu {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.dashboard-nav li a {
+.menu li {
+  margin-bottom: 20px;
+}
+
+.menu a {
   display: flex;
   align-items: center;
-  gap: 14px;
-  color: #fff;
-  font-size: 18px;
+  gap: 16px;
+  color: #aaa;
   text-decoration: none;
-  padding: 12px 0;
+  padding: 12px 20px;
+  transition: 0.3s;
 }
 
-.dashboard-nav li a:hover {
-  background: rgba(255,255,255,0.1);
+.menu a:hover {
+  background: #1e2230;
+  color: white;
   border-radius: 8px;
-  padding-left: 8px;
 }
 
-#sidebarCloseBtn {
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 24px;
-  margin-top: auto;
-  cursor: pointer;
+.text {
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap;
 }
 
-#sidebarOpenBtn {
-  font-size: 26px;
+.sidebar.open .text {
+  opacity: 1;
+}
+
+.toggle-btn {
   position: fixed;
-  top: 20px;
-  left: 24px;
-  background: none;
+  top: 30px;
+  left: 88px;
+  width: 36px;
+  height: 36px;
+  background: #1e2230;
+  border-radius: 50%;
   border: none;
-  color: #7cb342;
+  cursor: pointer;
+  transition: left 0.4s cubic-bezier(.77,0,.18,1), transform 0.4s;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-
-.logo2 {
-    width: 70px;
-    align-self: center;
+.sidebar.open ~ .toggle-btn {
+  left: 260px;
+  transform: rotate(180deg);
 }
 
 
