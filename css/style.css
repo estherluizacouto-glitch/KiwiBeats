@@ -202,6 +202,10 @@ body {
   transform: rotate(180deg);
 }
 
+.sidebar.closed {
+    width: 90px;
+}
+
 
 .logo {
     height: 40px;
