@@ -108,77 +108,277 @@ body {
   font-family: Arial, sans-serif;
 }
 
+
+:root {
+  --bg-sidebar: #1a1210;
+  --bg-surface: #231815;
+  --bg-hover: #2c1f1a;
+  --bg-active: #3a2218;
+  --accent: #e8862a;
+  --accent-hover: #f09540;
+  --text-primary: #f0e8e0;
+  --text-secondary: #9a8070;
+  --text-muted: #5a4a40;
+  --border: rgba(255,255,255,0.06);
+  --sidebar-width: 240px;
+  --sidebar-collapsed-width: 68px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: linear-gradient(135deg, #2a0a05 0%, #6b2a10 50%, #c05a15 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 24px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+
 .sidebar {
-  position: fixed;
-  left: 0;
-  top: 0;
-    
-  width: 260px;
-  height: 100vh;
-    
-  background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(20px);
-    
-    padding: 20px 15px;
-    overflow: hidden;
-    
-    transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  width: var(--sidebar-width);
+  min-height: 520px;
+  background: var(--bg-sidebar);
+  border-radius: 18px;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow: hidden;
+  transition: width var(--transition);
+  box-shadow: 0 32px 64px rgba(0,0,0,0.5);
 }
 
-.sidebar.open {
-  width: 260px;
+.sidebar.collapsed {
+  width: var(--sidebar-collapsed-width);
 }
 
-.sidebar.open .text {
-  opacity: 1;
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 4px 16px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
 }
 
-.sidebar.closed {
-    width: 90px;
+.avatar {
+  position: relative;
+  flex-shrink: 0;
 }
 
-.sidebar-text {
-    transition: opacity 0.2s ease;
-    white-space: nowrap;
-}
-
-.sidebar.closed .sidebar-text {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.sidebar-toggle {
-    position: fixed;
-    top: 30px;
-    left: 230px;
-
-    width: 40px;
-    height: 40px;
-
-    border-radius: 50%;
-    background: #7cb342;
-    border: none;
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transition: left 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.sidebar.closed + .sidebar-toggle {
-    left: 60px;
-}
-
-.sidebar.open .logo2 {
-  width: 120px;
-}
-
-.sidebar.closed .logo2 {
+.avatar img {
   width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent);
 }
 
+.status-dot {
+  width: 9px;
+  height: 9px;
+  background: #4ade80;
+  border-radius: 50%;
+  border: 2px solid var(--bg-sidebar);
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity var(--transition);
+  flex: 1;
+  min-width: 0;
+}
+
+.role {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toggle-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 9px;
+  flex-shrink: 0;
+  transition: background var(--transition), color var(--transition);
+}
+
+.toggle-btn:hover {
+  background: var(--accent);
+  color: white;
+}
+
+
+.nav-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 14px;
+}
+
+.section-label {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  font-weight: 600;
+  padding: 0 8px;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  display: block;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity var(--transition);
+}
+
+
+.nav-item {
+  border-radius: 10px;
+  transition: background var(--transition);
+}
+
+.nav-item:hover {
+  background: var(--bg-hover);
+}
+
+.nav-item-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 10px;
+}
+
+.nav-icon {
+  font-size: 15px;
+  color: var(--text-secondary);
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+  transition: color var(--transition);
+}
+
+.nav-item:hover .nav-icon {
+  color: var(--accent);
+}
+
+.nav-label {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  opacity: 1;
+  transition: color var(--transition), opacity var(--transition);
+}
+
+.nav-item:hover .nav-label {
+  color: var(--text-primary);
+}
+
+
+.cta-box {
+  margin-top: auto;
+  padding: 8px 2px 4px;
+  border-top: 1px solid var(--border);
+}
+
+.logout-btn {
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 12px;
+  color: var(--text-secondary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  overflow: hidden;
+}
+
+.logout-btn:hover {
+  background: rgba(232, 134, 42, 0.12);
+  color: var(--accent);
+  border-color: rgba(232, 134, 42, 0.3);
+}
+
+.logout-btn i {
+  font-size: 15px;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.logout-label {
+  white-space: nowrap;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity var(--transition);
+}
+
+.sidebar.collapsed .profile-info,
+.sidebar.collapsed .section-label,
+.sidebar.collapsed .nav-label,
+.sidebar.collapsed .logout-label {
+  opacity: 0;
+  width: 0;
+  pointer-events: none;
+}
+
+.sidebar.collapsed .nav-item-row,
+.sidebar.collapsed .logout-btn {
+  justify-content: center;
+  gap: 0;
+}
+
+.sidebar.collapsed .logout-btn {
+  padding: 11px;
+}
 
 .logo2 {
   display: flex;
