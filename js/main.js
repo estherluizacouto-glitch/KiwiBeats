@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const sidebar = document.getElementById("sidebar");
   
   toggleBtn.addEventListener("click", () => {
-    sidebar.classList.toggle("open");
+    sidebar.classList.toggle("closed");
   });
 
 
