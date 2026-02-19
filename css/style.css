@@ -133,11 +133,6 @@ body {
   opacity: 1;
 }
 
-.sidebar.open ~ .toggle-btn {
-  left: 260px;
-  transform: rotate(180deg);
-}
-
 .sidebar.closed {
     width: 90px;
 }
@@ -176,6 +171,14 @@ body {
     left: 60px;
 }
 
+.sidebar.open .logo2 {
+  width: 120px;
+}
+
+.sidebar.closed .logo2 {
+  width: 40px;
+}
+
 
 .logo2 {
   display: flex;
@@ -186,10 +189,6 @@ body {
 .logo2 img {
   width: 40px;
   transition: 0.3s;
-}
-
-.sidebar.open .logo img {
-  width: 120px;
 }
 
 .menu {
