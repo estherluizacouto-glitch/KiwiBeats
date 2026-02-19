@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  const toggle = document.getElementById(".sidebar-toggle");
+  const toggleBtn = document.getElementById("sidebarToggle");
   const sidebar = document.getElementById("sidebar");
   
   toggleBtn.addEventListener("click", () => {
