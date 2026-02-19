@@ -201,12 +201,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  const toggleBtn = document.getElementById("sidebarToggle");
-  const sidebar = document.getElementById("sidebar");
-  
-  toggleBtn.addEventListener("click", () => {
-    sidebar.classList.toggle("closed");
-  });
+  const sidebar = document.getElementById('sidebar');
+  const toggleBtn = document.getElementById('toggleBtn');
+  const toggleIcon = document.getElementById('toggleIcon');
+
+  toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('collapsed');
+    const isCollapsed = sidebar.classList.contains('collapsed');
+    toggleIcon.className = isCollapsed ? 'fa fa-chevron-right' : 'fa fa-chevron-left';
+    });
 
 
 
