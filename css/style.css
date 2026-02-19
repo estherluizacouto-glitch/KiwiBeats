@@ -112,12 +112,17 @@ body {
   position: fixed;
   left: 0;
   top: 0;
-  width: 88px;
+    
+  width: 260px;
   height: 100vh;
-  background: #151821;
-  padding: 20px 0;
-  transition: width 0.4s cubic-bezier(.77,0,.18,1);
-  overflow: hidden;
+    
+  background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    
+    padding: 20px 15px;
+    overflow: hidden;
+    
+    transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .sidebar.open {
