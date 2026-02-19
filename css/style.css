@@ -129,6 +129,30 @@ body {
   width: 260px;
 }
 
+.sidebar.open .text {
+  opacity: 1;
+}
+
+.sidebar.open ~ .toggle-btn {
+  left: 260px;
+  transform: rotate(180deg);
+}
+
+.sidebar.closed {
+    width: 90px;
+}
+
+.sidebar-text {
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+}
+
+.sidebar.closed .sidebar-text {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
 .logo2 {
   display: flex;
   justify-content: center;
@@ -176,9 +200,6 @@ body {
   white-space: nowrap;
 }
 
-.sidebar.open .text {
-  opacity: 1;
-}
 
 .toggle-btn {
   position: fixed;
@@ -195,15 +216,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.sidebar.open ~ .toggle-btn {
-  left: 260px;
-  transform: rotate(180deg);
-}
-
-.sidebar.closed {
-    width: 90px;
 }
 
 
