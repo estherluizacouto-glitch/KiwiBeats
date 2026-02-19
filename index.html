@@ -85,49 +85,57 @@
       </div>
     </div>
 
-    <button class="sidebar-toggle" id="sidebarToggle">
-      <svg viewBox="0 0 56 56">
-        <defs>
-          <mask id="arrow-mask">
-            <rect width="56" height="56" fill="white"/>
-            
-            <path d="M22 16 L34 28 L22 40" 
-                  stroke="black" 
-                  stroke-width="6" 
-                  stroke-linecap="round" 
-                  stroke-linejoin="round"
-                  fill="none"/>
-          </mask>
-        </defs>
-    
-        <rect width="56" height="56" rx="14"
-              fill="url(#greenSplit)"
-              mask="url(#arrow-mask)"/>
-    
-        <defs>
-          <linearGradient id="greenSplit" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="70%" stop-color="#8bc34a"/>
-            <stop offset="30%" stop-color="#6fa031"/>
-          </linearGradient>
-        </defs>
-      </svg>
-    </button>
+    <div class="sidebar collapsed" id="sidebar">
 
+        <div class="profile">
+          <div class="avatar">
+            <img src="https://i.pravatar.cc/48?img=12" alt="Andrew Smith" />
+            <span class="status-dot"></span>
+          </div>
+          <div class="profile-info">
+            <span class="role">Product Designer</span>
+            <span class="name">Andrew Smith</span>
+          </div>
+          <button class="toggle-btn" id="toggleBtn" title="Expandir/Recolher sidebar">
+            <i class="fa fa-chevron-right" id="toggleIcon"></i>
+          </button>
+        </div>
     
-    <aside class="sidebar closed" id="sidebar">
-      <div class="logo">
-        <img src="assets/images/logo2.png" alt="Logo Sidebar" class="logo2">
+
+        <nav class="nav-section">
+          <span class="section-label">MAIN</span>
+    
+          <a href="#" class="nav-item">
+            <div class="nav-item-row">
+              <i class="fa-solid fa-music nav-icon"></i>
+              <span class="nav-label">Criar música</span>
+            </div>
+          </a>
+    
+          <a href="#" class="nav-item">
+            <div class="nav-item-row">
+              <i class="fa-solid fa-book nav-icon"></i>
+              <span class="nav-label">Biblioteca</span>
+            </div>
+          </a>
+    
+          <a href="#" class="nav-item">
+            <div class="nav-item-row">
+              <i class="fa-solid fa-star nav-icon"></i>
+              <span class="nav-label">Créditos</span>
+            </div>
+          </a>
+        </nav>
+
+        
+        <div class="cta-box">
+          <button class="logout-btn">
+            <i class="fa fa-right-from-bracket"></i>
+            <span class="logout-label">Sair</span>
+          </button>
+        </div>
+    
       </div>
-
-        <ul class="menu">
-            <li>
-              <a href="#">
-                <span class="icon">🏠</span>
-                <span class="sidebar-text">Criar música</span>
-              </a>
-            </li>
-        </ul>
-    </aside>
     
     
     <script type="module" src="js/main.js"></script>
