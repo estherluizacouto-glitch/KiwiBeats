@@ -271,7 +271,6 @@ body {
     text-decoration: none;
   color: inherit;
     display: block;
-    justify-content: center;
 }
 
 .nav-item:visited {
@@ -287,7 +286,6 @@ body {
 .nav-item-row {
   display: flex;
   align-items: center;
-    justify-content: center;
   gap: 18px;
   padding: 17px 14px;
 }
