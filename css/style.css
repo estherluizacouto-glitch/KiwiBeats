@@ -431,27 +431,6 @@ body {
   transition: 0.3s;
 }
 
-.toggle-btn {
-  position: fixed;
-  top: 30px;
-  left: 260px;
-  width: 36px;
-  height: 36px;
-  background: #1e2230;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  transition: left var(--transition);
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sidebar.collapsed ~ .toggle-btn {
-  left: 70px;
-}
-
 
 .logo {
     height: 40px;
