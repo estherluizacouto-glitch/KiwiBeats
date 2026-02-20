@@ -202,27 +202,21 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   
-const sidebar = document.getElementById('sidebar');
-const toggleBtn = document.getElementById('toggleBtn');
-const toggleIcon = document.getElementById('toggleIcon');
-  
-toggleBtn.addEventListener('click', () => {
+const toggleBtn = document.getElementById("toggleSidebar");
+const sidebar = document.querySelector(".sidebar");
+const arrowIcon = document.getElementById("arrowIcon");
 
-  
-  sidebar.classList.toggle('collapsed');
-  const isCollapsed = sidebar.classList.contains('collapsed');
-  
-  toggleIcon.setAttribute(
-    "data-lucide",
-    isCollapsed ? "chevron-right" : "chevron-left"
-  );
+toggleBtn.addEventListener("click", () => {
+  sidebar.classList.toggle("closed");
 
-  toggleIcon.innerHTML = "";
-
-  lucide.createIcons();
-  
+  if (sidebar.classList.contains("closed")) {
+    arrowIcon.style.transform = "rotate(0deg)";
+  } else {
+    arrowIcon.style.transform = "rotate(180deg)";
+  }
 });
 
+arrowIcon.style.transition = "0.3s ease";
   
 async function loadUserData() {
   const { data: { user } } = await supabase.auth.getUser();
@@ -258,5 +252,6 @@ logoutBtn.addEventListener('click', async () => {
   window.location.href = '/KiwiBeats';
 });
 
+lucide.createIcons();
   
 });
