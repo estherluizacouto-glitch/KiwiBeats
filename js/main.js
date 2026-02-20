@@ -208,8 +208,10 @@ document.addEventListener('DOMContentLoaded', () => {
   toggleBtn.addEventListener('click', () => {
     sidebar.classList.toggle('collapsed');
     const isCollapsed = sidebar.classList.contains('collapsed');
-    toggleIcon.className = isCollapsed ? 'fa fa-chevron-right' : 'fa fa-chevron-left';
-  });
+    toggleIcon.className = isCollapsed
+    ? 'fa-solid fa-chevron-right'
+    : 'fa-solid fa-chevron-left';
+});
 
 
 
