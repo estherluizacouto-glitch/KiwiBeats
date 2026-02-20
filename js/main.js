@@ -216,7 +216,6 @@ toggleBtn.addEventListener("click", () => {
   }
 });
 
-arrowIcon.style.transition = "0.3s ease";
   
 async function loadUserData() {
   const { data: { user } } = await supabase.auth.getUser();
@@ -252,5 +251,6 @@ logoutBtn.addEventListener('click', async () => {
   window.location.href = '/KiwiBeats';
 });
 
+lucide.createIcons();
   
 });
