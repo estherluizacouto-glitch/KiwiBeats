@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     textarea.addEventListener('input', () => {
       textarea.style.height = 'auto';
       const maxHeight = 240;
+      
       if (textarea.scrollHeight <= maxHeight) {
         textarea.style.height = textarea.scrollHeight + 'px';
         textarea.style.overflowY = 'hidden';
@@ -27,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function loginWithGoogle() {
-    await supabase.auth.signInWithOAuth({
+    const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
         redirectTo: window.location.href
@@ -35,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (error) {
-      console.error('Erro no login:', error.message)
-      alert('Erro ao fazer login com Google')
+      console.error('Erro no login:', error.message);
+      alert('Erro ao fazer login com Google');
     }
   }
 
@@ -201,31 +202,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  const sidebar = document.getElementById('sidebar');
-  const toggleBtn = document.getElementById('toggleBtn');
-  const toggleIcon = document.getElementById('toggleIcon');
-
-  toggleBtn.addEventListener('click', () => {
-    const isCollapsed = sidebar.classList.toggle('collapsed');
-    toggleIcon.className = isCollapsed 
-      ? 'fa-solid fa-chevron-right' 
-      : 'fa-solid fa-chevron-left';
 const sidebar = document.getElementById('sidebar');
 const toggleBtn = document.getElementById('toggleBtn');
 const toggleIcon = document.getElementById('toggleIcon');
-  
-toggleBtn.addEventListener('click', () => {
-  sidebar.classList.toggle('collapsed');
-  
-  const isCollapsed = sidebar.classList.contains('collapsed');
-  
-  toggleIcon.setAttribute(
-    "data-lucide",
-    isCollapsed ? "chevron-right" : "chevron-left"
-  );
 
-  lucide.createIcons();
-});
+if (sidebar && toggleBtn && toggleIcon) {
+  toggleBtn.addEventListener('click', () => {
+    const isCollapsed = sidebar.classList.toggle('collapsed');
+
+    toggleIcon.setAttribute(
+      "data-lucide",
+      isCollapsed ? "chevron-right" : "chevron-left"
+    );
+
+    lucide.createIcons();
+  });
+}
 
   
 async function loadUserData() {
