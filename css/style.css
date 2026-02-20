@@ -384,15 +384,15 @@ body {
 }
 
 .logout-btn:hover {
-  background: rgba124, 179, 66, 0.12);
+  background: rgba(124, 179, 66, 0.12);
   color: var(--accent);
   border-color: rgba(124, 179, 66, 0.3);
 }
 
-.logout-btn i {
-  font-size: 15px;
+.logout-btn svg {
+  stroke: currentColor;
   width: 20px;
-  text-align: center;
+  height: 20px;
   flex-shrink: 0;
 }
 
