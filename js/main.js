@@ -212,7 +212,26 @@ document.addEventListener('DOMContentLoaded', () => {
       : 'fa-solid fa-chevron-left';
 });
 
+async function loadUserData() {
+  const { data: { user } } = await supabase.auth.getUser();
 
+  const avatar = document.getElementById('userAvatar');
+  const name = document.getElementById('userName');
 
+  if(user) {
+    name.textContent = user.user_metadata.full_name;
+    avatar.src = user.user_metadata.avatar_url;
+  } else {
+    name.textContent = '';
+    avatar.src = 'assets/images/default-avatar.png';
+  }
+}
+
+loadUserData();
+
+supabase.auth.onAuthStateChange((_event, session) => {
+  loadUserData();
+});
+  
 
 });
