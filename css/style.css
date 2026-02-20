@@ -247,7 +247,7 @@ body {
 .nav-section {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 8px;
   padding-top: 14px;
 }
 
@@ -272,17 +272,18 @@ body {
 
 .nav-item:hover {
   background: var(--bg-hover);
+    border-radius: 14px;
 }
 
 .nav-item-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   padding: 17px 14px;
 }
 
 .nav-icon {
-  font-size: 15px;
+  font-size: 20px;
   color: var(--text-secondary);
   width: 20px;
   text-align: center;
