@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-  
+
   async function loginWithGoogle() {
     await supabase.auth.signInWithOAuth({
       provider: 'google',
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         redirectTo: window.location.href
       }
     });
-  
+
     if (error) {
       console.error('Erro no login:', error.message)
       alert('Erro ao fazer login com Google')
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("SESSION:", data);
     console.log("ERROR:", error);
   }
-  
+
   debugSession();
 
   const googleLoginBtn = document.getElementById('googleLoginBtn');
@@ -56,13 +56,13 @@ document.addEventListener('DOMContentLoaded', () => {
   supabase.auth.onAuthStateChange((event, session) => {
     if (event === 'SIGNED_IN') {
       console.log('Logado:', session.user)
-  
+
       modal.classList.remove('active')
       document.body.style.overflow = 'auto'
-  
+
       localStorage.setItem('access_token', session.access_token)
     }
-  
+
     if (event === 'SIGNED_OUT') {
       localStorage.removeItem('access_token')
     }
@@ -152,23 +152,23 @@ document.addEventListener('DOMContentLoaded', () => {
           Bem-vindo ao KiwiBeats.<br>
           Crie sua conta e dê o play na sua criatividade.
         `;
-    
+
         modalDividerText.textContent = 'Já tem uma conta?';
         modalSecondaryBtn.textContent = 'Entrar';
-    
+
         modalSecondaryBtn.onclick = () => setModalMode('entrar');
     }
-  
+
       if (mode === 'entrar') {
         modalTitle.textContent = 'Entre na sua conta';
         modalSubtitle.innerHTML = `
           Que bom te ver de novo.<br>
           Faça login para continuar criando música.
         `;
-    
+
         modalDividerText.textContent = 'Ainda não tem conta?';
         modalSecondaryBtn.textContent = 'Criar conta';
-    
+
         modalSecondaryBtn.onclick = () => setModalMode('cadastrar');
       }
 
@@ -201,21 +201,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  const sidebar = document.getElementById('sidebar');
+  const toggleBtn = document.getElementById('toggleBtn');
+  const toggleIcon = document.getElementById('toggleIcon');
+
+  toggleBtn.addEventListener('click', () => {
+    const isCollapsed = sidebar.classList.toggle('collapsed');
+    toggleIcon.className = isCollapsed 
+      ? 'fa-solid fa-chevron-right' 
+      : 'fa-solid fa-chevron-left';
+const sidebar = document.getElementById('sidebar');
+const toggleBtn = document.getElementById('toggleBtn');
+const toggleIcon = document.getElementById('toggleIcon');
   
-const toggleBtn = document.getElementById("toggleSidebar");
-const sidebar = document.querySelector(".sidebar");
-const toggleBtn = document.getElementById("toggleSidebar");
+toggleBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('collapsed');
+  
+  const isCollapsed = sidebar.classList.contains('collapsed');
+  
+  toggleIcon.setAttribute(
+    "data-lucide",
+    isCollapsed ? "chevron-right" : "chevron-left"
+  );
 
-toggleBtn.addEventListener("click", () => {
-  sidebar.classList.toggle("closed");
-
-  if (sidebar.classList.contains("closed")) {
-    toggleBtn.style.transform = "rotate(0deg)";
-  } else {
-    toggleBtn.style.transform = "rotate(180deg)";
-  }
-
-  toggleBtn.style.transition = "0.3s ease";
+  lucide.createIcons();
 });
 
   
@@ -241,18 +250,16 @@ supabase.auth.onAuthStateChange((_event, session) => {
 });
 
 
-  
+
 const logoutBtn = document.getElementById('logoutBtn');
 
 logoutBtn.addEventListener('click', async () => {
   await supabase.auth.signOut();
-  
+
   localStorage.clear();
   sessionStorage.clear();
 
   window.location.href = '/KiwiBeats';
 });
 
-lucide.createIcons();
-  
 });
