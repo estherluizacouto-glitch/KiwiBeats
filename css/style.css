@@ -322,6 +322,48 @@ body {
   border-top: 1px solid var(--border);
 }
 
+
+.sidebar-toggle-outside {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  left: calc(16px + var(--sidebar-collapsed-width));
+  width: 22px;
+  height: 44px;
+  background: rgba(10, 8, 7, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+  cursor: pointer;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: left var(--transition), color var(--transition), background var(--transition);
+}
+
+.sidebar-toggle-outside:hover {
+  color: var(--accent);
+  background: rgba(20, 14, 10, 0.85);
+}
+
+.sidebar:not(.collapsed) ~ .sidebar-toggle-outside {
+  left: calc(16px + var(--sidebar-width));
+}
+
+.sidebar:not(.collapsed) ~ .sidebar-toggle-outside i {
+  transform: rotate(180deg);
+  transition: transform var(--transition);
+}
+
+.sidebar-toggle-outside i {
+  transition: transform var(--transition);
+}
+
 .logout-btn {
   width: 100%;
   background: var(--bg-surface);
