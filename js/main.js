@@ -232,6 +232,19 @@ loadUserData();
 supabase.auth.onAuthStateChange((_event, session) => {
   loadUserData();
 });
+
+
   
+const logoutBtn = document.getElementById('logoutBtn');
+
+logoutBtn.addEventListener('click', async () => {
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    console.error('Erro ao deslogar:', error.message);
+  } else {
+    window.location.reload();
+  }
+});
 
 });
