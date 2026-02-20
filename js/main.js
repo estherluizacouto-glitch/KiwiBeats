@@ -219,11 +219,8 @@ toggleBtn.addEventListener('click', () => {
 
   toggleIcon.innerHTML = "";
 
-  lucide.createIcons({
-    icons: {
-      chevronRight: lucide.icons.chevronRight,
-      chevronLeft: lucide.icons.chevronLeft
-    }
+  lucide.createIcons();
+  
 });
 
   
@@ -261,6 +258,5 @@ logoutBtn.addEventListener('click', async () => {
   window.location.href = '/KiwiBeats';
 });
 
-lucide.createIcons();
   
 });
