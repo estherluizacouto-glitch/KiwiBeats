@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sidebar.classList.toggle('collapsed');
     const isCollapsed = sidebar.classList.contains('collapsed');
     toggleIcon.className = isCollapsed ? 'fa fa-chevron-right' : 'fa fa-chevron-left';
-    });
+  });
 
 
 
