@@ -180,17 +180,6 @@ body {
   border: 2px solid var(--accent);
 }
 
-.status-dot {
-  width: 9px;
-  height: 9px;
-  background: #4ade80;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  position: absolute;
-  bottom: 1px;
-  right: 1px;
-}
-
 .profile-info {
   display: flex;
   flex-direction: column;
