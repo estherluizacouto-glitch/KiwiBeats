@@ -271,6 +271,7 @@ body {
     text-decoration: none;
   color: inherit;
     display: block;
+    justify-content: center;
 }
 
 .nav-item:visited {
