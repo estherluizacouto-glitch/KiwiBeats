@@ -207,8 +207,9 @@ const toggleBtn = document.getElementById('toggleBtn');
 const toggleIcon = document.getElementById('toggleIcon');
   
 toggleBtn.addEventListener('click', () => {
-  sidebar.classList.toggle('collapsed');
+
   
+  sidebar.classList.toggle('collapsed');
   const isCollapsed = sidebar.classList.contains('collapsed');
   
   toggleIcon.setAttribute(
@@ -216,7 +217,13 @@ toggleBtn.addEventListener('click', () => {
     isCollapsed ? "chevron-right" : "chevron-left"
   );
 
-  lucide.createIcons();
+  toggleIcon.innerHTML = "";
+
+  lucide.createIcons({
+    icons: {
+      chevronRight: lucide.icons.chevronRight,
+      chevronLeft: lucide.icons.chevronLeft
+    }
 });
 
   
