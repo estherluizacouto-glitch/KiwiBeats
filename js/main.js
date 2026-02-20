@@ -205,9 +205,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggleBtn = document.getElementById('toggleBtn');
   const toggleIcon = document.getElementById('toggleIcon');
   
-  sidebar.classList.add('collapsed');
-  toggleIcon.className = 'fa-solid fa-chevron-right';
-  
   toggleBtn.addEventListener('click', () => {
     const isCollapsed = sidebar.classList.toggle('collapsed');
     toggleIcon.className = isCollapsed 
