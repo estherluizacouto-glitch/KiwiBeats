@@ -309,7 +309,7 @@ body {
 }
 
 
-.sidebar .cta-box {
+.sidebar-footer {
   display: block;
   grid-template-columns: unset;
   grid-template-rows: unset;
