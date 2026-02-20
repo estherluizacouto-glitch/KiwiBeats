@@ -114,8 +114,8 @@ body {
   --bg-sidebar: rgba(10, 8, 7, 0.72);
   --bg-surface: rgba(255, 255, 255, 0.05);
   --bg-hover:   rgba(255, 255, 255, 0.07);
-  --accent: #e8862a;
-  --accent-hover: #f09540;
+  --accent: #7cb342;
+  --accent-hover: #8bc34a;
   --text-primary: #f0e8e0;
   --text-secondary: rgba(255, 255, 255, 0.55);
   --text-muted: rgba(255, 255, 255, 0.25);
