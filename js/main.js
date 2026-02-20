@@ -243,7 +243,7 @@ logoutBtn.addEventListener('click', async () => {
   localStorage.clear();
   sessionStorage.clear();
 
-  window.location.href = window.location.origin;
+  window.location.href = '/KiwiBeats';
 });
 
 });
