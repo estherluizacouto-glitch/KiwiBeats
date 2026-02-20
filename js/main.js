@@ -7,6 +7,8 @@ const supabase = createClient(
 
 document.addEventListener('DOMContentLoaded', () => {
 
+lucide.createIcons();
+  
   const textarea = document.querySelector('.cta-box textarea');
   const modal = document.getElementById('modalOverlay');
   const btnCadastrar = document.querySelector('.btn-cadastrar');
@@ -212,7 +214,7 @@ if (sidebar && toggleBtn && toggleIcon) {
 
     toggleIcon.setAttribute(
       "data-lucide",
-      isCollapsed ? "chevron-right" : "chevron-left"
+      isCollapsed ? "chevron-left" : "chevron-right"
     );
 
     lucide.createIcons();
