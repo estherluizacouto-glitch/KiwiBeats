@@ -351,11 +351,11 @@ body {
   background: rgba(20, 14, 10, 0.85);
 }
 
-.sidebar:not(.collapsed) ~ .sidebar-toggle-outside {
+.sidebar:not(.collapsed) + .sidebar-toggle-outside {
   left: calc(16px + var(--sidebar-width));
 }
 
-.sidebar:not(.collapsed) ~ .sidebar-toggle-outside i {
+.sidebar:not(.collapsed) + .sidebar-toggle-outside i {
   transform: rotate(180deg);
   transition: transform var(--transition);
 }
