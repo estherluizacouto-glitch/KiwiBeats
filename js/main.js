@@ -261,4 +261,6 @@ logoutBtn.addEventListener('click', async () => {
   window.location.href = '/KiwiBeats';
 });
 
+lucide.createIcons();
+  
 });
