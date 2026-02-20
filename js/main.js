@@ -204,16 +204,18 @@ document.addEventListener('DOMContentLoaded', () => {
   
 const toggleBtn = document.getElementById("toggleSidebar");
 const sidebar = document.querySelector(".sidebar");
-const arrowIcon = document.getElementById("arrowIcon");
+const toggleBtn = document.getElementById("toggleSidebar");
 
 toggleBtn.addEventListener("click", () => {
   sidebar.classList.toggle("closed");
 
   if (sidebar.classList.contains("closed")) {
-    arrowIcon.style.transform = "rotate(0deg)";
+    toggleBtn.style.transform = "rotate(0deg)";
   } else {
-    arrowIcon.style.transform = "rotate(180deg)";
+    toggleBtn.style.transform = "rotate(180deg)";
   }
+
+  toggleBtn.style.transition = "0.3s ease";
 });
 
   
