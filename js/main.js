@@ -238,13 +238,12 @@ supabase.auth.onAuthStateChange((_event, session) => {
 const logoutBtn = document.getElementById('logoutBtn');
 
 logoutBtn.addEventListener('click', async () => {
-  const { error } = await supabase.auth.signOut();
+  await supabase.auth.signOut();
+  
+  localStorage.clear();
+  sessionStorage.clear();
 
-  if (error) {
-    console.error('Erro ao deslogar:', error.message);
-  } else {
-    window.location.reload();
-  }
+  window.location.href = window.location.origin;
 });
 
 });
