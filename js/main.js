@@ -204,11 +204,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const sidebar = document.getElementById('sidebar');
   const toggleBtn = document.getElementById('toggleBtn');
   const toggleIcon = document.getElementById('toggleIcon');
-
+  
+  sidebar.classList.add('collapsed');
+  toggleIcon.className = 'fa-solid fa-chevron-right';
+  
   toggleBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('collapsed');
-    const isCollapsed = sidebar.classList.contains('collapsed');
-    toggleIcon.className = 'fa-solid fa-chevron-right';
+    const isCollapsed = sidebar.classList.toggle('collapsed');
+    toggleIcon.className = isCollapsed 
+      ? 'fa-solid fa-chevron-right' 
+      : 'fa-solid fa-chevron-left';
 });
 
 
