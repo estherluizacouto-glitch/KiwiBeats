@@ -256,4 +256,14 @@ logoutBtn.addEventListener('click', async () => {
   window.location.href = '/KiwiBeats';
 });
 
+fetch('components/sidebar.html')
+  .then(res => res.text())
+  .then(data => {
+    const container = document.getElementById('sidebar-container');
+    if (container) {
+      container.innerHTML = data;
+      lucide.createIcons();
+    }
+  });
+
 });
