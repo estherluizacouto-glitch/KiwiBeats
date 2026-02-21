@@ -204,66 +204,78 @@ lucide.createIcons();
     }
   });
 
-const sidebar = document.getElementById('sidebar');
-const toggleBtn = document.getElementById('toggleBtn');
-const toggleIcon = document.getElementById('toggleIcon');
 
-if (sidebar && toggleBtn && toggleIcon) {
-  toggleBtn.addEventListener('click', () => {
-    const isCollapsed = sidebar.classList.toggle('collapsed');
+// ===== CARREGAR SIDEBAR PRIMEIRO =====
+fetch('components/sidebar.html')
+  .then(res => res.text())
+  .then(data => {
+    const container = document.getElementById('sidebar-container');
+    if (!container) return;
 
-    toggleIcon.setAttribute(
-      "data-lucide",
-      isCollapsed ? "chevron-left" : "chevron-right"
-    );
+    container.innerHTML = data;
 
+    // recriar ícones
     lucide.createIcons();
-  });
-}
 
-  
+    // ===== AGORA OS ELEMENTOS EXISTEM =====
+
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const toggleIcon = document.getElementById('toggleIcon');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    // Toggle sidebar
+    if (sidebar && toggleBtn && toggleIcon) {
+      toggleBtn.addEventListener('click', () => {
+        const isCollapsed = sidebar.classList.toggle('collapsed');
+
+        toggleIcon.setAttribute(
+          "data-lucide",
+          isCollapsed ? "chevron-left" : "chevron-right"
+        );
+
+        lucide.createIcons();
+      });
+    }
+
+    // Logout
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', async () => {
+        await supabase.auth.signOut();
+
+        localStorage.clear();
+        sessionStorage.clear();
+
+        window.location.href = '/KiwiBeats';
+      });
+    }
+
+    // Carregar dados do usuário
+    loadUserData();
+  });
+
+
+// ===== FUNÇÃO USUÁRIO =====
 async function loadUserData() {
   const { data: { user } } = await supabase.auth.getUser();
 
   const avatar = document.getElementById('userAvatar');
   const name = document.getElementById('userName');
 
-  if(user) {
-    name.textContent = user.user_metadata.full_name;
-    avatar.src = user.user_metadata.avatar_url;
+  if (!avatar || !name) return;
+
+  if (user) {
+    name.textContent = user.user_metadata?.full_name || '';
+    avatar.src = user.user_metadata?.avatar_url || 'assets/images/default-avatar.png';
   } else {
     name.textContent = '';
     avatar.src = 'assets/images/default-avatar.png';
   }
 }
 
-loadUserData();
-
-supabase.auth.onAuthStateChange((_event, session) => {
+// Atualiza quando login mudar
+supabase.auth.onAuthStateChange(() => {
   loadUserData();
 });
-
-
-
-const logoutBtn = document.getElementById('logoutBtn');
-
-logoutBtn.addEventListener('click', async () => {
-  await supabase.auth.signOut();
-
-  localStorage.clear();
-  sessionStorage.clear();
-
-  window.location.href = '/KiwiBeats';
-});
-
-fetch('components/sidebar.html')
-  .then(res => res.text())
-  .then(data => {
-    const container = document.getElementById('sidebar-container');
-    if (container) {
-      container.innerHTML = data;
-      lucide.createIcons();
-    }
-  });
 
 });
