@@ -261,15 +261,32 @@ async function loadUserData() {
 
   const avatar = document.getElementById('userAvatar');
   const name = document.getElementById('userName');
+  const creditsElement = document.getElementById('credits');
 
   if (!avatar || !name) return;
 
   if (user) {
     name.textContent = user.user_metadata?.full_name || '';
     avatar.src = user.user_metadata?.avatar_url || 'assets/images/default-avatar.png';
+
+    //  BUSCAR CRÉDITOS
+    const { data, error } = await supabase
+      .from('credits')
+      .select('credits_remaining')
+      .eq('user_id', user.id)
+      .single();
+
+    if (data && creditsElement) {
+      creditsElement.textContent = `${data.credits_remaining} créditos`;
+    }
+
   } else {
     name.textContent = '';
     avatar.src = 'assets/images/default-avatar.png';
+
+    if (creditsElement) {
+      creditsElement.textContent = '';
+    }
   }
 }
 
