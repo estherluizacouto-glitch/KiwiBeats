@@ -278,4 +278,19 @@ supabase.auth.onAuthStateChange(() => {
   loadUserData();
 });
 
+
+  
+const { data: userData } = await supabase.auth.getUser()
+
+const { data, error } = await supabase
+  .from('credits')
+  .select('credits_remaining')
+  .eq('user_id', userData.user.id)
+  .single()
+
+if (data) {
+  document.getElementById('credits').innerText =
+    `${data.credits_remaining} créditos`
+}
+
 });
