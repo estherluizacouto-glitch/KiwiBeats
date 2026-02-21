@@ -309,6 +309,12 @@ body {
   color: var(--text-primary);
 }
 
+.sidebar svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  color: inherit;
+}
 
 .sidebar-footer {
   display: block;
@@ -389,12 +395,6 @@ body {
   border-color: rgba(124, 179, 66, 0.3);
 }
 
-.logout-btn svg {
-  stroke: currentColor;
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-}
 
 .logout-label {
   white-space: nowrap;
