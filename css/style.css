@@ -200,11 +200,22 @@ body {
     margin-bottom: 4px;
 }
 
-.profile-info .name {
-    font-family: 'Genty Sans', sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  color: #ffffff;
+.name { 
+    font-family: 'DM Sans', sans-serif; 
+    font-size: 13.5px; 
+    font-weight: 450; 
+    color: var(--text-primary); 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+
+.credits {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-top: 4px;
+  white-space: nowrap;
 }
 
 .profile-info .credits {
