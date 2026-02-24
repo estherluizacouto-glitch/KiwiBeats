@@ -301,4 +301,21 @@ supabase.auth.onAuthStateChange(() => {
 });
 
 
+document.addEventListener("DOMContentLoaded", () => {
+
+  fetch("components/music-player.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("music-player-container").innerHTML = data;
+
+      // recria ícones depois de injetar
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    });
+
+});
+
+
+
 });
