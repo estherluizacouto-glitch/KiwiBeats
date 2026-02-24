@@ -259,7 +259,24 @@ fetch('components/sidebar.html')
     loadUserData();
   });
 
+  
+// ===== CARREGAR MUSIC PLAYER =====
+fetch('components/music-player.html')
+  .then(res => res.text())
+  .then(data => {
+    const container = document.getElementById('music-player-container');
+    if (!container) return;
 
+    container.innerHTML = data;
+
+    lucide.createIcons();
+
+    if (typeof initMusicPlayer === "function") {
+      initMusicPlayer();
+    }
+  });
+
+  
 // ===== FUNÇÃO USUÁRIO =====
 async function loadUserData() {
   const { data: { user } } = await supabase.auth.getUser();
@@ -299,31 +316,6 @@ async function loadUserData() {
 supabase.auth.onAuthStateChange(() => {
   loadUserData();
 });
-
-
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  fetch("components/music-player.html")
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById("music-player-container").innerHTML = data;
-
-      if (window.lucide) {
-        lucide.createIcons();
-      }
-
-      // 🔥 só chama se existir
-      if (typeof initMusicPlayer === "function") {
-        initMusicPlayer();
-      }
-      
-    });
-
-});
-
-});
-
 
 
 });
