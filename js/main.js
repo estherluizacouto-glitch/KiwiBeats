@@ -301,6 +301,7 @@ supabase.auth.onAuthStateChange(() => {
 });
 
 
+
 document.addEventListener("DOMContentLoaded", () => {
 
   fetch("components/music-player.html")
@@ -312,8 +313,11 @@ document.addEventListener("DOMContentLoaded", () => {
         lucide.createIcons();
       }
 
-      // 🔥 inicializa o player só depois que existir
-      initMusicPlayer();
+      // 🔥 só chama se existir
+      if (typeof initMusicPlayer === "function") {
+        initMusicPlayer();
+      }
+      
     });
 
 });
