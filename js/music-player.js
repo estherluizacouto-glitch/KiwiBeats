@@ -1,7 +1,9 @@
-document.addEventListener("DOMContentLoaded", () => {
-    lucide.createIcons();
+function initMusicPlayer() {
 
     const playBtn = document.getElementById("playBtn");
+
+    if (!playBtn) return;
+
     let isPlaying = false;
 
     playBtn.addEventListener("click", () => {
@@ -11,6 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
             ? '<i data-lucide="pause"></i>'
             : '<i data-lucide="play"></i>';
 
-        lucide.createIcons();
+        if (window.lucide) {
+            lucide.createIcons();
+        }
     });
-});
+
+}
