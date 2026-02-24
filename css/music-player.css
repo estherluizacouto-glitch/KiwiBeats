@@ -1,0 +1,82 @@
+.music-player {
+    width: 65%;
+    max-width: 900px;
+    margin: 25px auto 0 auto;
+    padding: 18px 25px;
+
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+
+    transition: all 0.3s ease;
+}
+
+.music-player-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Info da música */
+
+.music-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.music-cover {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #1db954, #0f5c2e);
+}
+
+.music-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.music-title {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.music-artist {
+    font-size: 13px;
+    opacity: 0.6;
+}
+
+/* Controles */
+
+.music-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.control-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+    opacity: 0.8;
+    transition: 0.2s ease;
+}
+
+.control-btn:hover {
+    opacity: 1;
+}
+
+.play-btn {
+    background: #1db954;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
