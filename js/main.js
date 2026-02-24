@@ -308,11 +308,15 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(data => {
       document.getElementById("music-player-container").innerHTML = data;
 
-      // recria ícones depois de injetar
       if (window.lucide) {
         lucide.createIcons();
       }
+
+      // 🔥 inicializa o player só depois que existir
+      initMusicPlayer();
     });
+
+});
 
 });
 
