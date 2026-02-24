@@ -17,8 +17,10 @@
     position: fixed;
     bottom: 25px;
     
-    left: 110px; /* largura da sidebar + respiro */
-    right: 40px; /* espaço da borda direita */
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 180px); /*  sidebar + respiro */
+    max-width: 1200px;         /* mesma largura do conteúdo */
     
     z-index: 999;
 }
