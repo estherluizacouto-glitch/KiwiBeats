@@ -16,10 +16,10 @@
 #music-player-container {
     position: fixed;
     bottom: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 65%;
-    max-width: 900px;
+    
+    left: 110px; /* largura da sidebar + respiro */
+    right: 40px; /* espaço da borda direita */
+    
     z-index: 999;
 }
 
