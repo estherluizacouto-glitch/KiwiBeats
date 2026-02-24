@@ -1,7 +1,8 @@
 .music-player {
-    width: 65%;
+    width: 100%;
     max-width: 900px;
     padding: 18px 25px;
+    margin: 0;
 
     background: rgba(255, 255, 255, 0.04);
     backdrop-filter: blur(20px);
@@ -19,8 +20,8 @@
     
     left: 50%;
     transform: translateX(-50%);
-    width: calc(100% - 180px); /*  sidebar + respiro */
-    max-width: 1200px;         /* mesma largura do conteúdo */
+    width: 80%;        /* aumenta aqui */
+    max-width: 1200px; /* limita em telas grandes */
     
     z-index: 999;
 }
