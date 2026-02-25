@@ -47,12 +47,12 @@
 
 .close-player {
     position: absolute;
-    top: -10px;
-    right: -10px;
+    top: 10px;
+    right: 12px;
     
-    background: #1a1a1a; /* Fundo escuro para contrastar */
-    color: white;
-    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
     border-radius: 50%;
     width: 28px;
     height: 28px;
@@ -63,21 +63,23 @@
     cursor: pointer;
     
     /* Invisível por padrão */
-    opacity: 1;
+    opacity: 0;
     transform: scale(1);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1000;
+    transition: all 0.2s ease;
+    z-index: 10;
+    padding: 4px;
+    display: flex;
+    align-items: center;
 }
 
 .close-player svg {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
 }
 
 .close-player:hover {
-    background: #ff4d4d;
-    border-color: #ff4d4d;
-    color: white;
+    opacity: 1 !important;
+    color: #ff4d4d;
 }
 
 /* Info da música */
@@ -191,7 +193,7 @@
 }
 
 .music-extra {
-    min-width: 220px;
+    min-width: 200px;
     display: flex;
     flex-direction: row;
     align-items: center;
