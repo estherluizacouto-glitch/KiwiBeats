@@ -45,41 +45,27 @@
     transform: scale(1);
 }
 
-.close-player {
-    position: absolute;
-    top: 10px;
-    right: 12px;
-    
+/* Container da direita ajustado */
+.music-extra {
+    min-width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* O novo botão de fechar */
+.close-btn-final {
     background: transparent;
-    color: var(--text-muted);
     border: none;
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    color: var(--text-muted);
     cursor: pointer;
-    
-    /* Invisível por padrão */
-    opacity: 0;
-    transform: scale(1);
-    transition: all 0.2s ease;
-    z-index: 10;
     padding: 4px;
+    margin-left: 10px; /* Separa ele um pouco dos controles de volume */
     display: flex;
     align-items: center;
-}
-
-.close-player svg {
-    width: 14px;
-    height: 14px;
-}
-
-.close-player:hover {
-    opacity: 1 !important;
-    color: #ff4d4d;
+    opacity: 0.5;
+    transition: all 0.2s ease;
 }
 
 /* Info da música */
