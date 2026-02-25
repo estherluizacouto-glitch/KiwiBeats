@@ -150,12 +150,14 @@
 }
 
 .music-extra {
-    min-width: 250px;
+    min-width: 220px;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    gap: 16px; /* Espaço entre os botões */
+    gap: 12px; /* Espaço entre os botões */
     padding-right: 5px;
+    flex-wrap: nowrap;
 }
 
 /* Estilo específico para o bloco de volume */
@@ -163,7 +165,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    width: 120px;
+    width: 100px;
     margin-left: 8px; /* Dá um leve destaque do resto dos ícones */
 }
 
@@ -193,6 +195,11 @@
 .music-extra .control-btn {
     opacity: 0.7;
     transition: opacity 0.2s, color 0.2s;
+}
+
+.music-extra .control-btn svg {
+    width: 18px;  /* Reduzido de 24px para 18px */
+    height: 18px;
 }
 
 .music-extra .control-btn:hover {
