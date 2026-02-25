@@ -1,35 +1,57 @@
+/**
+ * Gerenciador do Music Player - KiwiBeats
+ */
+
 function initMusicPlayer() {
+    // 1. Seleção de Elementos
+    const container = document.getElementById('music-player-container');
+    const playBtn = document.getElementById('playBtn');
+    const closeBtn = document.getElementById('closePlayer');
+    
+    if (!container) return; // Segurança caso o container não exista na página
 
-    const playBtn = document.getElementById("playBtn");
+    // --- Lógica de Play / Pause ---
+    if (playBtn) {
+        let isPlaying = false;
 
-    if (!playBtn) return;
+        playBtn.addEventListener('click', () => {
+            isPlaying = !isPlaying;
 
-    let isPlaying = false;
+            // Altera o ícone internamente
+            playBtn.innerHTML = isPlaying 
+                ? '<i data-lucide="pause"></i>' 
+                : '<i data-lucide="play"></i>';
 
-    playBtn.addEventListener("click", () => {
-        isPlaying = !isPlaying;
+            // Recarrega os ícones do Lucide para renderizar o novo SVG
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        });
+    }
 
-        playBtn.innerHTML = isPlaying
-            ? '<i data-lucide="pause"></i>'
-            : '<i data-lucide="play"></i>';
+    // --- Lógica de Fechar o Player ---
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            // Animação de saída
+            container.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            container.style.opacity = '0';
+            container.style.transform = 'translate(-50%, 30px) scale(0.95)';
 
-        if (window.lucide) {
-            lucide.createIcons();
-        }
-    });
+            // Remove do display após a animação terminar
+            setTimeout(() => {
+                container.style.display = 'none';
+            }, 400);
+        });
+    }
 
+    // Inicializa os ícones assim que o player carregar
+    if (window.lucide) {
+        lucide.createIcons();
+    }
 }
 
-document.getElementById('closePlayer').addEventListener('click', function() {
-    const container = document.getElementById('music-player-container');
-    
-    // Adiciona um efeito de saída suave
-    container.style.transition = 'all 0.4s ease';
-    container.style.opacity = '0';
-    container.style.transform = 'translate(-50%, 20px)'; // Desce um pouco ao sair
-    
-    // Remove do DOM após a animação
-    setTimeout(() => {
-        container.style.display = 'none';
-    }, 400);
-});
+// Inicializa quando o DOM estiver pronto
+document.addEventListener('DOMContentLoaded', initMusicPlayer);
+
+// Se você carrega o player via fetch/innerHTML, chame initMusicPlayer() 
+// logo após inserir o HTML no container.
