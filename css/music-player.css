@@ -154,6 +154,7 @@
 }
 
 .play-btn:hover {
+    color: white !important;
     transform: scale(1.05); /* Zoom suave no play */
     filter: brightness(1.1); /* Brilha um pouco mais em vez de mudar a cor do ícone */
 }
