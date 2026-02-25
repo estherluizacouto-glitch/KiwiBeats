@@ -126,7 +126,10 @@
     border: none;
     cursor: pointer;
     color: var(--text-secondary);
-    transition: 0.2s;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .control-btn.active { /* Classe para quando Shuffle/Repeat estiverem ligados */
@@ -134,7 +137,9 @@
 }
 
 .control-btn:hover {
+    color: var(--accent) !important; /* Fica verde ao passar o mouse */
     opacity: 1;
+    transform: scale(1.1); /* Dá um leve zoom para feedback visual */
 }
 
 .play-btn {
@@ -146,6 +151,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.play-btn:hover {
+    transform: scale(1.05); /* Zoom suave no play */
+    filter: brightness(1.1); /* Brilha um pouco mais em vez de mudar a cor do ícone */
 }
 
 /* Barra de Progresso */
