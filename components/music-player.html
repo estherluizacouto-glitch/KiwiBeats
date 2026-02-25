@@ -10,21 +10,25 @@
       </div>
     </div>
 
-    <div class="music-controls">
-      <button class="control-btn" id="prevBtn">
-        <i data-lucide="skip-back"></i>
-      </button>
+    <div class="player-center">
+        <div class="music-controls">
+            <button class="control-btn"><i data-lucide="shuffle"></i></button>
+            <button class="control-btn"><i data-lucide="skip-back"></i></button>
+            <button class="control-btn play-btn"><i data-lucide="play"></i></button>
+            <button class="control-btn"><i data-lucide="skip-forward"></i></button>
+            <button class="control-btn"><i data-lucide="repeat"></i></button>
+        </div>
 
-      <button class="control-btn play-btn" id="playBtn">
-        <i data-lucide="play"></i>
-      </button>
-
-      <button class="control-btn" id="nextBtn">
-        <i data-lucide="skip-forward"></i>
-      </button>
+        <div class="progress-container">
+            <span class="time">0:00</span>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <span class="time">3:45</span>
+        </div>
     </div>
 
-  </div>
-
+    <div class="music-extra" style="width: 150px;"></div>
+    
 </div>
 
