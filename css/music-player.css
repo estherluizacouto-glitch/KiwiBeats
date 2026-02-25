@@ -35,9 +35,9 @@
 
 .music-player-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 40px;
 }
 
 .music-player:hover
@@ -61,7 +61,7 @@
     color: var(--text-muted);
     cursor: pointer;
     padding: 4px;
-    margin-left: 10px; /* Separa ele um pouco dos controles de volume */
+    margin-left: -5px; /* Separa ele um pouco dos controles de volume */
     display: flex;
     align-items: center;
     opacity: 0.5;
