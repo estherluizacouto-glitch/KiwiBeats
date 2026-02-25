@@ -10,51 +10,39 @@
 </head>
 <body>
 
-<div class="library-container">
-    <header class="library-header">
-        <h1>Biblioteca</h1>
-    </header>
+    <div class="library-container">
+        <header class="library-header">
+            <h1>Minha <span class="highlight">Biblioteca</span></h1>
+            <p class="subtitle">Gerencie suas criações e batidas</p>
+        </header>
 
-    <div class="song-list">
-        <div class="song-item">
-            <div class="song-info-left">
-                <img src="capa1.png" alt="Capa" class="song-cover">
-                <div class="song-details">
-                    <span class="song-title">Posso até não te dar flores</span>
-                    <span class="song-genre">Brazilian Funk Carioca 150 BPM</span>
+        <div class="song-table">
+            <div class="song-row">
+                <div class="song-main-info">
+                    <div class="cover-wrapper">
+                        <img src="capa.png" class="kiwi-cover">
+                        <div class="play-overlay"><i class="fas fa-play"></i></div>
+                    </div>
+                    <div class="text-info">
+                        <span class="song-name">Posso até não te dar flores</span>
+                        <span class="song-style">Brazilian Funk Carioca • 150 BPM</span>
+                    </div>
                 </div>
-            </div>
             
-            <div class="song-info-right">
-                <span class="song-duration">01:55</span>
-                <div class="menu-container">
-                    <button class="menu-btn">•••</button>
-                    <div class="dropdown-menu">
-                        <button class="delete-opt">Excluir música</button>
+                <div class="song-meta">
+                    <span class="duration">01:55</span>
+                    <div class="action-menu">
+                        <button class="dots-btn">•••</button>
+                        <div class="kiwi-dropdown">
+                            <button class="delete-btn">
+                                <i class="fas fa-trash"></i> Excluir Música
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="song-item">
-            <div class="song-info-left">
-                <img src="capa2.png" alt="Capa" class="song-cover">
-                <div class="song-details">
-                    <span class="song-title">Eu aplico o chá</span>
-                    <span class="song-genre">Funk Brasileiro Estilo Minas Gerais</span>
-                </div>
             </div>
-            <div class="song-info-right">
-                <span class="song-duration">01:29</span>
-                <div class="menu-container">
-                    <button class="menu-btn">•••</button>
-                    <div class="dropdown-menu">
-                        <button class="delete-opt">Excluir música</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        
         <div id="sidebar-container"></div>
         <div id="music-player-container"></div>
     
