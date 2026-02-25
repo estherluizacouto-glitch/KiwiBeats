@@ -17,10 +17,10 @@
     position: fixed;
     bottom: 25px;
     
-    left: 90px;
+    left: 50px;
     transform: translateX(-50%);
     
-    width: 100%;       
+    width: 90%;       
     max-width: 900px; 
     margin-top: 40px;
     
