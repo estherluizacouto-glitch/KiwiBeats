@@ -58,7 +58,7 @@ body {
 
 .song-row:hover {
     border-color: var(--kiwi-green);
-    transform: translateX(5px);
+    transform: scale(1.01);
     background: #1e1e21;
 }
 
