@@ -33,16 +33,11 @@ function initMusicPlayer() {
     document.getElementById('closePlayer').addEventListener('click', function() {
     const container = document.getElementById('music-player-container');
     
-    // Configura a transição: Blur + Encolhimento + Opacidade
-    container.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)'; 
-    container.style.filter = 'blur(20px)'; // O efeito de desfoque que você escolheu
+    container.style.transition = 'all 0.5s ease-in-out'; 
+    container.style.transform = 'translate(-50%, 0) scaleX(0)'; // Enche a largura em zero
     container.style.opacity = '0';
-    container.style.transform = 'translate(-50%, 0) scale(0.9)'; // Encolhe levemente
-    
-    // Remove o elemento após a animação
-    setTimeout(() => {
-        container.style.display = 'none';
-    }, 600);
+
+    setTimeout(() => { container.style.display = 'none'; }, 500);
 });
 
     // Inicializa os ícones assim que o player carregar
