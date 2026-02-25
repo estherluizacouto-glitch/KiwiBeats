@@ -33,11 +33,15 @@ function initMusicPlayer() {
     document.getElementById('closePlayer').addEventListener('click', function() {
     const container = document.getElementById('music-player-container');
     
-    container.style.transition = 'all 0.5s ease-in-out'; 
-    container.style.transform = 'translate(-50%, 0) scaleX(0)'; // Enche a largura em zero
+    // O efeito original: Desce um pouco e some
+    container.style.transition = 'all 0.4s ease';
     container.style.opacity = '0';
-
-    setTimeout(() => { container.style.display = 'none'; }, 500);
+    // O translate -50% mantém ele centralizado, e o 20px joga pra baixo
+    container.style.transform = 'translate(-50%, 20px)'; 
+    
+    setTimeout(() => {
+        container.style.display = 'none';
+    }, 400);
 });
 
     // Inicializa os ícones assim que o player carregar
