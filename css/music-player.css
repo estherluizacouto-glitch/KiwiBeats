@@ -95,7 +95,7 @@
 .music-title {
     font-family: 'DM Sans', sans-serif;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 550;
     color: var(--text-primary);
     line-height: 1.2; /* Dá um respiro para a própria letra */
 }
