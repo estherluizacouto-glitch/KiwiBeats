@@ -88,18 +88,22 @@
 .music-text {
     display: flex;
     flex-direction: column;
+    gap: 4px; /* Ajuste este valor (4px a 6px) para a distância que desejar */
+    justify-content: center
 }
 
 .music-title {
     font-family: 'DM Sans', sans-serif;
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--text-primary);
+    line-height: 1.2; /* Dá um respiro para a própria letra */
 }
 
 .music-artist {
     font-size: 13px;
     opacity: 0.6;
+    line-height: 1.2;
 }
 
 /* Centralização do Bloco de Controle */
