@@ -20,8 +20,9 @@
     
     left: calc(50% + 45px);
     transform: translateX(-50%);
-    width: 80%;        /* aumenta aqui */
+    width: 100%;        /* aumenta aqui */
     max-width: 1200px; /* limita em telas grandes */
+    margin-top: 40px;
     
     z-index: 999;
 }
