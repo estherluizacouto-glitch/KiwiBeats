@@ -4,53 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca - KiwiBeats</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    
     <link rel="stylesheet" href="css/biblioteca.css">
     <link rel="stylesheet" href="css/music-player.css">
+    
     <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    
+    <div id="sidebar-container"></div>
 
-    <div class="library-container">
-        <header class="library-header">
-            <h1>Minha <span class="highlight">Biblioteca</span></h1>
-            <p class="subtitle">Gerencie suas criações e batidas</p>
-        </header>
-
-        <div class="song-table">
-            <div class="song-row">
-                <div class="song-main-info">
-                    <div class="cover-wrapper">
-                        <img src="capa.png" class="kiwi-cover">
-                        <div class="play-overlay"><i class="fas fa-play"></i></div>
-                    </div>
-                    <div class="text-info">
-                        <span class="song-name">Posso até não te dar flores</span>
-                        <span class="song-style">Brazilian Funk Carioca • 150 BPM</span>
-                    </div>
-                </div>
+    <main class="main-content">
+        <div class="library-container">
             
-                <div class="song-meta">
-                    <span class="duration">01:55</span>
-                    <div class="action-menu">
-                        <button class="dots-btn">•••</button>
-                        <div class="kiwi-dropdown">
-                            <button class="delete-btn">
-                                <i class="fas fa-trash"></i> Excluir Música
-                            </button>
+            <header class="library-header">
+                <h1>Minha <span class="highlight">Biblioteca</span></h1>
+                <p class="subtitle">Gerencie suas criações e batidas</p>
+            </header>
+
+            <div class="song-table">
+                
+                <div class="song-row">
+                    <div class="song-main-info">
+                        <div class="cover-wrapper">
+                            <img src="capa.png" class="kiwi-cover">
+                        </div>
+                        
+                        <div class="text-info">
+                            <span class="song-name">Posso até não te dar flores</span>
+                            <span class="song-style">Brazilian Funk Carioca • 150 BPM</span>
+                        </div>
+                    </div>
+            
+                    <div class="song-meta">
+                        <span class="duration">01:55</span>
+                        
+                        <div class="action-menu">
+                            <button class="dots-btn">•••</button>
+                            
+                            <div class="kiwi-dropdown">
+                                <button class="delete-btn">
+                                    <i class="fas fa-trash"></i> Excluir Música
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
+                
             </div>
-            </div>
+        </main>
         
-        <div id="sidebar-container"></div>
         <div id="music-player-container"></div>
     
         <script defer src="js/music-player.js"></script>
         
-    </div>
-</div>
-
     
 </body>
 </html>
