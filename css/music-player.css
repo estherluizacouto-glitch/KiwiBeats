@@ -1,6 +1,5 @@
 .music-player {
     width: 100%;
-    max-width: 900px;
     padding: 18px 25px;
     margin: 0;
 
@@ -18,10 +17,11 @@
     position: fixed;
     bottom: 25px;
     
-    left: calc(50% + 45px);
+    left: 50%
     transform: translateX(-50%);
-    width: 100%;        /* aumenta aqui */
-    max-width: 1200px; /* limita em telas grandes */
+    
+    width: 100%;       
+    max-width: 900px; 
     margin-top: 40px;
     
     z-index: 999;
