@@ -30,19 +30,19 @@ function initMusicPlayer() {
     }
 
     // --- Lógica de Fechar o Player ---
-    if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
-            // Animação de saída
-            container.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-            container.style.opacity = '0';
-            container.style.transform = 'translate(-50%, 30px) scale(0.95)';
-
-            // Remove do display após a animação terminar
-            setTimeout(() => {
-                container.style.display = 'none';
-            }, 400);
-        });
-    }
+    document.getElementById('closePlayer').addEventListener('click', function() {
+    const container = document.getElementById('music-player-container');
+    
+    // Animação de "Encolher e Sumir" (Shrink)
+    container.style.transition = 'all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)'; 
+    container.style.opacity = '0';
+    container.style.transform = 'translate(-50%, 0) scale(0.7)'; // Encolhe sem descer
+    container.style.filter = 'blur(10px)'; // Adiciona um desfoque na saída
+    
+    setTimeout(() => {
+        container.style.display = 'none';
+    }, 500);
+});
 
     // Inicializa os ícones assim que o player carregar
     if (window.lucide) {
