@@ -69,6 +69,7 @@ body {
 h1 {
   font-size: 32px;
   margin-bottom: 30px;
+  text-align: center;
 }
 
 /* ITEM MUSICA */
@@ -77,6 +78,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   background: rgba(255, 255, 255, 0.03);
   padding: 15px 20px;
   border-radius: 12px;
@@ -153,4 +155,19 @@ h1 {
 
 .dropdown button:hover {
   background: rgba(255, 0, 0, 0.1);
+}
+
+.music-player {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 900px;
+  padding: 18px 25px;
+
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border);
+  z-index: 5;
 }
