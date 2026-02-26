@@ -1,61 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiwi Beats</title>
+  <meta charset="UTF-8">
+  <title>Kiwi Beats</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/biblioteca.css">
     <link rel="stylesheet" href="css/music-player.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-    
 <body>
 
-    <main class="main-content">
-        <div class="library-container">
-            
-            <header class="library-header">
-                <h1>Biblioteca </h1>
-            </header>
+  <!-- Sidebar -->
+  <div id="sidebar-container"></div>
 
-            <div class="song-table">
-                <div class="song-row">
-                    <div class="song-main-info">
-                        <div class="cover-wrapper">
-                            <img src="capa.png" class="kiwi-cover">
-                        </div>
-                        <div class="text-info">
-                            <span class="song-name">Posso até não te dar flores</span>
-                            <span class="song-style">Brazilian Funk Carioca • 150 BPM</span>
-                        </div>
-                    </div>
-                    <div class="song-meta">
-                        <span class="duration">01:55</span>
-                        <div class="action-menu">
-                            <button class="dots-btn">•••</button>
-                            <div class="kiwi-dropdown">
-                                <button class="delete-btn">
-                                    <i class="fas fa-trash"></i> Excluir Música
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- fecha song-table -->
+  <!-- Conteúdo -->
+  <main class="page-container">
+    <h1>Biblioteca</h1>
 
-        </div><!-- fecha library-container -->
-    </main>
+    <div id="music-list"></div>
+  </main>
 
-    <div id="sidebar-container"></div>
-    <div id="music-player-container"></div>
+  <!-- Player -->
+  <div id="player-container"></div>
 
-    <script defer src="js/music-player.js"></script>
-    <script type="module" src="js/main.js"></script>
+  <script src="js/biblioteca.js"></script>
+  <script src="js/music-player.js"></script>
+    <script src="js/main.js"></script>
 
-    
 </body>
 </html>
