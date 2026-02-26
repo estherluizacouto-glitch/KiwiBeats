@@ -58,6 +58,14 @@ body {
   z-index: 0;
 }
 
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 20px 120px 20px; /* espaço pro player fixo */
+  position: relative;
+  z-index: 1; /* fica acima do glow */
+}
+
 h1 {
   font-size: 32px;
   margin-bottom: 30px;
