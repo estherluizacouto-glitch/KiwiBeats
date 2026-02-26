@@ -1,12 +1,26 @@
+:root {
+  --bg: #0a0a0a;
+  --kiwi-glow: rgba(126, 198, 32, 0.18);
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
   background: radial-gradient(
     circle at top,
-    rgba(0, 255, 100, 0.15),
-    #000 35%
+    rgba(126, 198, 32, 0.15),
+    #0a0a0a 35%
   );
   color: white;
+}
+
+.bg-glow {
+  position: absolute;
+  top: -200px;
+  left: -200px;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--kiwi-glow) 0%, transparent 70%);
 }
 
 .page-container {
