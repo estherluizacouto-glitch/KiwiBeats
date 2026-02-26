@@ -12,8 +12,8 @@
 
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
     
+<body>
     <div id="sidebar-container"></div>
 
     <main class="main-content">
@@ -25,25 +25,20 @@
             </header>
 
             <div class="song-table">
-                
                 <div class="song-row">
                     <div class="song-main-info">
                         <div class="cover-wrapper">
                             <img src="capa.png" class="kiwi-cover">
                         </div>
-                        
                         <div class="text-info">
                             <span class="song-name">Posso até não te dar flores</span>
                             <span class="song-style">Brazilian Funk Carioca • 150 BPM</span>
                         </div>
                     </div>
-            
                     <div class="song-meta">
                         <span class="duration">01:55</span>
-                        
                         <div class="action-menu">
                             <button class="dots-btn">•••</button>
-                            
                             <div class="kiwi-dropdown">
                                 <button class="delete-btn">
                                     <i class="fas fa-trash"></i> Excluir Música
@@ -52,16 +47,14 @@
                         </div>
                     </div>
                 </div>
-                
-            </div>
-        </main>
+            </div><!-- fecha song-table -->
 
-        <div id="sidebar-container"></div>
-        <div id="music-player-container"></div>
+        </div><!-- fecha library-container -->
+    </main>
 
-        <script defer src="js/music-player.js"></script>
-        <script type="module" src="js/main.js"></script>
-        
-    
+    <div id="music-player-container"></div>
+
+    <script defer src="js/music-player.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
