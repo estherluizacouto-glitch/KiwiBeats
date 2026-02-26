@@ -1,16 +1,53 @@
-// Carregar componentes
-fetch("components/sidebar.html")
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("sidebar-container").innerHTML = data;
+const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const toggleIcon = document.getElementById('toggleIcon');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    // Toggle sidebar
+    if (sidebar && toggleBtn && toggleIcon) {
+      toggleBtn.addEventListener('click', () => {
+        const isCollapsed = sidebar.classList.toggle('collapsed');
+
+        toggleIcon.setAttribute(
+          "data-lucide",
+          isCollapsed ? "chevron-left" : "chevron-right"
+        );
+
+        lucide.createIcons();
+      });
+    }
+
+    // Logout
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', async () => {
+        await supabase.auth.signOut();
+
+        localStorage.clear();
+        sessionStorage.clear();
+
+        window.location.href = '/KiwiBeats';
+      });
+    }
+
+    // Carregar dados do usuário
+    loadUserData();
   });
 
-fetch("components/music-player.html")
+ // Carregar Music Player
+fetch('components/music-player.html')
   .then(res => res.text())
   .then(data => {
-    document.getElementById("player-container").innerHTML = data;
-  });
+    const container = document.getElementById('music-player-container');
+    if (!container) return;
 
+    container.innerHTML = data;
+
+    lucide.createIcons();
+
+    if (typeof initMusicPlayer === "function") {
+      initMusicPlayer();
+    }
+  });
 
 // Exemplo de músicas (depois você puxa do Supabase)
 const musics = [
@@ -54,27 +91,6 @@ musics.forEach(music => {
   musicList.appendChild(item);
 });
 
-
-// Abrir / fechar menu
-document.addEventListener("click", function(e) {
-
-  if (e.target.classList.contains("menu-btn")) {
-
-    const dropdown = e.target.nextElementSibling;
-
-    document.querySelectorAll(".dropdown")
-      .forEach(d => d.style.display = "none");
-
-    dropdown.style.display = "block";
-
-  } else {
-
-    document.querySelectorAll(".dropdown")
-      .forEach(d => d.style.display = "none");
-
-  }
-
-});
 
 
 // Deletar música
