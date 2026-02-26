@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minha Conta</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="minha-conta.css" />
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- Fundo decorativo -->
+    <div class="bg-glow"></div>
+    <div class="bg-grain"></div>
+
+    <!-- Estado: carregando -->
+    <div class="loading-wrap" id="loading">
+      <div class="spinner"></div>
+      <p class="loading-text">Carregando...</p>
+    </div>
+
+    <!-- Estado: sem sessão -->
+    <div class="loading-wrap hidden" id="no-session">
+      <div class="icon-wrap">
+        <svg class="music-icon" width="64" height="64" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="32" r="32" fill="rgba(126,198,32,0.12)"/>
+          <circle cx="32" cy="32" r="18" fill="rgba(126,198,32,0.18)"/>
+          <circle cx="32" cy="32" r="6"  fill="#7ec620" opacity="0.7"/>
+          <path d="M36 20 L36 30 L44 27 L44 17 Z" fill="#7ec620" opacity="0.9"/>
+          <circle cx="32" cy="32" r="32" fill="none" stroke="#7ec620" stroke-width="0.5" opacity="0.3"/>
+        </svg>
+      </div>
+      <p class="loading-text">Nenhuma sessão ativa.</p>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="content hidden" id="content">
+
+      <header class="header">
+        <div class="profile-section">
+
+          <!-- Avatar (preenchido via JS) -->
+          <div class="avatar-ring" id="avatar-ring"></div>
+
+          <!-- Nome + estatísticas -->
+          <div class="profile-info">
+            <div class="name-row">
+              <h1 class="name" id="display-name">—</h1>
+              <button class="edit-btn" title="Editar perfil">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 20h9"/>
+                  <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+              </button>
+            </div>
+
+            <div class="stats-row">
+              <div class="stat-chip">
+                <span class="stat-value" id="stat-seguindo">0</span>
+                <span class="stat-label">seguindo</span>
+              </div>
+              <div class="stat-chip">
+                <span class="stat-value" id="stat-seguidores">0</span>
+                <span class="stat-label">seguidores</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botão sair -->
+        <button class="sign-out-btn" id="sign-out-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          Sair
+        </button>
+      </header>
+
+      <!-- Área principal — estado vazio -->
+      <main class="main">
+        <div class="empty-state">
+          <div class="icon-wrap">
+            <svg class="music-icon" width="64" height="64" viewBox="0 0 64 64" fill="none">
+              <circle cx="32" cy="32" r="32" fill="rgba(126,198,32,0.12)"/>
+              <circle cx="32" cy="32" r="18" fill="rgba(126,198,32,0.18)"/>
+              <circle cx="32" cy="32" r="6"  fill="#7ec620" opacity="0.7"/>
+              <path d="M36 20 L36 30 L44 27 L44 17 Z" fill="#7ec620" opacity="0.9"/>
+              <circle cx="32" cy="32" r="32" fill="none" stroke="#7ec620" stroke-width="0.5" opacity="0.3"/>
+            </svg>
+          </div>
+          <p class="empty-text">Nenhum dado ainda</p>
+          <p class="empty-subtext">Comece a ouvir para ver suas estatísticas aqui.</p>
+        </div>
+      </main>
+
+    </div>
+  </div>
+
+  <script src="minha-conta.js"></script>
+</body>
+</html>
