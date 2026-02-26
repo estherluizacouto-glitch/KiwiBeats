@@ -1,0 +1,288 @@
+/* ── Variáveis ───────────────────────────────────── */
+:root {
+  --kiwi:         #7ec620;
+  --kiwi-dark:    #5fa010;
+  --kiwi-glow:    rgba(126, 198, 32, 0.18);
+  --bg:           #0a0a0a;
+  --text:         #ffffff;
+  --text-muted:   #666666;
+  --text-dim:     #444444;
+  --border:       rgba(255, 255, 255, 0.06);
+  --border-btn:   rgba(255, 255, 255, 0.15);
+  --overlay:      rgba(255, 255, 255, 0.07);
+}
+
+/* ── Reset ───────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+}
+
+/* ── Utilitário ──────────────────────────────────── */
+.hidden {
+  display: none !important;
+}
+
+/* ── Página ──────────────────────────────────────── */
+.page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Fundo decorativo ────────────────────────────── */
+.bg-glow {
+  position: absolute;
+  top: -200px;
+  left: -200px;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--kiwi-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Loading ─────────────────────────────────────── */
+.loading-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 12px;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 3px solid rgba(126, 198, 32, 0.2);
+  border-top-color: var(--kiwi);
+  animation: spin 0.8s linear infinite;
+}
+
+.loading-text {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* ── Conteúdo principal ──────────────────────────── */
+.content {
+  position: relative;
+  z-index: 1;
+  animation: fadeIn 0.4s ease both;
+}
+
+/* ── Header ──────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 36px;
+  border-bottom: 1px solid var(--border);
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ── Avatar ──────────────────────────────────────── */
+.avatar-ring {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2.5px solid var(--kiwi);
+  box-shadow: 0 0 18px var(--kiwi-glow);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.avatar-ring img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--kiwi-dark), var(--kiwi));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--bg);
+  line-height: 1;
+}
+
+.avatar-glow-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: inset 0 0 12px var(--kiwi-glow);
+  pointer-events: none;
+}
+
+/* ── Informações do perfil ───────────────────────── */
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.name-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.name {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.edit-btn {
+  background: var(--overlay);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 5px 7px;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.edit-btn:hover {
+  background: rgba(126, 198, 32, 0.15);
+  border-color: var(--kiwi);
+  color: var(--kiwi);
+}
+
+/* ── Estatísticas ────────────────────────────────── */
+.stats-row {
+  display: flex;
+  gap: 16px;
+}
+
+.stat-chip {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.stat-value {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* ── Botão Sair ──────────────────────────────────── */
+.sign-out-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  border-radius: 50px;
+  border: 1.5px solid var(--border-btn);
+  background: transparent;
+  color: #cccccc;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+  letter-spacing: 0.01em;
+}
+
+.sign-out-btn:hover {
+  border-color: var(--kiwi);
+  color: var(--kiwi);
+  box-shadow: 0 0 12px var(--kiwi-glow);
+}
+
+/* ── Área principal / Estado vazio ───────────────── */
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 141px);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  animation: fadeIn 0.5s ease 0.1s both;
+}
+
+.icon-wrap {
+  margin-bottom: 4px;
+  filter: drop-shadow(0 0 24px var(--kiwi-glow));
+}
+
+.music-icon {
+  display: block;
+}
+
+.empty-text {
+  font-size: 15px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.empty-subtext {
+  font-size: 13px;
+  color: var(--text-dim);
+  text-align: center;
+  max-width: 220px;
+}
+
+/* ── Animações ───────────────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
