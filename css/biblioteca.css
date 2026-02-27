@@ -122,6 +122,12 @@ h1 {
   transform: scaleX(1); 
 }
 
+/* Mantém o item da música acima dos outros enquanto o menu estiver aberto */
+.music-item:has(.dropdown.active) {
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.05); /* Mantém o destaque do hover */
+}
+
 .music-left {
   display: flex;
   align-items: center;
@@ -166,7 +172,7 @@ h1 {
 
 .dropdown {
   position: absolute;
-  right: 0;
+  right: 20;
   top: 45px;
   background: #181818 !important;
   border: 1px solid rgba(255, 255, 255, 0.1);
