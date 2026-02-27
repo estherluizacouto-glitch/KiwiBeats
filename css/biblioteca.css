@@ -164,7 +164,7 @@ h1 {
   cursor: pointer;
 }
 
-.dropdown {
+.delete-btn {
   position: absolute;
   right: 20;
   top: 45px;
@@ -178,12 +178,12 @@ h1 {
   box-shadow: 0 10px 25px rgba(0,0,0,0.8);
 }
 
-.dropdown.active {
+.delete-btn.active {
     display: block !important;
     animation: fadeIn 0.2s ease;
 }
 
-.dropdown button {
+.delete-btn button {
   width: 100%;
   background: none;
   border: none;
@@ -201,11 +201,11 @@ h1 {
   transition: background 0.2s;
 }
 
-.dropdown button:hover {
+.delete-btn button:hover {
   background: rgba(255, 77, 77, 0.1);
 }
 
-.dropdown button i {
+.delete-btn i {
     font-size: 16px;
 }
 
