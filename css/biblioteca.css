@@ -32,6 +32,7 @@ body {
 /* ── Página ──────────────────────────────────────── */
 .page {
   min-height: 100vh;
+  margin-left: calc(var(--sidebar-width) + 32px);
   position: relative;
   overflow: hidden;
 }
@@ -59,9 +60,9 @@ body {
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1050px;
   margin: 0 auto;
-  padding: 60px 20px 120px 20px; /* espaço pro player fixo */
+  padding: 120px 24px 140px; /* espaço pro player fixo */
   position: relative;
   z-index: 1; /* fica acima do glow */
 }
