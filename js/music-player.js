@@ -1,34 +1,26 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById('music-player-container');
-    const closeBtn = document.getElementById('closePlayer');
-    const playBtn = document.getElementById('playBtn');
+document.addEventListener('click', function(e) {
 
-    console.log("container:", container);
-    console.log("closeBtn:", closeBtn);
-    console.log("playBtn:", playBtn);
-    
-    if (!container) return;
+    // PLAY
+    if (e.target.closest('#playBtn')) {
+        const playBtn = e.target.closest('#playBtn');
+        const isPlaying = playBtn.classList.toggle('playing');
 
-    if (playBtn) {
-        let isPlaying = false;
+        playBtn.innerHTML = isPlaying
+            ? '<i data-lucide="pause"></i>'
+            : '<i data-lucide="play"></i>';
 
-        playBtn.addEventListener('click', () => {
-            isPlaying = !isPlaying;
-            playBtn.innerHTML = isPlaying
-                ? '<i data-lucide="pause"></i>'
-                : '<i data-lucide="play"></i>';
-
-            if (window.lucide) lucide.createIcons();
-        });
+        if (window.lucide) lucide.createIcons();
     }
 
-    if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
-            container.style.opacity = '0';
-            setTimeout(() => {
-                container.style.display = 'none';
-            }, 400);
-        });
+    // CLOSE
+    if (e.target.closest('#closePlayer')) {
+        const container = document.getElementById('music-player-container');
+        if (!container) return;
+
+        container.style.opacity = '0';
+        setTimeout(() => {
+            container.style.display = 'none';
+        }, 400);
     }
+
 });
-
