@@ -249,6 +249,5 @@ window.supabaseClient = supabase;
     }
   }
 }
-
   
 });
