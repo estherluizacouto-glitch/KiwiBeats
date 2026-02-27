@@ -245,4 +245,8 @@ async function loadUserData() {
   }
 }
 
+const supabase = createClient(...);
+
+window.supabaseClient = supabase;
+  
 });
