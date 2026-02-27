@@ -26,9 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 400);
         });
     }
+
+    closeBtn.addEventListener('click', () => {
+        console.log("CLIQUEI NO X");
+    });
 });
 
-
-closeBtn.addEventListener('click', () => {
-    console.log("CLIQUEI NO X");
-});
