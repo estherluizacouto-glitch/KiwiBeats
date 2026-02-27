@@ -1,36 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-
-  const sidebar = document.getElementById('sidebar');
-  const toggleBtn = document.getElementById('toggleBtn');
-  const toggleIcon = document.getElementById('toggleIcon');
-  const logoutBtn = document.getElementById('logoutBtn');
-
-  // Toggle sidebar
-  if (sidebar && toggleBtn && toggleIcon) {
-    toggleBtn.addEventListener('click', () => {
-      const isCollapsed = sidebar.classList.toggle('collapsed');
-
-      toggleIcon.setAttribute(
-        "data-lucide",
-        isCollapsed ? "chevron-left" : "chevron-right"
-      );
-
-      lucide.createIcons();
-    });
-  }
-
-  // Logout
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', async () => {
-      await supabase.auth.signOut();
-
-      localStorage.clear();
-      sessionStorage.clear();
-
-      window.location.href = '/KiwiBeats';
-    });
-  }
-
   // Lista de músicas
   const musics = [
     {
@@ -83,20 +50,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Carregar Music Player
-  fetch('components/music-player.html')
-    .then(res => res.text())
-    .then(data => {
-      const container = document.getElementById('player-container');
-      if (!container) return;
-
-      container.innerHTML = data;
-
-      lucide.createIcons();
-
-      if (typeof initMusicPlayer === "function") {
-        initMusicPlayer();
-      }
-    });
-
-});
