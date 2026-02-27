@@ -51,12 +51,12 @@ body {
   z-index: 0;
 }
 
-.container {
-  max-width: 1050px;
-  margin: 0 auto;
-  padding: 120px 24px 140px; /* espaço pro player fixo */
-  position: relative;
-  z-index: 1; /* fica acima do glow */
+.main-container {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {
