@@ -40,11 +40,11 @@
 }
 
 .music-player-content {
-    display: flex;
-    justify-content: center;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between;
     align-items: center;
-    gap: 40px;
-    flex-wrap: nowrap;
+    width: 100%;
 }
 
 .music-player:hover {
@@ -78,11 +78,11 @@
 /* Info da música */
 
 .music-info {
-    display: flex;
-    align-items: center;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
     gap: 15px;
     min-width: 250px;
-    flex-shrink: 0;
 }
 
 .music-cover {
