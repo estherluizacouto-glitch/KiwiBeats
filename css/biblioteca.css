@@ -29,14 +29,6 @@ body {
   display: none !important;
 }
 
-/* ── Página ──────────────────────────────────────── */
-.page {
-  min-height: 100vh;
-  padding-left: 280px;
-  position: relative;
-  overflow: hidden;
-}
-
 /* ── Fundo decorativo ────────────────────────────── */
 .bg-glow {
   position: absolute;
