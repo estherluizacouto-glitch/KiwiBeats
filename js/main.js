@@ -224,6 +224,11 @@ async function loadUserData() {
     name.textContent = user.user_metadata?.full_name || '';
     avatar.src = user.user_metadata?.avatar_url || 'assets/images/default-avatar.png';
 
+const supabase = createClient(...);
+
+window.supabaseClient = supabase;
+
+    
     //  BUSCAR CRÉDITOS
     const { data, error } = await supabase
       .from('credits')
@@ -244,10 +249,6 @@ async function loadUserData() {
     }
   }
 }
-
-const supabase = createClient(...);
-
-window.supabaseClient = supabase;
 
   
 });
