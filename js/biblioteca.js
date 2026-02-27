@@ -1,4 +1,45 @@
-  // Lista de músicas
+document.addEventListener('DOMContentLoaded', () => {
+    // Inicializa os ícones do Lucide
+    lucide.createIcons();
+
+    // Função para abrir/fechar o menu
+    document.addEventListener('click', (e) => {
+        const isMenuBtn = e.target.closest('.menu-btn');
+        
+        // Se clicou no botão de três pontos
+        if (isMenuBtn) {
+            const container = isMenuBtn.closest('.menu-container');
+            const dropdown = container.querySelector('.dropdown');
+            
+            // Fecha outros menus abertos antes de abrir este
+            document.querySelectorAll('.dropdown.active').forEach(openMenu => {
+                if (openMenu !== dropdown) openMenu.classList.remove('active');
+            });
+
+            dropdown.classList.toggle('active');
+        } 
+        // Se clicou fora, fecha todos os menus
+        else {
+            document.querySelectorAll('.dropdown.active').forEach(openMenu => {
+                openMenu.classList.remove('active');
+            });
+        }
+    });
+
+    // Lógica para o botão deletar (exemplo)
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('.delete-btn')) {
+            const item = e.target.closest('.music-item');
+            if (confirm('Deseja realmente deletar esta música?')) {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(20px)';
+                setTimeout(() => item.remove(), 300);
+            }
+        }
+    });
+});
+
+// Lista de músicas
   const musics = [
     {
       name: "Posso até não te dar flores",
