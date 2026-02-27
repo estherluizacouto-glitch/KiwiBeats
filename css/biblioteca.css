@@ -72,14 +72,22 @@ h1 {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 15px 20px;
-  border-radius: 12px;
-  margin-bottom: 15px;
   
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 15px 20px;
+  border-radius: 14px;
+  margin-bottom: 12px;
   position: relative; 
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease
+  
+  transition: 
+        transform 0.5s ease, 
+        background 0.5s ease, 
+        box-shadow 0.5s ease, 
+        border-color 0.5s ease;
+  
   cursor: pointer;
+  overflow: hidden;
   z-index: 1;
 }
 
@@ -100,9 +108,12 @@ h1 {
 }
 
 .music-item:hover {
-  background: rgba(255, 255, 255, 0.06);
-  transform: scale(1.03); /* Aumenta em 3%. Se quiser mais, use 1.05 */
-  z-index: 10; /* Faz o item "saltar" para frente dos outros */
+    transform: scale(1.02); 
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(126, 198, 32, 0.2); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    
+    z-index: 2;
 }
 
 .music-item:hover::after {
