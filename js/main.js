@@ -229,10 +229,7 @@ async function loadUserData() {
   if (user) {
     name.textContent = user.user_metadata?.full_name || '';
     avatar.src = user.user_metadata?.avatar_url || 'assets/images/default-avatar.png';
-
-const supabase = createClient(...);
-
-window.supabaseClient = supabase;
+    
 
     
     //  BUSCAR CRÉDITOS
