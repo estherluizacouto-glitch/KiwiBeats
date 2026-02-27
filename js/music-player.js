@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById('music-player');
+    const container = document.getElementById('music-player-container');
     const closeBtn = document.getElementById('closePlayer');
     const playBtn = document.getElementById('playBtn');
 
