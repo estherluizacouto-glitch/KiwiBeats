@@ -168,12 +168,20 @@ h1 {
 .dropdown {
   position: absolute;
   right: 0;
-  top: 30px;
-  background: #111;
+  top: 40px;
+  background: #181818;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
-  padding: 10px;
+  padding: 6px;
   display: none;
-  min-width: 120px;
+  min-width: 140px;
+  z-index: 100;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+}
+
+.dropdown.active {
+    display: block;
+    animation: fadeIn 0.2s ease;
 }
 
 .dropdown button {
@@ -181,12 +189,28 @@ h1 {
   background: none;
   border: none;
   color: #ff4d4d;
-  padding: 8px;
+  padding: 10px 12px;
   text-align: left;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  ont-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background 0.2s;
 }
 
 .dropdown button:hover {
-  background: rgba(255, 0, 0, 0.1);
+  background: rgba(255, 77, 77, 0.1);
 }
 
+.dropdown button i {
+    font-size: 16px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
