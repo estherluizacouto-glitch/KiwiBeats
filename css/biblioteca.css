@@ -87,7 +87,6 @@ h1 {
         border-color 0.5s ease;
   
   cursor: pointer;
-  overflow: hidden;
   z-index: 1;
 }
 
@@ -167,20 +166,20 @@ h1 {
 
 .dropdown {
   position: absolute;
-  right: 0;
-  top: 40px;
+  right: 20;
+  top: 45px;
   background: #181818;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   padding: 6px;
   display: none;
   min-width: 140px;
-  z-index: 100;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+  z-index: 9999 !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.8);
 }
 
 .dropdown.active {
-    display: block;
+    display: block !important;
     animation: fadeIn 0.2s ease;
 }
 
