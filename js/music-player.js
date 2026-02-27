@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.getElementById('closePlayer');
     const playBtn = document.getElementById('playBtn');
 
+    console.log("container:", container);
+    console.log("closeBtn:", closeBtn);
+    console.log("playBtn:", playBtn);
+    
     if (!container) return;
 
     if (playBtn) {
@@ -26,9 +30,5 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 400);
         });
     }
-
-    closeBtn.addEventListener('click', () => {
-        console.log("CLIQUEI NO X");
-    });
 });
 
