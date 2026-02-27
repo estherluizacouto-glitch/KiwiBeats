@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 🔹 Carregar Music Player
   loadComponent(
-    "player-container",
+    "music-player-container",
     "components/music-player.html",
     () => {
       if (typeof initMusicPlayer === "function") {
