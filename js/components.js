@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Player
   loadComponent(
-    "player-container",
+    "music-player-container",
     "components/music-player.html",
     () => {
       if (typeof initMusicPlayer === "function") {
