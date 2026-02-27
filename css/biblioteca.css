@@ -166,16 +166,17 @@ h1 {
 
 .dropdown {
   position: absolute;
-  right: 20;
+  right: 0;
   top: 45px;
-  background: #181818;
+  background: #181818 !important;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   padding: 6px;
   display: none;
   min-width: 140px;
   z-index: 9999 !important;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.9);
+  opacity: 1 !important;
 }
 
 .dropdown.active {
