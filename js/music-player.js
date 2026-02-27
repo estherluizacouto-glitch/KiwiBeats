@@ -27,3 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
+closeBtn.addEventListener('click', () => {
+    console.log("CLIQUEI NO X");
+});
