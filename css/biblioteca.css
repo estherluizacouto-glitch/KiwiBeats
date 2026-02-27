@@ -78,8 +78,8 @@ h1 {
   margin-bottom: 15px;
   
   position: relative; 
-  background: rgba(255, 255, 255, 0.03);
-  transition: background 0.2s ease;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease
+  cursor: pointer;
   z-index: 1;
 }
 
@@ -100,7 +100,9 @@ h1 {
 }
 
 .music-item:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
+  transform: scale(1.03); /* Aumenta em 3%. Se quiser mais, use 1.05 */
+  z-index: 10; /* Faz o item "saltar" para frente dos outros */
 }
 
 .music-item:hover::after {
