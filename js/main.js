@@ -260,23 +260,6 @@ fetch('components/sidebar.html')
   });
 
   
-// ===== CARREGAR MUSIC PLAYER =====
-fetch('components/music-player.html')
-  .then(res => res.text())
-  .then(data => {
-    const container = document.getElementById('music-player-container');
-    if (!container) return;
-
-    container.innerHTML = data;
-
-    lucide.createIcons();
-
-    if (typeof initMusicPlayer === "function") {
-      initMusicPlayer();
-    }
-  });
-
-  
 // ===== FUNÇÃO USUÁRIO =====
 async function loadUserData() {
   const { data: { user } } = await supabase.auth.getUser();
