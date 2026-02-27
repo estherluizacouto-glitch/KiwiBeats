@@ -16,8 +16,9 @@ document.addEventListener('click', function(e) {
     if (e.target.closest('#closePlayer')) {
         const container = document.getElementById('music-player-container');
         if (!container) return;
-
-        container.style.opacity = '0';
+    
+        container.classList.add('hide-player');
+    
         setTimeout(() => {
             container.style.display = 'none';
         }, 400);
