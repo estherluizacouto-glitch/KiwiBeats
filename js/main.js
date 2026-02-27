@@ -245,10 +245,4 @@ async function loadUserData() {
   }
 }
 
-// Atualiza quando login mudar
-supabase.auth.onAuthStateChange(() => {
-  loadUserData();
-});
-
-
 });
