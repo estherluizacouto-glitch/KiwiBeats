@@ -6,8 +6,8 @@ function initMusicPlayer() {
     if (!container) return;
 
     const playBtn = container.querySelector('#playBtn');
-    const closeBtn = container.querySelector('#closePlayer');
-
+    const closeBtn = document.getElementById('closePlayer');
+    
     // 🎵 Play / Pause
     if (playBtn) {
         let isPlaying = false;
