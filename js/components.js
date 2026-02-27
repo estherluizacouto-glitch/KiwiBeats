@@ -1,45 +1,38 @@
-document.addEventListener("DOMContentLoaded", () => {
+import { initSidebar } from './sidebar.js';
 
-  // 🔹 Função genérica para carregar componentes
+document.addEventListener("DOMContentLoaded", async () => {
+
   function loadComponent(containerId, filePath, callback = null) {
     const container = document.getElementById(containerId);
-
-    if (!container) return; // Se a página não tiver o container, ignora
+    if (!container) return;
 
     fetch(filePath)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`Erro ao carregar ${filePath}`);
-        }
-        return response.text();
-      })
+      .then(res => res.text())
       .then(data => {
         container.innerHTML = data;
 
-        // Recria ícones do Lucide após inserir HTML
-        if (typeof lucide !== "undefined") {
+        if (window.lucide) {
           lucide.createIcons();
         }
 
-        // Executa callback se existir (ex: iniciar player)
-        if (typeof callback === "function") {
-          callback();
-        }
-      })
-      .catch(error => {
-        console.error(error);
+        if (callback) callback();
       });
   }
 
-  // 🔹 Carregar Sidebar
+  // Sidebar
   loadComponent(
     "sidebar-container",
-    "components/sidebar.html"
+    "components/sidebar.html",
+    () => {
+      if (window.supabaseClient) {
+        initSidebar(window.supabaseClient);
+      }
+    }
   );
 
-  // 🔹 Carregar Music Player
+  // Player
   loadComponent(
-    "music-player-container",
+    "player-container",
     "components/music-player.html",
     () => {
       if (typeof initMusicPlayer === "function") {
