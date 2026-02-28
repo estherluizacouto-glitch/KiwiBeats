@@ -1,4 +1,5 @@
 import { initSidebar } from './sidebar.js';
+import supabase from './supabaseClient.js';
 
 document.addEventListener("DOMContentLoaded", async () => {
 
