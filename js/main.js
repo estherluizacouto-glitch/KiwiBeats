@@ -1,13 +1,6 @@
 import supabase from './supabaseClient.js'
 
 
-document.addEventListener('DOMContentLoaded', async () => {
-
-  
-const { data: { session } } = await supabase.auth.getSession();
-console.log("SESSION AT LOAD:", session);
-
-
 lucide.createIcons();
   
   const textarea = document.querySelector('.cta-box textarea');
