@@ -1,252 +1,207 @@
 import supabase from './supabaseClient.js'
 
-
+// Inicializa os ícones do Lucide
 lucide.createIcons();
 
+const textarea = document.querySelector('.cta-box textarea');
+const modal = document.getElementById('modalOverlay');
+const btnCadastrar = document.querySelector('.btn-cadastrar');
+const btnEntrar = document.querySelector('.btn-entrar');
 
-  const textarea = document.querySelector('.cta-box textarea');
-  const modal = document.getElementById('modalOverlay');
-  const btnCadastrar = document.querySelector('.btn-cadastrar');
-  const btnEntrar = document.querySelector('.btn-entrar');
-
-  if (textarea) {
+// ===== LÓGICA DO TEXTAREA =====
+if (textarea) {
     textarea.addEventListener('input', () => {
-      textarea.style.height = 'auto';
-      const maxHeight = 240;
-      
-      if (textarea.scrollHeight <= maxHeight) {
-        textarea.style.height = textarea.scrollHeight + 'px';
-        textarea.style.overflowY = 'hidden';
-      } else {
-        textarea.style.height = maxHeight + 'px';
-        textarea.style.overflowY = 'auto';
-      }
-    });
-  }
+        textarea.style.height = 'auto';
+        const maxHeight = 240;
 
-  async function loginWithGoogle() {
+        if (textarea.scrollHeight <= maxHeight) {
+            textarea.style.height = textarea.scrollHeight + 'px';
+            textarea.style.overflowY = 'hidden';
+        } else {
+            textarea.style.height = maxHeight + 'px';
+            textarea.style.overflowY = 'auto';
+        }
+    });
+}
+
+// ===== AUTENTICAÇÃO SUPABASE =====
+async function loginWithGoogle() {
     const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: window.location.href
-      }
+        provider: 'google',
+        options: {
+            redirectTo: window.location.href
+        }
     });
 
     if (error) {
-      console.error('Erro no login:', error.message);
-      alert('Erro ao fazer login com Google');
+        console.error('Erro no login:', error.message);
+        alert('Erro ao fazer login com Google');
     }
-  }
+}
 
-  async function debugSession() {
+async function debugSession() {
     const { data, error } = await supabase.auth.getSession();
     console.log("SESSION:", data);
-    console.log("ERROR:", error);
-  }
+    if (error) console.log("ERROR:", error);
+}
 
-  debugSession();
+debugSession();
 
-  const googleLoginBtn = document.getElementById('googleLoginBtn');
-  if (googleLoginBtn) {
-    googleLoginBtn.addEventListener('click', loginWithGoogle)
-  }
+const googleLoginBtn = document.getElementById('googleLoginBtn');
+if (googleLoginBtn) {
+    googleLoginBtn.addEventListener('click', loginWithGoogle);
+}
 
-  supabase.auth.onAuthStateChange((event, session) => {
+supabase.auth.onAuthStateChange((event, session) => {
     if (event === 'SIGNED_IN') {
-      console.log('Logado:', session.user)
-
-      modal.classList.remove('active')
-      document.body.style.overflow = 'auto'
-
-      localStorage.setItem('access_token', session.access_token)
+        console.log('Logado:', session.user);
+        if (modal) modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        localStorage.setItem('access_token', session.access_token);
+        loadUserData(); // Carrega os dados quando logar
     }
 
     if (event === 'SIGNED_OUT') {
-      localStorage.removeItem('access_token')
+        localStorage.removeItem('access_token');
+        loadUserData(); // Limpa os dados ao sair
     }
-  });
+});
 
-  if (textarea) {
-    textarea.addEventListener('input', () => {
-      textarea.style.height = 'auto';
-      const maxHeight = 240;
-      if (textarea.scrollHeight <= maxHeight) {
-        textarea.style.height = textarea.scrollHeight + 'px';
-        textarea.style.overflowY = 'hidden';
-      } else {
-        textarea.style.height = maxHeight + 'px';
-        textarea.style.overflowY = 'auto';
-      }
-    });
-    
-    // animação placeholder
-    digitar();
-  }
-
-  
-  const frases = [
+// ===== ANIMAÇÃO PLACEHOLDER =====
+const frases = [
     'Descreva sua ideia...',
-    'Faça uma música no estilo samba com a seguinte letra...',
-    'Faça uma música de sertanejo universitário sobre um amor não correspondido...',
-    'Coloque o som de guitarra por cima dessa música...',
-    'Transforme essa letra em uma música no estilo rock...'
-  ];
+    'Faça uma música no estilo samba...',
+    'Sertanejo universitário sobre amor...',
+    'Som de guitarra por cima dessa música...',
+    'Transforme essa letra em rock...'
+];
 
-  let fraseIndex = 0;
-  let charIndex = 0;
-  let escrevendo = true;
-  let animandoPlaceholder = true;
+let fraseIndex = 0;
+let charIndex = 0;
+let escrevendo = true;
+let animandoPlaceholder = true;
 
-  function digitar() {
-    if (!animandoPlaceholder) return;
+function digitar() {
+    if (!animandoPlaceholder || !textarea) return;
 
     if (escrevendo) {
-      if (charIndex <= frases[fraseIndex].length) {
-        textarea.placeholder = frases[fraseIndex].slice(0, charIndex);
-        charIndex++;
-        setTimeout(digitar, 80);
-      } else {
-        escrevendo = false;
-        setTimeout(digitar, 1500);
-      }
+        if (charIndex <= frases[fraseIndex].length) {
+            textarea.placeholder = frases[fraseIndex].slice(0, charIndex);
+            charIndex++;
+            setTimeout(digitar, 80);
+        } else {
+            escrevendo = false;
+            setTimeout(digitar, 1500);
+        }
     } else {
-      if (charIndex >= 0) {
-        textarea.placeholder = frases[fraseIndex].slice(0, charIndex);
-        charIndex--;
-        setTimeout(digitar, 40);
-      } else {
-        escrevendo = true;
-        fraseIndex = (fraseIndex + 1) % frases.length;
-        charIndex = 0;
-        textarea.placeholder = '';
-        setTimeout(digitar, 300);
-      }
+        if (charIndex >= 0) {
+            textarea.placeholder = frases[fraseIndex].slice(0, charIndex);
+            charIndex--;
+            setTimeout(digitar, 40);
+        } else {
+            escrevendo = true;
+            fraseIndex = (fraseIndex + 1) % frases.length;
+            charIndex = 0;
+            setTimeout(digitar, 300);
+        }
     }
-  }
+}
 
-  textarea.addEventListener('input', () => {
-    if (textarea.value.length > 0) {
-      animandoPlaceholder = false;
-      textarea.placeholder = '';
-    } else if (!animandoPlaceholder) {
-      animandoPlaceholder = true;
-      fraseIndex = 0;
-      charIndex = 0;
-      escrevendo = true;
-      digitar();
-    }
-  });
+if (textarea) {
+    textarea.addEventListener('input', () => {
+        if (textarea.value.length > 0) {
+            animandoPlaceholder = false;
+            textarea.placeholder = '';
+        } else {
+            animandoPlaceholder = true;
+            digitar();
+        }
+    });
+    digitar();
+}
 
-  digitar();
+// ===== MODAL CONTROLS =====
+const modalTitle = document.getElementById('modalTitle');
+const modalSubtitle = document.getElementById('modalSubtitle');
+const modalDividerText = document.getElementById('modalDividerText');
+const modalSecondaryBtn = document.getElementById('modalSecondaryBtn');
+const modalContainer = document.querySelector('.modal-container');
 
-  // ===== MODAL =====
-  const modalTitle = document.getElementById('modalTitle');
-  const modalSubtitle = document.getElementById('modalSubtitle');
-  const modalDividerText = document.getElementById('modalDividerText');
-  const modalSecondaryBtn = document.getElementById('modalSecondaryBtn');
-  const modalContainer = document.querySelector('.modal-container');
-
-  function setModalMode(mode) {
+function setModalMode(mode) {
+    if (!modalContainer) return;
     modalContainer.classList.add('switching');
 
     setTimeout(() => {
-      if (mode === 'cadastrar') {
-        modalTitle.textContent = 'Crie sua conta';
-        modalSubtitle.innerHTML = `
-          Bem-vindo ao KiwiBeats.<br>
-          Crie sua conta e dê o play na sua criatividade.
-        `;
-
-        modalDividerText.textContent = 'Já tem uma conta?';
-        modalSecondaryBtn.textContent = 'Entrar';
-
-        modalSecondaryBtn.onclick = () => setModalMode('entrar');
-    }
-
-      if (mode === 'entrar') {
-        modalTitle.textContent = 'Entre na sua conta';
-        modalSubtitle.innerHTML = `
-          Que bom te ver de novo.<br>
-          Faça login para continuar criando música.
-        `;
-
-        modalDividerText.textContent = 'Ainda não tem conta?';
-        modalSecondaryBtn.textContent = 'Criar conta';
-
-        modalSecondaryBtn.onclick = () => setModalMode('cadastrar');
-      }
-
-      modalContainer.classList.remove('switching');
+        if (mode === 'cadastrar') {
+            modalTitle.textContent = 'Crie sua conta';
+            modalSubtitle.innerHTML = 'Bem-vindo ao KiwiBeats.<br>Crie sua conta e dê o play.';
+            modalDividerText.textContent = 'Já tem uma conta?';
+            modalSecondaryBtn.textContent = 'Entrar';
+            modalSecondaryBtn.onclick = () => setModalMode('entrar');
+        } else {
+            modalTitle.textContent = 'Entre na sua conta';
+            modalSubtitle.innerHTML = 'Que bom te ver de novo.<br>Faça login para continuar.';
+            modalDividerText.textContent = 'Ainda não tem conta?';
+            modalSecondaryBtn.textContent = 'Criar conta';
+            modalSecondaryBtn.onclick = () => setModalMode('cadastrar');
+        }
+        modalContainer.classList.remove('switching');
     }, 200);
-  }
+}
 
-
-   if (btnCadastrar) {
+if (btnCadastrar) {
     btnCadastrar.addEventListener('click', () => {
-      setModalMode('cadastrar');
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+        setModalMode('cadastrar');
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
     });
-  }
+}
 
-  if (btnEntrar) {
+if (btnEntrar) {
     btnEntrar.addEventListener('click', () => {
-      setModalMode('entrar');
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+        setModalMode('entrar');
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
     });
-  }
-  
-  if (modal) {
-    modal.addEventListener('click', () => {
-      modal.classList.remove('active');
-      document.body.style.overflow = 'auto';
+}
+
+if (modal) {
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) { // Fecha apenas se clicar no fundo
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
     });
-  }
+}
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      modal.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-  });
-
-  
 // ===== FUNÇÃO USUÁRIO =====
 async function loadUserData() {
-  const { data: { user } } = await supabase.auth.getUser();
+    const { data: { user } } = await supabase.auth.getUser();
+    const avatar = document.getElementById('userAvatar');
+    const name = document.getElementById('userName');
+    const creditsElement = document.getElementById('credits');
 
-  const avatar = document.getElementById('userAvatar');
-  const name = document.getElementById('userName');
-  const creditsElement = document.getElementById('credits');
+    if (!avatar || !name) return;
 
-  if (!avatar || !name) return;
+    if (user) {
+        name.textContent = user.user_metadata?.full_name || 'Usuário';
+        avatar.src = user.user_metadata?.avatar_url || 'assets/images/default-avatar.png';
 
-  if (user) {
-    name.textContent = user.user_metadata?.full_name || '';
-    avatar.src = user.user_metadata?.avatar_url || 'assets/images/default-avatar.png';
-    
+        const { data } = await supabase
+            .from('credits')
+            .select('credits_remaining')
+            .eq('user_id', user.id)
+            .single();
 
-    
-    //  BUSCAR CRÉDITOS
-    const { data, error } = await supabase
-      .from('credits')
-      .select('credits_remaining')
-      .eq('user_id', user.id)
-      .single();
-
-    if (data && creditsElement) {
-      creditsElement.textContent = `${data.credits_remaining} créditos`;
+        if (data && creditsElement) {
+            creditsElement.textContent = `${data.credits_remaining} créditos`;
+        }
+    } else {
+        name.textContent = '';
+        avatar.src = 'assets/images/default-avatar.png';
+        if (creditsElement) creditsElement.textContent = '';
     }
-
-  } else {
-    name.textContent = '';
-    avatar.src = 'assets/images/default-avatar.png';
-
-    if (creditsElement) {
-      creditsElement.textContent = '';
-    }
-  }
 }
-  
-});
+
+// Inicializa os dados do usuário ao carregar a página
+loadUserData();
