@@ -219,5 +219,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // Inicializa os dados do usuário ao carregar a página
     loadUserData();
+
+    // ===== LOGOUT =====
+    const logoutBtn = document.getElementById('logoutBtn');
+    
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', async () => {
+            const { error } = await supabase.auth.signOut();
+    
+            if (error) {
+                console.error('Erro ao deslogar:', error.message);
+                alert('Erro ao sair da conta');
+            }
+        });
+    }
     
 });
