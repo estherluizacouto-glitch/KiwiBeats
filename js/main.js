@@ -58,17 +58,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     supabase.auth.onAuthStateChange((event, session) => {
-        if (event === 'SIGNED_IN') {
-            console.log('Logado:', session.user);
+        console.log("Evento Auth:", event);
+        
+        if (event === 'SIGNED_IN' || event === 'INITIAL_SESSION') {
             if (modal) modal.classList.remove('active');
             document.body.style.overflow = 'auto';
-            localStorage.setItem('access_token', session.access_token);
-            loadUserData(); // Carrega os dados quando logar
+            loadUserData(); 
         }
     
         if (event === 'SIGNED_OUT') {
-            localStorage.removeItem('access_token');
-            loadUserData(); // Limpa os dados ao sair
+            loadUserData(); 
         }
     });
     
@@ -87,8 +86,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let animandoPlaceholder = true;
     
     function digitar() {
-        if (!animandoPlaceholder || !textarea) return;
-    
+        if (!textarea) return; // Segurança
+        
+        // Se não for para animar (usuário está digitando), para o loop temporariamente
+        if (!animandoPlaceholder) {
+            setTimeout(digitar, 500); // Tenta verificar novamente em breve
+            return;
+        }
+
         if (escrevendo) {
             if (charIndex <= frases[fraseIndex].length) {
                 textarea.placeholder = frases[fraseIndex].slice(0, charIndex);
@@ -111,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-    
+
     if (textarea) {
         textarea.addEventListener('input', () => {
             if (textarea.value.length > 0) {
@@ -119,10 +124,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 textarea.placeholder = '';
             } else {
                 animandoPlaceholder = true;
-                digitar();
+                // REMOVIDO: digitar(); <-- Não chame aqui! O loop já existe.
             }
         });
-        digitar();
+        digitar(); // Inicia o loop uma única vez
     }
     
     // ===== MODAL CONTROLS =====
@@ -180,24 +185,92 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ===== FUNÇÃO USUÁRIO =====
+    // ... (mantenha os imports e variáveis iniciais)
+
+    // ===== ANIMAÇÃO PLACEHOLDER (CORRIGIDA) =====
+    function digitar() {
+        if (!textarea) return; // Segurança
+        
+        // Se não for para animar (usuário está digitando), para o loop temporariamente
+        if (!animandoPlaceholder) {
+            setTimeout(digitar, 500); // Tenta verificar novamente em breve
+            return;
+        }
+
+        if (escrevendo) {
+            if (charIndex <= frases[fraseIndex].length) {
+                textarea.placeholder = frases[fraseIndex].slice(0, charIndex);
+                charIndex++;
+                setTimeout(digitar, 80);
+            } else {
+                escrevendo = false;
+                setTimeout(digitar, 1500);
+            }
+        } else {
+            if (charIndex >= 0) {
+                textarea.placeholder = frases[fraseIndex].slice(0, charIndex);
+                charIndex--;
+                setTimeout(digitar, 40);
+            } else {
+                escrevendo = true;
+                fraseIndex = (fraseIndex + 1) % frases.length;
+                charIndex = 0;
+                setTimeout(digitar, 300);
+            }
+        }
+    }
+
+    if (textarea) {
+        textarea.addEventListener('input', () => {
+            if (textarea.value.length > 0) {
+                animandoPlaceholder = false;
+                textarea.placeholder = '';
+            } else {
+                animandoPlaceholder = true;
+                // REMOVIDO: digitar(); <-- Não chame aqui! O loop já existe.
+            }
+        });
+        digitar(); // Inicia o loop uma única vez
+    }
+
+    // ===== AUTH STATE (SIMPLIFICADO) =====
+    supabase.auth.onAuthStateChange((event, session) => {
+        console.log("Evento Auth:", event);
+        
+        if (event === 'SIGNED_IN' || event === 'INITIAL_SESSION') {
+            if (modal) modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            loadUserData(); 
+        }
+    
+        if (event === 'SIGNED_OUT') {
+            loadUserData(); 
+        }
+    });
+
+    // ===== FUNÇÃO USUÁRIO (AJUSTADA) =====
     async function loadUserData() {
-        const { data: { user } } = await supabase.auth.getUser();
+        // Pega a sessão atual de forma segura
+        const { data: { session } } = await supabase.auth.getSession();
+        const user = session?.user;
+
         const avatar = document.getElementById('userAvatar');
         const name = document.getElementById('userName');
         const creditsElement = document.getElementById('credits');
-    
+
         if (!avatar || !name) return;
-    
+
         if (user) {
             name.textContent = user.user_metadata?.full_name || 'Usuário';
             avatar.src = user.user_metadata?.avatar_url || 'assets/images/default-avatar.png';
-    
+
+            // Busca créditos
             const { data } = await supabase
                 .from('credits')
                 .select('credits_remaining')
                 .eq('user_id', user.id)
-                .single();
-    
+                .maybeSingle(); // Use maybeSingle para não dar erro se não existir a linha
+
             if (data && creditsElement) {
                 creditsElement.textContent = `${data.credits_remaining} créditos`;
             }
