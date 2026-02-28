@@ -187,22 +187,28 @@ lucide.createIcons();
   }
 
 
-  btnCadastrar.addEventListener('click', () => {
-    setModalMode('cadastrar');
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  });
+   if (btnCadastrar) {
+    btnCadastrar.addEventListener('click', () => {
+      setModalMode('cadastrar');
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  }
 
-  btnEntrar.addEventListener('click', () => {
-    setModalMode('entrar');
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  });
-
-  modal.addEventListener('click', () => {
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  });
+  if (btnEntrar) {
+    btnEntrar.addEventListener('click', () => {
+      setModalMode('entrar');
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+  
+  if (modal) {
+    modal.addEventListener('click', () => {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+  }
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
