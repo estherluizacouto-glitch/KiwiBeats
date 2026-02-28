@@ -207,6 +207,5 @@ async function loadUserData() {
         if (creditsElement) creditsElement.textContent = '';
     }
 }
-
 // Inicializa os dados do usuário ao carregar a página
 loadUserData();
