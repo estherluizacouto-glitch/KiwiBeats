@@ -1,4 +1,5 @@
 import supabase from './supabaseClient.js';
+import { initSidebar } from './sidebar.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -219,5 +220,3 @@ document.addEventListener('DOMContentLoaded', () => {
     initSidebar(supabase);
     
 });
-
-import { initSidebar } from './sidebar.js';
