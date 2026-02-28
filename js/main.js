@@ -220,6 +220,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicializa os dados do usuário ao carregar a página
     loadUserData();
 
+    // ===== SIDEBAR =====
+    const sidebar = document.getElementById('sidebar');
+    const openSidebarBtn = document.getElementById('openSidebar');
+    const closeSidebarBtn = document.getElementById('closeSidebar');
+    
+    if (openSidebarBtn && sidebar) {
+        openSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.add('active');
+        });
+    }
+    
+    if (closeSidebarBtn && sidebar) {
+        closeSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+        });
+    }
+    
     // ===== LOGOUT =====
     const logoutBtn = document.getElementById('logoutBtn');
     
