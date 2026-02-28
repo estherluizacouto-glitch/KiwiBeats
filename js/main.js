@@ -57,19 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
         googleLoginBtn.addEventListener('click', loginWithGoogle);
     }
     
-    supabase.auth.onAuthStateChange((event, session) => {
-        console.log("Evento Auth:", event);
-        
-        if (event === 'SIGNED_IN' || event === 'INITIAL_SESSION') {
-            if (modal) modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            loadUserData(); 
-        }
-    
-        if (event === 'SIGNED_OUT') {
-            loadUserData(); 
-        }
-    });
     
     // ===== ANIMAÇÃO PLACEHOLDER =====
     const frases = [
@@ -187,8 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ===== AUTH STATE (SIMPLIFICADO) =====
     supabase.auth.onAuthStateChange((event, session) => {
-        console.log("Evento Auth:", event);
-        
         if (event === 'SIGNED_IN' || event === 'INITIAL_SESSION') {
             if (modal) modal.classList.remove('active');
             document.body.style.overflow = 'auto';
