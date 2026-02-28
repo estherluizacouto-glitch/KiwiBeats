@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalContainer = document.querySelector('.modal-container');
 
     const sidebar = document.getElementById('sidebar');
-    const toggleBtn = document.getElementById('toggleIcon');
+    const toggleBtn = document.getElementById('toggleBtn');
     const toggleIcon = document.getElementById('toggleIcon');
     const logoutBtn = document.getElementById('logoutBtn');
 
@@ -197,13 +197,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Sidebar
     if (toggleBtn && sidebar) {
         toggleBtn.addEventListener('click', () => {
-            sidebar.classList.add('active');
-        });
-    }
-
-    if (toggleIcon && sidebar) {
-        toggleIcon.addEventListener('click', () => {
-            sidebar.classList.remove('active');
+            sidebar.classList.toggle('collapsed');
+    
+            if (toggleIcon) {
+                if (sidebar.classList.contains('collapsed')) {
+                    toggleIcon.setAttribute('data-lucide', 'chevron-right');
+                } else {
+                    toggleIcon.setAttribute('data-lucide', 'chevron-left');
+                }
+    
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+            }
         });
     }
 
