@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalContainer = document.querySelector('.modal-container');
 
     const sidebar = document.getElementById('sidebar');
-    const openSidebarBtn = document.getElementById('openSidebar');
-    const closeSidebarBtn = document.getElementById('closeSidebar');
+    const toggleBtn = document.getElementById('toggleIcon');
+    const toggleIcon = document.getElementById('toggleIcon');
     const logoutBtn = document.getElementById('logoutBtn');
 
     const avatar = document.getElementById('userAvatar');
@@ -195,14 +195,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Sidebar
-    if (openSidebarBtn && sidebar) {
-        openSidebarBtn.addEventListener('click', () => {
+    if (toggleBtn && sidebar) {
+        toggleBtn.addEventListener('click', () => {
             sidebar.classList.add('active');
         });
     }
 
-    if (closeSidebarBtn && sidebar) {
-        closeSidebarBtn.addEventListener('click', () => {
+    if (toggleIcon && sidebar) {
+        toggleIcon.addEventListener('click', () => {
             sidebar.classList.remove('active');
         });
     }
