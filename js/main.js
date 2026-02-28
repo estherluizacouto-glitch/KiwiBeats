@@ -215,4 +215,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof lucide !== 'undefined') lucide.createIcons();
     loadUserData();
 
+    
+    initSidebar(supabase);
+    
 });
+
+import { initSidebar } from './sidebar.js';
