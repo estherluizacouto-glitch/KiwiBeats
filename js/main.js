@@ -2,7 +2,8 @@ import supabase from './supabaseClient.js'
 
 
 lucide.createIcons();
-  
+
+
   const textarea = document.querySelector('.cta-box textarea');
   const modal = document.getElementById('modalOverlay');
   const btnCadastrar = document.querySelector('.btn-cadastrar');
