@@ -18,11 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalSecondaryBtn = document.getElementById('modalSecondaryBtn');
     const modalContainer = document.querySelector('.modal-container');
 
-    const sidebar = document.getElementById('sidebar');
-    const toggleBtn = document.getElementById('toggleBtn');
-    const toggleIcon = document.getElementById('toggleIcon');
-    const logoutBtn = document.getElementById('logoutBtn');
-
     const avatar = document.getElementById('userAvatar');
     const name = document.getElementById('userName');
     const creditsElement = document.getElementById('credits');
@@ -190,36 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target === modal) {
                 modal.classList.remove('active');
                 document.body.style.overflow = 'auto';
-            }
-        });
-    }
-
-    // Sidebar
-    if (toggleBtn && sidebar) {
-        toggleBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('collapsed');
-    
-            if (toggleIcon) {
-                if (sidebar.classList.contains('collapsed')) {
-                    toggleIcon.setAttribute('data-lucide', 'chevron-right');
-                } else {
-                    toggleIcon.setAttribute('data-lucide', 'chevron-left');
-                }
-    
-                if (typeof lucide !== 'undefined') {
-                    lucide.createIcons();
-                }
-            }
-        });
-    }
-
-    // Logout
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', async () => {
-            const { error } = await supabase.auth.signOut();
-            if (error) {
-                console.error('Erro ao deslogar:', error.message);
-                alert('Erro ao sair da conta');
             }
         });
     }
