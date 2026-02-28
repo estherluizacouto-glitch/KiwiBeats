@@ -72,18 +72,24 @@ lucide.createIcons();
     }
   });
 
-  textarea.addEventListener('input', () => {
-    textarea.style.height = 'auto';
-    const maxHeight = 240;
-    if (textarea.scrollHeight <= maxHeight) {
-      textarea.style.height = textarea.scrollHeight + 'px';
-      textarea.style.overflowY = 'hidden';
-    } else {
-      textarea.style.height = maxHeight + 'px';
-      textarea.style.overflowY = 'auto';
-    }
-  });
+  if (textarea) {
+    textarea.addEventListener('input', () => {
+      textarea.style.height = 'auto';
+      const maxHeight = 240;
+      if (textarea.scrollHeight <= maxHeight) {
+        textarea.style.height = textarea.scrollHeight + 'px';
+        textarea.style.overflowY = 'hidden';
+      } else {
+        textarea.style.height = maxHeight + 'px';
+        textarea.style.overflowY = 'auto';
+      }
+    });
+    
+    // animação placeholder
+    digitar();
+  }
 
+  
   const frases = [
     'Descreva sua ideia...',
     'Faça uma música no estilo samba com a seguinte letra...',
