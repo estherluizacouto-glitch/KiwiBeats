@@ -183,9 +183,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
-    // ===== FUNÇÃO USUÁRIO =====
-    // ... (mantenha os imports e variáveis iniciais)
 
     // ===== ANIMAÇÃO PLACEHOLDER (CORRIGIDA) =====
     function digitar() {
