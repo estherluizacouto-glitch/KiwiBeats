@@ -1,7 +1,12 @@
-import supabase from './supabaseClient.js'
+import supabase from './supabaseClient.js';
 
-// Inicializa os ícones do Lucide
-lucide.createIcons();
+// Usamos o DOMContentLoaded para garantir que o HTML já exista quando o JS rodar
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // Inicializa os ícones do Lucide
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
 
 const textarea = document.querySelector('.cta-box textarea');
 const modal = document.getElementById('modalOverlay');
