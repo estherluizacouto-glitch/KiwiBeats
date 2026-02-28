@@ -184,51 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ===== ANIMAÇÃO PLACEHOLDER (CORRIGIDA) =====
-    function digitar() {
-        if (!textarea) return; // Segurança
-        
-        // Se não for para animar (usuário está digitando), para o loop temporariamente
-        if (!animandoPlaceholder) {
-            setTimeout(digitar, 500); // Tenta verificar novamente em breve
-            return;
-        }
-
-        if (escrevendo) {
-            if (charIndex <= frases[fraseIndex].length) {
-                textarea.placeholder = frases[fraseIndex].slice(0, charIndex);
-                charIndex++;
-                setTimeout(digitar, 80);
-            } else {
-                escrevendo = false;
-                setTimeout(digitar, 1500);
-            }
-        } else {
-            if (charIndex >= 0) {
-                textarea.placeholder = frases[fraseIndex].slice(0, charIndex);
-                charIndex--;
-                setTimeout(digitar, 40);
-            } else {
-                escrevendo = true;
-                fraseIndex = (fraseIndex + 1) % frases.length;
-                charIndex = 0;
-                setTimeout(digitar, 300);
-            }
-        }
-    }
-
-    if (textarea) {
-        textarea.addEventListener('input', () => {
-            if (textarea.value.length > 0) {
-                animandoPlaceholder = false;
-                textarea.placeholder = '';
-            } else {
-                animandoPlaceholder = true;
-                // REMOVIDO: digitar(); <-- Não chame aqui! O loop já existe.
-            }
-        });
-        digitar(); // Inicia o loop uma única vez
-    }
 
     // ===== AUTH STATE (SIMPLIFICADO) =====
     supabase.auth.onAuthStateChange((event, session) => {
