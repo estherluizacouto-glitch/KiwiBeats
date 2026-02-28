@@ -1,4 +1,4 @@
-const supabase = window.supabaseClient;
+import supabase from './supabaseClient.js'
 
 document.addEventListener("DOMContentLoaded", async () => {
 
