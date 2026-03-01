@@ -9,22 +9,18 @@
 </head>
 <body>
 
-  <!-- Demo: botão para abrir a sidebar -->
-  <button onclick="openLyricsSidebar()">🎵 Ver Letra</button>
-
   <!-- Overlay -->
   <div
-    class="sidebar-lyrics__overlay"
+    class="sidebar-lyrics__overlay open"
     id="sidebar-lyrics-overlay"
-    onclick="closeLyricsSidebar()"
   ></div>
 
   <!-- Sidebar de letra -->
-  <aside class="sidebar-lyrics" id="sidebar-lyrics">
+  <aside class="sidebar-lyrics open" id="sidebar-lyrics">
 
     <button
       class="sidebar-lyrics__close"
-      onclick="closeLyricsSidebar()"
+      id="sidebar-lyrics-close"
       aria-label="Fechar letra"
     >✕</button>
 
