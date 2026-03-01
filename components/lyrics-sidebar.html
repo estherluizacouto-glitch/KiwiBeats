@@ -4,88 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lyrics Sidebar</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="sidebar-lyrics.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/sidebar-lyrics.css">
 </head>
 <body>
 
-  <!-- Overlay -->
-  <div
-    class="sidebar-lyrics__overlay open"
-    id="sidebar-lyrics-overlay"
-  ></div>
+  <div class="sidebar-lyrics__overlay" id="sidebar-lyrics-overlay"></div>
 
-  <!-- Sidebar de letra -->
-  <aside class="sidebar-lyrics open" id="sidebar-lyrics">
-
-    <button
-      class="sidebar-lyrics__close"
-      id="sidebar-lyrics-close"
-      aria-label="Fechar letra"
-    >✕</button>
-
-    <!-- Capa (puxada do Supabase via JS) -->
+  <aside class="sidebar-lyrics closed" id="sidebar-lyrics">
+    <button class="sidebar-lyrics__close" id="sidebar-lyrics-close" aria-label="Fechar letra">✕</button>
+  
     <div class="sidebar-lyrics__cover-wrap">
-      <img
-        id="sidebar-lyrics-cover"
-        class="sidebar-lyrics__cover-img"
-        src="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=640&q=80"
-        alt="Capa da música"
-      >
+      <img id="sidebar-lyrics-cover" class="sidebar-lyrics__cover-img" src="" alt="Capa da música">
       <div class="sidebar-lyrics__cover-gradient"></div>
     </div>
-
-    <!-- Info da música -->
+  
     <div class="sidebar-lyrics__info">
-      <div class="sidebar-lyrics__title" id="sidebar-lyrics-title">
-        Eu aplico o chá, tu aplica...
-      </div>
-      <div class="sidebar-lyrics__genre" id="sidebar-lyrics-genre">
-        Funk Brasileiro · Estilo Minas Gerais
-      </div>
-
-      <!-- Artista (avatar + nome puxados do Supabase via JS) -->
+      <div class="sidebar-lyrics__title" id="sidebar-lyrics-title">—</div>
+      <div class="sidebar-lyrics__genre" id="sidebar-lyrics-genre">—</div>
       <div class="sidebar-lyrics__artist-row">
-        <img
-          id="sidebar-lyrics-avatar"
-          class="sidebar-lyrics__artist-avatar"
-          src="https://i.pravatar.cc/60?img=47"
-          alt="Artista"
-        >
-        <span class="sidebar-lyrics__artist-name" id="sidebar-lyrics-artist">
-          Esther Couto
-        </span>
+        <span class="sidebar-lyrics__artist-name" id="sidebar-lyrics-artist">KiwiBeats AI</span>
       </div>
     </div>
-
+  
     <div class="sidebar-lyrics__divider"></div>
-
-    <!-- Letra -->
-    <div class="sidebar-lyrics__scroll">
-
+  
+    <div class="sidebar-lyrics__scroll" id="sidebar-lyrics-scroll">
       <div class="sidebar-lyrics__block">
-        <div class="sidebar-lyrics__label">[Intro]</div>
+        <div class="sidebar-lyrics__line sidebar-lyrics__line--dim">Nenhuma letra disponível.</div>
       </div>
-
-      <div class="sidebar-lyrics__block">
-        <div class="sidebar-lyrics__label">[Verso]</div>
-        <div class="sidebar-lyrics__line">Eu aplico o chá, tu aplica a xota</div>
-        <div class="sidebar-lyrics__line">Troca de favor, negociação saborosa</div>
-        <div class="sidebar-lyrics__line">Eu aplico o chá, tu aplica a xota</div>
-        <div class="sidebar-lyrics__line">Viaja no verde, eu viajo na tcheca rosa</div>
-        <div class="sidebar-lyrics__line">Eu aplico o chá, tu aplica a xota</div>
-        <div class="sidebar-lyrics__line">Troca de favor, negociação saborosa</div>
-        <div class="sidebar-lyrics__line">Eu aplico o chá, tu aplica a xota</div>
-        <div class="sidebar-lyrics__line">Troca de favor, negociação saborosa</div>
-        <div class="sidebar-lyrics__line">Eu aplico o chá, tu aplica a xota</div>
-        <div class="sidebar-lyrics__line">Eu viajo na tcheca rosa</div>
-        <div class="sidebar-lyrics__line">Eu aplico o chá, tu aplica a xota</div>
-        <div class="sidebar-lyrics__line">Troca de favor, negociação saborosa</div>
-        <div class="sidebar-lyrics__line sidebar-lyrics__line--dim">Eu aplico o chá, tu aplica a xota</div>
-        <div class="sidebar-lyrics__line sidebar-lyrics__line--dim">Eu viajo na tcheca rosa</div>
-        <div class="sidebar-lyrics__line sidebar-lyrics__line--dim">Eu viajo na tcheca rosa</div>
-      </div>
-
     </div>
   </aside>
 
