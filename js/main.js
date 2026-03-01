@@ -92,6 +92,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         }, 200);
     }
 
+    async function refreshUser() {
+        const { data: { session } } = await supabase.auth.getSession();
+        updateSidebarUI(session?.user, supabase);
+    }
+
 
     // ===============================
     // TEXTAREA AUTO HEIGHT + PLACEHOLDER
@@ -194,19 +199,20 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     // ===============================
-    // AUTH STATE LISTENER
+    // LISTENER DE AUTH
     // ===============================
 
-    supabase.auth.onAuthStateChange((event) => {
-
-        if (event === 'SIGNED_IN' || event === 'INITIAL_SESSION') {
+    supabase.auth.onAuthStateChange((event, session) => {
+        console.log("Auth Event:", event);
+        
+        if (event === 'SIGNED_IN' || event === 'INITIAL_SESSION' || event === 'USER_UPDATED') {
             if (modal) modal.classList.remove('active');
             document.body.style.overflow = 'auto';
-            loadUserData();
+            updateSidebarUI(session?.user, supabase);
         }
 
         if (event === 'SIGNED_OUT') {
-            loadUserData();
+            updateSidebarUI(null, supabase);
         }
     });
 
@@ -215,10 +221,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     // INICIALIZAÇÕES
     // ===============================
 
+    refreshUser();
+    
     if (typeof lucide !== 'undefined') lucide.createIcons();
     loadUserData();
 
-    
-    initSidebar(supabase);
     
 });
