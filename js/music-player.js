@@ -50,7 +50,7 @@ function initMusicPlayer() {
     audio.currentTime = (e.offsetX / progressBar.clientWidth) * audio.duration;
   });
 
-  // Botão de letras (mic-2)
+  // 🎤 Botão de letras
   document.querySelector('[title="Letras"]').addEventListener('click', () => {
     const state = JSON.parse(localStorage.getItem('playerState') || '{}');
     if (!state.song) return;
@@ -60,21 +60,6 @@ function initMusicPlayer() {
       console.warn("openLyricsSidebar ainda não está disponível");
     }
   });
-
-  // 🎵 Função global chamada pela biblioteca
-  window.setPlayerSong = function(song) {
-    applySongToPlayer(song);
-    audio.play();
-    playerContainer.classList.add("player-visible");
-    localStorage.setItem("playerState", JSON.stringify({ song, currentTime: 0 }));
-  
-    // Abre a sidebar de letras automaticamente ao dar play
-    setTimeout(() => {
-      if (window.openLyricsSidebar) {
-        window.openLyricsSidebar(song);
-      }
-    }, 300); // pequeno delay pra garantir que initLyricsSidebar já rodou
-  };
 
   // 🔊 Volume
   volumeBar.addEventListener("click", (e) => {
@@ -111,12 +96,9 @@ function initMusicPlayer() {
   function restoreState() {
     const state = JSON.parse(localStorage.getItem("playerState") || "{}");
     if (!state.song) return;
-
-    const song = state.song;
-    applySongToPlayer(song);
+    applySongToPlayer(state.song);
     audio.currentTime = state.currentTime || 0;
     playerContainer.classList.add("player-visible");
-    // Não retoma o play automaticamente — usuário decide
   }
 
   function applySongToPlayer(song) {
@@ -134,6 +116,13 @@ function initMusicPlayer() {
     audio.play();
     playerContainer.classList.add("player-visible");
     localStorage.setItem("playerState", JSON.stringify({ song, currentTime: 0 }));
+
+    // Abre a sidebar de letras automaticamente ao dar play
+    setTimeout(() => {
+      if (window.openLyricsSidebar) {
+        window.openLyricsSidebar(song);
+      }
+    }, 300);
   };
 
   restoreState();
