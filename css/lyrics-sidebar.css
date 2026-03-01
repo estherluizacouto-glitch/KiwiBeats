@@ -28,20 +28,31 @@
 /* ── Sidebar container ───────────────────────────────────── */
 .sidebar-lyrics {
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 50%;
+  right: 30px;
+  transform: translateY(-50%) translateX(0);
+
   width: var(--sl-width);
-  height: 100vh;
-  background: var(--sl-surface);
-  border-left: 1px solid var(--sl-border);
+  height: 85vh;
+
+  background: rgba(22, 22, 22, 0.75);
+  backdrop-filter: blur(18px);
+
+  border: 1px solid var(--sl-border);
+  border-radius: 20px;
+
   z-index: 200;
   display: flex;
   flex-direction: column;
-  transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(139, 195, 74, 0.05);
+
   font-family: 'DM Sans', sans-serif;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
 .sidebar-lyrics.open {
   transform: translateX(0);
 }
@@ -96,6 +107,16 @@
   background: var(--sl-green);
   color: #0f0f0f;
   transform: scale(1.08);
+}
+
+.sidebar-lyrics.closed {
+  transform: translateY(-50%) translateX(120%);
+  opacity: 0;
+}
+
+.sidebar-lyrics__overlay.closed {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ── Capa ────────────────────────────────────────────────── */
