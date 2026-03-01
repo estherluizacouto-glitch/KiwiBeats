@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     return `${min}:${sec.toString().padStart(2, '0')}`;
   }
 
+  
   // 🔥 Buscar músicas do Supabase
   const { data: songs, error } = await supabase
     .from('songs')
