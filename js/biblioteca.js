@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       // 🎵 CLICAR NA MÚSICA = TOCAR
       item.addEventListener('click', (e) => {
         if (!e.target.closest('.menu-container')) {
-          playSong(song);
+          window.setPlayerSong(song);
         }
       });
 
@@ -62,20 +62,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     lucide.createIcons();
   }
 
-  // 🎧 Função para tocar música
-  function playSong(song) {
-    const audioPlayer = document.getElementById("audio-player");
-
-    if (audioPlayer) {
-      audioPlayer.src = song.audio_url;
-      audioPlayer.play();
-
-      // Atualizar player visual (se você tiver)
-      document.querySelector('.player-title').textContent = song.title;
-      document.querySelector('.player-artist').textContent = song.style;
-      document.querySelector('.player-cover').src = song.cover_url;
-    }
-  }
 
   // 🗑 Deletar música
   document.addEventListener('click', async (e) => {
