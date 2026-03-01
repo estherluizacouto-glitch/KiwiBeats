@@ -1,3 +1,5 @@
+import supabase from './supabaseClient.js'
+
 const sidebar = document.getElementById('sidebar-lyrics');
 const overlay = document.getElementById('sidebar-lyrics-overlay');
 const closeBtn = document.getElementById('sidebar-lyrics-close');
