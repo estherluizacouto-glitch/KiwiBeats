@@ -43,4 +43,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   );
 
+  // Lyrics Sidebar
+  loadComponent(
+    "lyrics-sidebar",
+    "components/lyrics-sidebar.html",
+    () => {
+      if (typeof openLyricsSidebar === "function") {
+        openLyricsSidebar();
+      }
+    }
+  );
+
 });
