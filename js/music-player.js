@@ -50,6 +50,14 @@ function initMusicPlayer() {
     audio.currentTime = (e.offsetX / progressBar.clientWidth) * audio.duration;
   });
 
+  // Botão de letras (mic-2)
+  document.querySelector('[title="Letras"]').addEventListener('click', () => {
+    const state = JSON.parse(localStorage.getItem('playerState') || '{}');
+    if (state.song && window.openLyricsSidebar) {
+      window.openLyricsSidebar(state.song);
+    }
+  });
+
   // 🔊 Volume
   volumeBar.addEventListener("click", (e) => {
     const vol = e.offsetX / volumeBar.clientWidth;
