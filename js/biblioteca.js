@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     return `${min}:${sec.toString().padStart(2, '0')}`;
   }
 
-  
-  // 🔥 Buscar músicas do Supabase
+  // 🔥 Buscar músicas
   const { data: songs, error } = await supabase
     .from('songs')
     .select('*')
@@ -23,6 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if (musicList && songs) {
     songs.forEach(song => {
+
       const item = document.createElement("div");
       item.classList.add("music-item");
 
@@ -49,9 +49,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         </div>
       `;
 
-      // 🎵 CLICAR NA MÚSICA = TOCAR
+      // 🎵 Clique na música
       item.addEventListener('click', (e) => {
         if (!e.target.closest('.menu-container')) {
+          console.log("Clicou na música:", song);
           window.setPlayerSong(song);
         }
       });
@@ -62,8 +63,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     lucide.createIcons();
   }
 
-
-  // 🗑 Deletar música
+  // 🗑 Deletar
   document.addEventListener('click', async (e) => {
     const btn = e.target.closest('.delete-btn');
     if (!btn) return;
@@ -76,10 +76,4 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  item.addEventListener('click', (e) => {
-    if (!e.target.closest('.menu-container')) {
-      console.log("Clicou na música:", song);
-      window.setPlayerSong(song);
-    }
-  });
 });
