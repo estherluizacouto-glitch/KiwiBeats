@@ -8,7 +8,7 @@ function initMusicPlayer() {
   const coverEl = document.querySelector(".music-cover");
   const titleEl = document.querySelector(".music-title");
   const artistEl = document.querySelector(".music-artist");
-  const playerContainer = document.getElementById("music-player-container");
+  const playerContainer = document.getElementById("music-player");
   const closeBtn = document.getElementById("closePlayer");
   const volumeBar = document.querySelector(".volume-bar");
   const volumeFill = document.querySelector(".volume-fill");
