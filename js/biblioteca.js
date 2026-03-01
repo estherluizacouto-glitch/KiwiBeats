@@ -57,11 +57,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       });
 
+      const menuBtn = item.querySelector('.menu-btn');
+      const dropdown = item.querySelector('.dropdown');
+      
+      menuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        // Fecha todos os outros dropdowns abertos
+        document.querySelectorAll('.dropdown.active').forEach(d => {
+          if (d !== dropdown) d.classList.remove('active');
+        });
+        dropdown.classList.toggle('active');
+      });
+
       musicList.appendChild(item);
     });
 
     lucide.createIcons();
   }
+
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
+  });
 
   // 🗑 Deletar
   document.addEventListener('click', async (e) => {
