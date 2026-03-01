@@ -4,9 +4,6 @@ export function initSidebar(supabase) {
   const toggleBtn = document.getElementById('toggleBtn');
   const toggleIcon = document.getElementById('toggleIcon');
   const logoutBtn = document.getElementById('logoutBtn');
-
-  console.log('sidebar:', sidebar);
-  console.log('toggleBtn:', toggleBtn);
   
   if (!sidebar) return;
 
