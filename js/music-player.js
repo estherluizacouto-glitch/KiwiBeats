@@ -1,5 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
-
+function initMusicPlayer() {
   const audio = document.getElementById("audio-player");
   const playBtn = document.getElementById("playBtn");
   const progressFill = document.querySelector(".progress-fill");
@@ -9,13 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const coverEl = document.querySelector(".music-cover");
   const titleEl = document.querySelector(".music-title");
   const artistEl = document.querySelector(".music-artist");
-
   let isPlaying = false;
 
-  // ▶ Play / Pause
   playBtn.addEventListener("click", () => {
     if (!audio.src) return;
-
     if (isPlaying) {
       audio.pause();
     } else {
@@ -35,11 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
     lucide.createIcons();
   });
 
-  // ⏱ Atualizar progresso
   audio.addEventListener("timeupdate", () => {
     const percent = (audio.currentTime / audio.duration) * 100;
     progressFill.style.width = percent + "%";
-
     currentTimeEl.textContent = formatTime(audio.currentTime);
   });
 
@@ -47,13 +41,10 @@ document.addEventListener("DOMContentLoaded", () => {
     durationEl.textContent = formatTime(audio.duration);
   });
 
-  // 🖱 Clique na barra
   progressBar.addEventListener("click", (e) => {
     const width = progressBar.clientWidth;
     const clickX = e.offsetX;
-    const duration = audio.duration;
-
-    audio.currentTime = (clickX / width) * duration;
+    audio.currentTime = (clickX / width) * audio.duration;
   });
 
   function formatTime(seconds) {
@@ -62,17 +53,13 @@ document.addEventListener("DOMContentLoaded", () => {
     return `${min}:${sec.toString().padStart(2, "0")}`;
   }
 
-  // 🔥 FUNÇÃO GLOBAL para tocar música (chamada pela biblioteca)
   window.setPlayerSong = function(song) {
     audio.src = song.audio_url;
     audio.play();
-
     titleEl.textContent = song.title;
     artistEl.textContent = song.style;
-
     coverEl.style.backgroundImage = `url(${song.cover_url})`;
     coverEl.style.backgroundSize = "cover";
     coverEl.style.backgroundPosition = "center";
   };
-
-});
+}
