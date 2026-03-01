@@ -1,46 +1,69 @@
 <div class="music-player" id="music-player-container">
-    <div class="music-player-content">
-        <div class="music-info">
-            <div class="music-cover"></div>
-            <div class="music-text">
-                <span class="music-title">Nome da música</span>
-                <span class="music-artist">KiwiBeats AI</span>
-            </div>
-        </div>
+  <div class="music-player-content">
 
-        <div class="player-center">
-            <div class="music-controls">
-                <button class="control-btn"><i data-lucide="shuffle"></i></button>
-                <button class="control-btn"><i data-lucide="skip-back"></i></button>
-                <button class="control-btn play-btn" id="playBtn"><i data-lucide="play"></i></button>
-                <button class="control-btn"><i data-lucide="skip-forward"></i></button>
-                <button class="control-btn"><i data-lucide="repeat"></i></button>
-            </div>
-
-            <div class="progress-container">
-                <span class="time">0:00</span>
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
-                </div>
-                <span class="time">3:45</span>
-            </div>
-        </div>
-
-        <div class="music-extra">
-            <button class="control-btn" title="Letras"><i data-lucide="mic-2"></i></button>
-            <button class="control-btn" title="Fila"><i data-lucide="list-music"></i></button>
-            
-            <div class="volume-control">
-                <button class="control-btn" id="volume-icon"><i data-lucide="volume-2"></i></button>
-                <div class="volume-bar">
-                    <div class="volume-fill"></div>
-                </div>
-            </div>
-        </div>
-
-        <button class="close-btn-final" id="closePlayer" title="Fechar">
-            <i data-lucide="x"></i>
-        </button>
-        
+    <!-- 🎵 INFORMAÇÕES DA MÚSICA -->
+    <div class="music-info">
+      <div class="music-cover"></div>
+      <div class="music-text">
+        <span class="music-title">Nome da música</span>
+        <span class="music-artist">KiwiBeats AI</span>
+      </div>
     </div>
+
+    <!-- 🎛 CONTROLES CENTRAIS -->
+    <div class="player-center">
+      <div class="music-controls">
+        <button class="control-btn"><i data-lucide="shuffle"></i></button>
+        <button class="control-btn"><i data-lucide="skip-back"></i></button>
+
+        <button class="control-btn play-btn" id="playBtn">
+          <i data-lucide="play"></i>
+        </button>
+
+        <button class="control-btn"><i data-lucide="skip-forward"></i></button>
+        <button class="control-btn"><i data-lucide="repeat"></i></button>
+      </div>
+
+      <!-- 📊 PROGRESSO -->
+      <div class="progress-container">
+        <span class="time">0:00</span>
+
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+
+        <span class="time">0:00</span>
+      </div>
+    </div>
+
+    <!-- 🔊 VOLUME E EXTRAS -->
+    <div class="music-extra">
+      <button class="control-btn" title="Letras">
+        <i data-lucide="mic-2"></i>
+      </button>
+
+      <button class="control-btn" title="Fila">
+        <i data-lucide="list-music"></i>
+      </button>
+      
+      <div class="volume-control">
+        <button class="control-btn" id="volume-icon">
+          <i data-lucide="volume-2"></i>
+        </button>
+
+        <div class="volume-bar">
+          <div class="volume-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ❌ FECHAR PLAYER -->
+    <button class="close-btn-final" id="closePlayer" title="Fechar">
+      <i data-lucide="x"></i>
+    </button>
+
+  </div>
+
+  <!-- 🎧 ELEMENTO REAL DE ÁUDIO -->
+  <audio id="audio-player"></audio>
 </div>
