@@ -27,6 +27,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     () => {
       initSidebar(supabase);
     }
+
+    loadComponent(
+      "sidebar-container",
+      "components/sidebar.html",
+      async () => {
+          initSidebar(supabase);
+          // Garante que a UI é atualizada após a sidebar estar no DOM
+          const { data: { session } } = await supabase.auth.getSession();
+          updateSidebarUI(session?.user, supabase);
+      }
   );
 
   // Player
