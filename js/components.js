@@ -25,9 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     "sidebar-container",
     "components/sidebar.html",
     () => {
-      if (window.supabaseClient) {
-        initSidebar(window.supabaseClient);
-      }
+      initSidebar(supabase);
     }
   );
 
