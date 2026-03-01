@@ -53,10 +53,28 @@ function initMusicPlayer() {
   // Botão de letras (mic-2)
   document.querySelector('[title="Letras"]').addEventListener('click', () => {
     const state = JSON.parse(localStorage.getItem('playerState') || '{}');
-    if (state.song && window.openLyricsSidebar) {
+    if (!state.song) return;
+    if (window.openLyricsSidebar) {
       window.openLyricsSidebar(state.song);
+    } else {
+      console.warn("openLyricsSidebar ainda não está disponível");
     }
   });
+
+  // 🎵 Função global chamada pela biblioteca
+  window.setPlayerSong = function(song) {
+    applySongToPlayer(song);
+    audio.play();
+    playerContainer.classList.add("player-visible");
+    localStorage.setItem("playerState", JSON.stringify({ song, currentTime: 0 }));
+  
+    // Abre a sidebar de letras automaticamente ao dar play
+    setTimeout(() => {
+      if (window.openLyricsSidebar) {
+        window.openLyricsSidebar(song);
+      }
+    }, 300); // pequeno delay pra garantir que initLyricsSidebar já rodou
+  };
 
   // 🔊 Volume
   volumeBar.addEventListener("click", (e) => {
