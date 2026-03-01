@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     "components/lyrics-sidebar.html",
     () => {
       if (typeof openLyricsSidebar === "function") {
-        openLyricsSidebar();
+        initLyricsSidebar();
       }
     }
   );
