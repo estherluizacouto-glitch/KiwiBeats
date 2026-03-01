@@ -80,15 +80,38 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   // 🗑 Deletar
-  document.addEventListener('click', async (e) => {
+  let pendingDeleteId = null;
+  const confirmOverlay = document.getElementById("confirmOverlay");
+  const confirmDelete = document.getElementById("confirmDelete");
+  const confirmCancel = document.getElementById("confirmCancel");
+  
+  document.addEventListener('click', (e) => {
     const btn = e.target.closest('.delete-btn');
     if (!btn) return;
-
-    const id = btn.dataset.id;
-
-    if (confirm('Deseja realmente deletar esta música?')) {
-      await supabase.from('songs').delete().eq('id', id);
-      location.reload();
+    e.stopPropagation();
+    pendingDeleteId = btn.dataset.id;
+    confirmOverlay.classList.remove('hidden');
+    lucide.createIcons();
+  });
+  
+  confirmCancel.addEventListener('click', () => {
+    confirmOverlay.classList.add('hidden');
+    pendingDeleteId = null;
+  });
+  
+  confirmDelete.addEventListener('click', async () => {
+    if (!pendingDeleteId) return;
+    await supabase.from('songs').delete().eq('id', pendingDeleteId);
+    confirmOverlay.classList.add('hidden');
+    pendingDeleteId = null;
+    location.reload();
+  });
+  
+  // Fecha ao clicar fora da caixa
+  confirmOverlay.addEventListener('click', (e) => {
+    if (e.target === confirmOverlay) {
+      confirmOverlay.classList.add('hidden');
+      pendingDeleteId = null;
     }
   });
 
