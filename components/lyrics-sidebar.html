@@ -1,43 +1,26 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lyrics Sidebar</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/sidebar-lyrics.css">
-</head>
-<body>
+<div class="sidebar-lyrics__overlay" id="sidebar-lyrics-overlay"></div>
 
-  <div class="sidebar-lyrics__overlay" id="sidebar-lyrics-overlay"></div>
+<aside class="sidebar-lyrics closed" id="sidebar-lyrics">
+  <button class="sidebar-lyrics__close" id="sidebar-lyrics-close" aria-label="Fechar letra">✕</button>
 
-  <aside class="sidebar-lyrics closed" id="sidebar-lyrics">
-    <button class="sidebar-lyrics__close" id="sidebar-lyrics-close" aria-label="Fechar letra">✕</button>
-  
-    <div class="sidebar-lyrics__cover-wrap">
-      <img id="sidebar-lyrics-cover" class="sidebar-lyrics__cover-img" src="" alt="Capa da música">
-      <div class="sidebar-lyrics__cover-gradient"></div>
+  <div class="sidebar-lyrics__cover-wrap">
+    <img id="sidebar-lyrics-cover" class="sidebar-lyrics__cover-img" src="" alt="Capa da música">
+    <div class="sidebar-lyrics__cover-gradient"></div>
+  </div>
+
+  <div class="sidebar-lyrics__info">
+    <div class="sidebar-lyrics__title" id="sidebar-lyrics-title">—</div>
+    <div class="sidebar-lyrics__genre" id="sidebar-lyrics-genre">—</div>
+    <div class="sidebar-lyrics__artist-row">
+      <span class="sidebar-lyrics__artist-name" id="sidebar-lyrics-artist">KiwiBeats AI</span>
     </div>
-  
-    <div class="sidebar-lyrics__info">
-      <div class="sidebar-lyrics__title" id="sidebar-lyrics-title">—</div>
-      <div class="sidebar-lyrics__genre" id="sidebar-lyrics-genre">—</div>
-      <div class="sidebar-lyrics__artist-row">
-        <span class="sidebar-lyrics__artist-name" id="sidebar-lyrics-artist">KiwiBeats AI</span>
-      </div>
-    </div>
-  
-    <div class="sidebar-lyrics__divider"></div>
-  
-    <div class="sidebar-lyrics__scroll" id="sidebar-lyrics-scroll">
-      <div class="sidebar-lyrics__block">
-        <div class="sidebar-lyrics__line sidebar-lyrics__line--dim">Nenhuma letra disponível.</div>
-      </div>
-    </div>
-  </aside>
+  </div>
 
-  <script type="module" src="js/lyrics-sidebar.js"></script>
+  <div class="sidebar-lyrics__divider"></div>
 
-  
-</body>
-</html>
+  <div class="sidebar-lyrics__scroll" id="sidebar-lyrics-scroll">
+    <div class="sidebar-lyrics__block">
+      <div class="sidebar-lyrics__line sidebar-lyrics__line--dim">Nenhuma letra disponível.</div>
+    </div>
+  </div>
+</aside>
