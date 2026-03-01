@@ -1,8 +1,10 @@
 import supabase from './supabaseClient.js';
-import { initSidebar } from './sidebar.js';
+import { initSidebar, updateSidebarUI } from './sidebar.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
 
+    initSidebar(supabase);
+    
     // ===============================
     // ELEMENTOS
     // ===============================
