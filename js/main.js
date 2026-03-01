@@ -2,6 +2,8 @@ import supabase from './supabaseClient.js';
 import { initSidebar, updateSidebarUI } from './sidebar.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
+
+    initSidebar(supabase);
     
     // ===============================
     // ELEMENTOS
@@ -223,8 +225,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     if (typeof lucide !== 'undefined') lucide.createIcons();
     loadUserData();
-    
-    initSidebar(supabase);
 
     
 });
