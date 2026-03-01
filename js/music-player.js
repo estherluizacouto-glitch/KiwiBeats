@@ -8,15 +8,17 @@ function initMusicPlayer() {
   const coverEl = document.querySelector(".music-cover");
   const titleEl = document.querySelector(".music-title");
   const artistEl = document.querySelector(".music-artist");
+  const playerContainer = document.getElementById("music-player-container");
+  const closeBtn = document.getElementById("closePlayer");
+  const volumeBar = document.querySelector(".volume-bar");
+  const volumeFill = document.querySelector(".volume-fill");
+
   let isPlaying = false;
 
+  // ▶ Play / Pause
   playBtn.addEventListener("click", () => {
     if (!audio.src) return;
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play();
-    }
+    isPlaying ? audio.pause() : audio.play();
   });
 
   audio.addEventListener("play", () => {
@@ -29,12 +31,15 @@ function initMusicPlayer() {
     isPlaying = false;
     playBtn.innerHTML = '<i data-lucide="play"></i>';
     lucide.createIcons();
+    saveState();
   });
 
+  // ⏱ Progresso
   audio.addEventListener("timeupdate", () => {
     const percent = (audio.currentTime / audio.duration) * 100;
     progressFill.style.width = percent + "%";
     currentTimeEl.textContent = formatTime(audio.currentTime);
+    saveState();
   });
 
   audio.addEventListener("loadedmetadata", () => {
@@ -42,24 +47,68 @@ function initMusicPlayer() {
   });
 
   progressBar.addEventListener("click", (e) => {
-    const width = progressBar.clientWidth;
-    const clickX = e.offsetX;
-    audio.currentTime = (clickX / width) * audio.duration;
+    audio.currentTime = (e.offsetX / progressBar.clientWidth) * audio.duration;
+  });
+
+  // 🔊 Volume
+  volumeBar.addEventListener("click", (e) => {
+    const vol = e.offsetX / volumeBar.clientWidth;
+    audio.volume = vol;
+    volumeFill.style.width = (vol * 100) + "%";
+  });
+
+  // ❌ Fechar player
+  closeBtn.addEventListener("click", () => {
+    audio.pause();
+    audio.src = "";
+    playerContainer.classList.remove("player-visible");
+    localStorage.removeItem("playerState");
   });
 
   function formatTime(seconds) {
+    if (isNaN(seconds)) return "0:00";
     const min = Math.floor(seconds / 60);
     const sec = Math.floor(seconds % 60);
     return `${min}:${sec.toString().padStart(2, "0")}`;
   }
 
-  window.setPlayerSong = function(song) {
+  // 💾 Salvar estado
+  function saveState() {
+    const state = JSON.parse(localStorage.getItem("playerState") || "{}");
+    if (state.song) {
+      state.currentTime = audio.currentTime;
+      localStorage.setItem("playerState", JSON.stringify(state));
+    }
+  }
+
+  // 🔄 Retomar estado ao carregar
+  function restoreState() {
+    const state = JSON.parse(localStorage.getItem("playerState") || "{}");
+    if (!state.song) return;
+
+    const song = state.song;
+    applySongToPlayer(song);
+    audio.currentTime = state.currentTime || 0;
+    playerContainer.classList.add("player-visible");
+    // Não retoma o play automaticamente — usuário decide
+  }
+
+  function applySongToPlayer(song) {
     audio.src = song.audio_url;
-    audio.play();
     titleEl.textContent = song.title;
     artistEl.textContent = song.style;
     coverEl.style.backgroundImage = `url(${song.cover_url})`;
     coverEl.style.backgroundSize = "cover";
     coverEl.style.backgroundPosition = "center";
+  }
+
+  // 🎵 Função global chamada pela biblioteca
+  window.setPlayerSong = function(song) {
+    applySongToPlayer(song);
+    audio.play();
+    playerContainer.classList.add("player-visible");
+    localStorage.setItem("playerState", JSON.stringify({ song, currentTime: 0 }));
   };
+
+  restoreState();
 }
