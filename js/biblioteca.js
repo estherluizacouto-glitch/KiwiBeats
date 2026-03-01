@@ -75,4 +75,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       location.reload();
     }
   });
+
+  item.addEventListener('click', (e) => {
+    if (!e.target.closest('.menu-container')) {
+      console.log("Clicou na música:", song);
+      window.setPlayerSong(song);
+    }
+  });
 });
