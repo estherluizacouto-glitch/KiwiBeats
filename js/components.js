@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   loadComponent(
     "sidebar-container",
     "components/sidebar.html",
-    () => {
+    async () => {
       initSidebar(supabase);
       
       const { data: { session } } = await supabase.auth.getSession();
