@@ -219,12 +219,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     // INICIALIZAÇÕES
     // ===============================
 
-    refreshUser();
-    
-    if (typeof lucide !== 'undefined') lucide.createIcons();
-    loadUserData();
-    
-    initSidebar(supabase);
-
     
 });
