@@ -40,6 +40,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (typeof initMusicPlayer === "function") {
         initMusicPlayer();
       }
+
+      loadComponent(
+        "lyrics-sidebar",
+        "components/lyrics-sidebar.html",
+        () => {
+          if (typeof initLyricsSidebar === "function") {
+            initLyricsSidebar();
+          }
+        }
+      );
     }
   );
 
