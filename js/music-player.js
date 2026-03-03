@@ -1,3 +1,5 @@
+import QueueSidebar from "./queueSidebar.js"; // ajuste o caminho se necessário
+
 function initMusicPlayer() {
   const audio = document.getElementById("audio-player");
   const playBtn = document.getElementById("playBtn");
@@ -64,7 +66,7 @@ function initMusicPlayer() {
   document.addEventListener("mouseup", (e) => { if (progressDragging) commitProgress(e); });
   document.addEventListener("touchend", (e) => { if (progressDragging) commitProgress(e); });
 
-  // ⏱ timeupdate — respeita o drag
+  // ⏱ timeupdate
   audio.addEventListener("timeupdate", () => {
     if (!progressDragging) {
       const percent = (audio.currentTime / audio.duration) * 100;
@@ -74,7 +76,7 @@ function initMusicPlayer() {
     saveState();
   });
 
-  // ⏱ Duração — fallback com durationchange caso loadedmetadata já tenha disparado
+  // ⏱ Duração
   function updateDuration() {
     if (!isNaN(audio.duration)) {
       durationEl.textContent = formatTime(audio.duration);
@@ -92,6 +94,23 @@ function initMusicPlayer() {
     } else {
       console.warn("openLyricsSidebar ainda não está disponível");
     }
+  });
+
+  // 🎵 Botão de fila
+  document.getElementById("btnQueue").addEventListener("click", QueueSidebar.toggle);
+
+  // Ouve quando o usuário clica em uma música na fila
+  document.getElementById("queueSidebar").addEventListener("queueSelect", (e) => {
+    const { song } = e.detail;
+    // Converte o formato da fila para o formato do player
+    applySongToPlayer({
+      audio_url: song.audioUrl,
+      title:     song.title,
+      cover_url: song.cover,
+      style:     song.artist ?? "",
+    });
+    audio.play();
+    playerContainer.classList.add("player-visible");
   });
 
   // 🔊 Volume
@@ -163,12 +182,17 @@ function initMusicPlayer() {
     playerContainer.classList.add("player-visible");
     localStorage.setItem("playerState", JSON.stringify({ song, currentTime: 0 }));
 
+    // Sincroniza a fila com a música tocando agora
+    const idx = QueueSidebar.queue.findIndex(s => s.audioUrl === song.audio_url);
+    if (idx !== -1) QueueSidebar.setCurrentIndex(idx);
+
     setTimeout(() => {
-      if (window.openLyricsSidebar) {
-        window.openLyricsSidebar(song);
-      }
+      if (window.openLyricsSidebar) window.openLyricsSidebar(song);
     }, 300);
   };
+
+  // 🎶 Carrega músicas do Supabase na fila ao iniciar
+  QueueSidebar.loadFromSupabase();
 
   restoreState();
 }
