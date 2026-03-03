@@ -32,6 +32,7 @@ function initLyricsSidebar() {
 
       if (player && lyrics.length > 0) {
         syncLyrics(player, lyrics);
+          console.log("Sync iniciada");
       }
 
     } else {
@@ -105,12 +106,14 @@ export function renderLyrics(lyrics) {
 
 export function syncLyrics(player, lyrics) {
 
+  if (!player || !lyrics || lyrics.length === 0) return;
+
   // Remove listener antigo se existir
   if (currentTimeUpdateHandler) {
     player.removeEventListener('timeupdate', currentTimeUpdateHandler);
   }
 
-  currentTimeUpdateHandler = function() {
+  currentTimeUpdateHandler = function () {
     const currentTime = player.currentTime;
 
     for (let i = 0; i < lyrics.length; i++) {
@@ -124,7 +127,15 @@ export function syncLyrics(player, lyrics) {
     }
   };
 
-  player.addEventListener('timeupdate', currentTimeUpdateHandler);
+  // Se já estiver tocando, ativa imediatamente
+  if (!player.paused) {
+    player.addEventListener('timeupdate', currentTimeUpdateHandler);
+  }
+
+  // Se ainda não estiver tocando, ativa quando der play
+  player.addEventListener('play', () => {
+    player.addEventListener('timeupdate', currentTimeUpdateHandler);
+  });
 }
 
 
