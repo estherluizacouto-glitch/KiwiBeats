@@ -1,22 +1,55 @@
 // ============================================================
-//  queueSidebar.js  —  Vanilla JS, sem dependências
+//  queueSidebar.js  —  Vanilla JS + Supabase
 // ============================================================
+
+import { supabase } from "./supabaseClient.js"; // ajuste o caminho se necessário
 
 const QueueSidebar = (() => {
 
   // ---------- estado interno ----------
-  let _queue        = [];   // array de objetos { title, artist, cover, version }
+  let _queue        = [];
   let _currentIndex = 0;
   let _shuffleOn    = false;
   let _isOpen       = false;
 
   // ---------- elementos do DOM ----------
-  const sidebar     = document.getElementById("queueSidebar");
-  const listEl      = document.getElementById("queueList");
-  const closeBtn    = document.getElementById("queueCloseBtn");
-  const shuffleBtn  = document.getElementById("queueShuffleBtn");
+  const sidebar    = document.getElementById("queueSidebar");
+  const listEl     = document.getElementById("queueList");
+  const closeBtn   = document.getElementById("queueCloseBtn");
+  const shuffleBtn = document.getElementById("queueShuffleBtn");
 
-  // ---------- helpers ----------
+  // ---------- busca músicas do Supabase ----------
+  async function loadFromSupabase() {
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+      console.warn("QueueSidebar: nenhum usuário logado.");
+      return;
+    }
+
+    const { data, error } = await supabase
+      .from("songs")
+      .select("id, title, cover_url, audio_url")
+      .eq("user_id", user.id)
+      .order("created_at", { ascending: true });
+
+    if (error) {
+      console.error("QueueSidebar: erro ao buscar músicas:", error.message);
+      return;
+    }
+
+    // Mapeia para o formato interno do componente
+    const songs = data.map(s => ({
+      id:       s.id,
+      title:    s.title,
+      cover:    s.cover_url  ?? null,
+      audioUrl: s.audio_url  ?? null,
+    }));
+
+    setQueue(songs, 0);
+  }
+
+  // ---------- helpers de HTML ----------
   function getBadgeClass(version) {
     if (!version) return "";
     const v = version.toLowerCase();
@@ -29,7 +62,6 @@ const QueueSidebar = (() => {
     if (song.cover) {
       return `<div class="queue-item-thumb"><img src="${song.cover}" alt="${song.title}"></div>`;
     }
-    // SVG de nota musical inline como placeholder
     return `
       <div class="queue-thumb-placeholder">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -52,8 +84,8 @@ const QueueSidebar = (() => {
       <div class="queue-item-drag">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="9" y1="5"  x2="9"  y2="19"/>
-          <line x1="15" y1="5" x2="15" y2="19"/>
+          <line x1="9"  y1="5"  x2="9"  y2="19"/>
+          <line x1="15" y1="5"  x2="15" y2="19"/>
         </svg>
       </div>`;
   }
@@ -67,7 +99,7 @@ const QueueSidebar = (() => {
       return;
     }
 
-    // --- Tocando agora ---
+    // Tocando agora
     const current = _queue[_currentIndex];
     if (current) {
       const label = document.createElement("p");
@@ -93,7 +125,7 @@ const QueueSidebar = (() => {
       listEl.appendChild(divider);
     }
 
-    // --- A seguir ---
+    // A seguir
     const upNext = _queue.slice(_currentIndex + 1);
     if (upNext.length > 0) {
       const label = document.createElement("p");
@@ -147,7 +179,9 @@ const QueueSidebar = (() => {
     _currentIndex = index;
     render();
     // Dispara evento customizado para o player principal ouvir
-    sidebar.dispatchEvent(new CustomEvent("queueSelect", { detail: { index } }));
+    sidebar.dispatchEvent(new CustomEvent("queueSelect", {
+      detail: { index, song: _queue[index] }
+    }));
   }
 
   function next() {
@@ -195,6 +229,7 @@ const QueueSidebar = (() => {
     open,
     close,
     toggle,
+    loadFromSupabase,   // chame isso na inicialização da página
     setQueue,
     selectSong,
     setCurrentIndex,
@@ -209,22 +244,31 @@ const QueueSidebar = (() => {
 
 })();
 
+export default QueueSidebar;
+
 // ============================================================
-//  Como usar no seu player:
+//  Como usar no seu player (ex: main.js ou player.js):
 //
-//  // Inicializar com as músicas:
-//  QueueSidebar.setQueue(minhasMusicas, indiceAtual);
+//  import QueueSidebar from "./js/queueSidebar.js";
 //
-//  // Botão de abrir/fechar (ícone de lista no player):
-//  document.getElementById("btnQueue").addEventListener("click", QueueSidebar.toggle);
+//  // Carrega músicas do Supabase ao abrir a página:
+//  QueueSidebar.loadFromSupabase();
+//
+//  // Botão de abrir/fechar:
+//  document.getElementById("btnQueue")
+//    .addEventListener("click", QueueSidebar.toggle);
 //
 //  // Ouvir quando o usuário clica em uma música na fila:
-//  document.getElementById("queueSidebar").addEventListener("queueSelect", (e) => {
-//    const { index } = e.detail;
-//    tocarMusica(index); // sua função de tocar
-//  });
+//  document.getElementById("queueSidebar")
+//    .addEventListener("queueSelect", (e) => {
+//      const { index, song } = e.detail;
+//      tocarMusica(song.audioUrl); // sua função de tocar
+//    });
 //
-//  // Avançar/voltar faixa (integrar com seus botões):
+//  // Sincronizar ao trocar de faixa no player:
+//  QueueSidebar.setCurrentIndex(novoIndice);
+//
+//  // Avançar/voltar faixa:
 //  QueueSidebar.next();
 //  QueueSidebar.prev();
 // ============================================================
