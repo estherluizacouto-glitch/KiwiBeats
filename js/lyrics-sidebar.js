@@ -38,3 +38,26 @@ function initLyricsSidebar() {
 }
 
 window.initLyricsSidebar = initLyricsSidebar;
+
+export function parseLRC(lrcText) {
+  if (!lrcText) return [];
+
+  const lines = lrcText.split('\n');
+  const lyrics = [];
+
+  lines.forEach(line => {
+    const match = line.match(/\[(\d+):(\d+\.\d+)\](.*)/);
+    if (match) {
+      const minutes = parseInt(match[1]);
+      const seconds = parseFloat(match[2]);
+      const time = minutes * 60 + seconds;
+
+      lyrics.push({
+        time,
+        text: match[3].trim()
+      });
+    }
+  });
+
+  return lyrics;
+}
