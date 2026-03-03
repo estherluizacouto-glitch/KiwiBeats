@@ -21,6 +21,7 @@
   pointer-events: none;
   transition: opacity 0.35s ease;
 }
+
 .sidebar-lyrics__overlay.open {
   opacity: 1;
   pointer-events: all;
@@ -94,6 +95,7 @@
   z-index: 10;
   transition: background 0.2s, transform 0.2s;
 }
+
 .sidebar-lyrics__close:hover {
   background: var(--sl-green);
   color: #0f0f0f;
@@ -146,6 +148,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .sidebar-lyrics__genre {
   font-size: 11px;
   color: var(--sl-text-dim);
@@ -195,6 +198,7 @@
   scrollbar-width: thin;
   scrollbar-color: var(--sl-green-dim) transparent;
 }
+
 .sidebar-lyrics__scroll::-webkit-scrollbar        { width: 3px; }
 .sidebar-lyrics__scroll::-webkit-scrollbar-track  { background: transparent; }
 .sidebar-lyrics__scroll::-webkit-scrollbar-thumb  {
@@ -221,11 +225,20 @@
   line-height: 1.75;
   color: var(--sl-text);
   font-weight: 300;
-  transition: color 0.2s;
+  opacity: 0.4;
+  transition: 0.3s ease;
 }
+
+.sidebar-lyrics__line--active {
+  opacity: 1;
+  font-weight: bold;
+  font-size: 18px;
+}
+
 .sidebar-lyrics__line:hover {
   color: var(--sl-green);
 }
+
 .sidebar-lyrics__line--dim {
   color: var(--sl-text-dim);
 }
