@@ -106,7 +106,7 @@ function initMusicPlayer() {
   });
 
   // Ouve quando o usuário clica em uma música na fila
-  document.getElementById("queueSidebar").addEventListener("queueSelect", (e) => {
+  document.addEventListener("queueSelect", (e) => {
     const { song } = e.detail;
     applySongToPlayer({
       audio_url: song.audioUrl,
