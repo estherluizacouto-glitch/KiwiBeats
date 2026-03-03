@@ -229,16 +229,9 @@ const QueueSidebar = (() => {
     });
   }
 
-  // Inicializa automaticamente quando o DOM estiver pronto
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    // DOM já está pronto (script carregado com defer/async ou no fim do body)
-    init();
-  }
-
   // ---------- API pública ----------
   return {
+    init,
     open,
     close,
     toggle,
