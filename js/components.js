@@ -45,6 +45,18 @@ document.addEventListener("DOMContentLoaded", async () => {
           if (typeof initLyricsSidebar === "function") {
             initLyricsSidebar(); // ← define window.openLyricsSidebar
           }
+
+          // Carrega Queue sidebar
+          loadComponent(
+            "queueSidebar",
+            "components/QueueSidebar.html",
+            () => {
+              if (window.QueueSidebar) {
+                window.QueueSidebar.loadFromSupabase();
+              }
+            }
+          );
+          
           // Só depois inicia o player (que vai usar openLyricsSidebar)
           if (typeof initMusicPlayer === "function") {
             initMusicPlayer();
