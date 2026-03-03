@@ -103,17 +103,16 @@ export function renderLyrics(lyrics) {
 // =======================
 
 export function syncLyrics(player, lyrics) {
-
   if (!player || !lyrics || lyrics.length === 0) return;
 
   // Remove listener antigo se existir
   if (currentTimeUpdateHandler) {
     player.removeEventListener('timeupdate', currentTimeUpdateHandler);
+    currentTimeUpdateHandler = null;
   }
 
   currentTimeUpdateHandler = function () {
     const currentTime = player.currentTime;
-
     for (let i = 0; i < lyrics.length; i++) {
       if (
         currentTime >= lyrics[i].time &&
@@ -125,17 +124,12 @@ export function syncLyrics(player, lyrics) {
     }
   };
 
-  // Se já estiver tocando, ativa imediatamente
-  if (!player.paused) {
-    player.addEventListener('timeupdate', currentTimeUpdateHandler);
-  }
+  // Sempre adiciona o timeupdate diretamente — funciona pausado e tocando
+  player.addEventListener('timeupdate', currentTimeUpdateHandler);
 
-  // Se ainda não estiver tocando, ativa quando der play
-  player.addEventListener('play', () => {
-    player.addEventListener('timeupdate', currentTimeUpdateHandler);
-  });
+  // Dispara uma vez imediatamente para sincronizar o estado atual
+  currentTimeUpdateHandler();
 }
-
 
 
 // =======================
