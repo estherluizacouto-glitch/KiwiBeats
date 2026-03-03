@@ -1,4 +1,4 @@
-.sidebar-lyrics, .sidebar-lyrics__overlay {
+.sidebar-lyrics, .sidebar-lyrics__overlay 
   --sl-green:        #8BC34A;
   --sl-green-dim:    #6fa832;
   --sl-green-subtle: rgba(139, 195, 74, 0.08);
