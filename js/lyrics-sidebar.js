@@ -28,6 +28,7 @@ function initLyricsSidebar() {
       renderLyrics(lyrics);
 
       const player = document.getElementById('music-player');
+      console.log("Player encontrado:", player);
 
       if (player && lyrics.length > 0) {
         syncLyrics(player, lyrics);
