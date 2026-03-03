@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           // Carrega Queue sidebar
           loadComponent(
-            "queueSidebar",
+            "queueSidebarContainer",
             "components/QueueSidebar.html",
             () => {
               if (window.QueueSidebar) {
