@@ -173,6 +173,7 @@
   flex-shrink: 0;
 }
 .sidebar-lyrics__artist-name {
+  font-family: 'DM Sans', sans-serif; 
   font-size: 13px;
   font-weight: 500;
   color: var(--sl-green);
