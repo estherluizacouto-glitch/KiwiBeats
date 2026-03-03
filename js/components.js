@@ -37,32 +37,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     "music-player-container",
     "components/music-player.html",
     () => {
-      if (typeof initMusicPlayer === "function") {
-        initMusicPlayer();
-      }
-
+      // Primeiro carrega a sidebar de letras
       loadComponent(
         "lyrics-sidebar",
         "components/lyrics-sidebar.html",
         () => {
           if (typeof initLyricsSidebar === "function") {
-            initLyricsSidebar();
+            initLyricsSidebar(); // ← define window.openLyricsSidebar
+          }
+          // Só depois inicia o player (que vai usar openLyricsSidebar)
+          if (typeof initMusicPlayer === "function") {
+            initMusicPlayer();
           }
         }
       );
     }
-  );
-
-  // Lyrics Sidebar
-  loadComponent(
-    "lyrics-sidebar",
-    "components/lyrics-sidebar.html",
-    () => {
-      if (typeof openLyricsSidebar === "function") {
-        initLyricsSidebar();
-      }
-    }
-  );
-
-  
+  );  
 });
