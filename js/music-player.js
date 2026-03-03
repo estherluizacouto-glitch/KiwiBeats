@@ -17,6 +17,7 @@ function initMusicPlayer() {
 
   audio.volume = 1;
 
+  
   // ▶ Play / Pause
   playBtn.addEventListener("click", () => {
     if (!audio.src) return;
@@ -36,22 +37,28 @@ function initMusicPlayer() {
     saveState();
   });
 
+  
   // ⏱ Progresso
-  audio.addEventListener("timeupdate", () => {
-    const percent = (audio.currentTime / audio.duration) * 100;
-    progressFill.style.width = percent + "%";
-    currentTimeEl.textContent = formatTime(audio.currentTime);
-    saveState();
-  });
+  (function() {
+    let dragging = false;
+  
+    function setProgress(e) {
+      const rect = progressBar.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const percent = Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1);
+      audio.currentTime = percent * audio.duration;
+      progressFill.style.width = (percent * 100) + "%";
+    }
+  
+    progressBar.addEventListener("mousedown", (e) => { dragging = true; setProgress(e); });
+    progressBar.addEventListener("touchstart", (e) => { dragging = true; setProgress(e); });
+    document.addEventListener("mousemove", (e) => { if (dragging) setProgress(e); });
+    document.addEventListener("touchmove", (e) => { if (dragging) setProgress(e); });
+    document.addEventListener("mouseup", () => dragging = false);
+    document.addEventListener("touchend", () => dragging = false);
+  })();
 
-  audio.addEventListener("loadedmetadata", () => {
-    durationEl.textContent = formatTime(audio.duration);
-  });
-
-  progressBar.addEventListener("click", (e) => {
-    audio.currentTime = (e.offsetX / progressBar.clientWidth) * audio.duration;
-  });
-
+  
   // 🎤 Botão de letras
   document.querySelector('[title="Letras"]').addEventListener('click', () => {
     const state = JSON.parse(localStorage.getItem('playerState') || '{}');
@@ -63,14 +70,28 @@ function initMusicPlayer() {
     }
   });
 
+  
   // 🔊 Volume
-  volumeBar.addEventListener("click", (e) => {
-    const rect = volumeBar.getBoundingClientRect();
-    const vol = Math.min(Math.max((e.clientX - rect.left) / rect.width, 0), 1);
-    audio.volume = vol;
-    volumeFill.style.width = (vol * 100) + "%";
-  });
+  (function() {
+    let dragging = false;
+  
+    function setVolume(e) {
+      const rect = volumeBar.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const vol = Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1);
+      audio.volume = vol;
+      volumeFill.style.width = (vol * 100) + "%";
+    }
 
+    volumeBar.addEventListener("mousedown", (e) => { dragging = true; setVolume(e); });
+    volumeBar.addEventListener("touchstart", (e) => { dragging = true; setVolume(e); });
+    document.addEventListener("mousemove", (e) => { if (dragging) setVolume(e); });
+    document.addEventListener("touchmove", (e) => { if (dragging) setVolume(e); });
+    document.addEventListener("mouseup", () => dragging = false);
+    document.addEventListener("touchend", () => dragging = false);
+  })();
+
+  
   // ❌ Fechar player
   closeBtn.addEventListener("click", () => {
     audio.pause();
@@ -86,6 +107,7 @@ function initMusicPlayer() {
     return `${min}:${sec.toString().padStart(2, "0")}`;
   }
 
+  
   // 💾 Salvar estado
   function saveState() {
     const state = JSON.parse(localStorage.getItem("playerState") || "{}");
@@ -95,6 +117,7 @@ function initMusicPlayer() {
     }
   }
 
+  
   // 🔄 Retomar estado ao carregar
   function restoreState() {
     const state = JSON.parse(localStorage.getItem("playerState") || "{}");
@@ -113,6 +136,7 @@ function initMusicPlayer() {
     coverEl.style.backgroundPosition = "center";
   }
 
+  
   // 🎵 Função global chamada pela biblioteca
   window.setPlayerSong = function(song) {
     applySongToPlayer(song);
@@ -120,6 +144,7 @@ function initMusicPlayer() {
     playerContainer.classList.add("player-visible");
     localStorage.setItem("playerState", JSON.stringify({ song, currentTime: 0 }));
 
+    
     // Abre a sidebar de letras automaticamente ao dar play
     setTimeout(() => {
       if (window.openLyricsSidebar) {
