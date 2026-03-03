@@ -1,3 +1,4 @@
+import './QueueSidebar.js';
 import { initSidebar, updateSidebarUI } from './sidebar.js';
 import supabase from './supabaseClient.js';
 
