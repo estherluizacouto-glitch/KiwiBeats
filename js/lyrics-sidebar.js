@@ -24,7 +24,6 @@ function initLyricsSidebar() {
     if (song.lyrics_lrc) {
 
       const lyrics = parseLRC(song.lyrics_lrc);
-      console.log("Lyrics convertida:", lyrics);
       renderLyrics(lyrics);
 
       const player = document.getElementById('music-player');
@@ -32,7 +31,6 @@ function initLyricsSidebar() {
 
       if (player && lyrics.length > 0) {
         syncLyrics(player, lyrics);
-          console.log("Sync iniciada");
       }
 
     } else {
@@ -145,8 +143,6 @@ export function syncLyrics(player, lyrics) {
 // =======================
 
 function highlightLine(index) {
-  console.log("Linha ativa:", index);
-  
   const lines = document.querySelectorAll('.sidebar-lyrics__line');
 
   lines.forEach(line =>
