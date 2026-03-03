@@ -3,12 +3,12 @@
   position: fixed;
   right: 0;
   top: 0;
-  height: 100vh;
+  height: calc(100vh - 80px);
   width: 320px;
   background: rgba(10, 10, 10, 0.55);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  border-left: 1px solid rgba(30, 215, 96, 0.15);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px 0 0 16px;
   display: flex;
   flex-direction: column;
