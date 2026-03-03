@@ -28,29 +28,31 @@
 /* ── Sidebar container ───────────────────────────────────── */
 .sidebar-lyrics {
   position: fixed;
-  top: 50%;
-  right: 30px;
-  transform: translateY(-50%) translateX(0);
+  top: 16px;
+  right: 16px;
 
-  width: var(--sl-width);
-  height: 85vh;
+  height: calc(100vh - 32px);
+  width: 320px;
 
-  background: rgba(22, 22, 22, 0.75);
-  backdrop-filter: blur(18px);
+  background: rgba(10, 8, 7, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 
-  border: 1px solid var(--sl-border);
   border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
 
-  z-index: 200;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.45),
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+
   display: flex;
   flex-direction: column;
 
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.6),
-    0 0 40px rgba(139, 195, 74, 0.05);
+  overflow: hidden;
+  z-index: 9999;
 
-  font-family: 'DM Sans', sans-serif;
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebar-lyrics.open {
@@ -110,8 +112,7 @@
 }
 
 .sidebar-lyrics.closed {
-  transform: translateY(-50%) translateX(120%);
-  opacity: 0;
+  transform: translateX(110%);
 }
 
 .sidebar-lyrics__overlay.closed {
@@ -121,11 +122,12 @@
 
 /* ── Capa ────────────────────────────────────────────────── */
 .sidebar-lyrics__cover-wrap {
-  position: relative;
   width: 100%;
   aspect-ratio: 1;
-  flex-shrink: 0;
   overflow: hidden;
+
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 .sidebar-lyrics__cover-img {
   width: 100%;
