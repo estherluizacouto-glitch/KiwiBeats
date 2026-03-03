@@ -135,7 +135,9 @@
   padding: 20px;
   position: relative;
   z-index: 2;
-  background: rgba(10, 8, 7, 0.33);
+  background: rgba(10, 8, 7, 0.25);
+  margin-top: -20px; /* sobe por cima da capa */
+  border-radius: 20px 20px 0 0; /* arredonda o topo */
 }
 
 .sidebar-lyrics__title {
