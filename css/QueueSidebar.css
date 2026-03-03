@@ -1,5 +1,5 @@
 /* ===== QUEUE SIDEBAR ===== */
-.queue-sidebar {
+#queue-sidebar {
   position: fixed;
   right: 0;
   top: 0;
@@ -18,7 +18,7 @@
   overflow: hidden;
 }
 
-.queue-sidebar.open {
+#queue-sidebar.open {
   transform: translateX(0);
 }
 
