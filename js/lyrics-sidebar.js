@@ -26,7 +26,7 @@ function initLyricsSidebar() {
       const lyrics = parseLRC(song.lyrics_lrc);
       renderLyrics(lyrics);
 
-      const player = document.getElementById('#music-player audio');
+      const player = document.getElementById('audio-player');
 
       if (player && lyrics.length > 0) {
         syncLyrics(player, lyrics);
