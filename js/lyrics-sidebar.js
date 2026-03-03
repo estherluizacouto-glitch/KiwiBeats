@@ -91,6 +91,16 @@ export function renderLyrics(lyrics) {
     div.classList.add('sidebar-lyrics__line');
     div.dataset.index = index;
     div.textContent = line.text;
+
+    div.style.cursor = 'pointer';
+    div.addEventListener('click', () => {
+      const player = document.getElementById('audio-player');
+      if (player) {
+        player.currentTime = line.time;
+        if (player.paused) player.play();
+      }
+    });
+    
     container.appendChild(div);
   });
 }
