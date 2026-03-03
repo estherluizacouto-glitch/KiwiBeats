@@ -221,6 +221,7 @@
 }
 
 .sidebar-lyrics__line {
+  font-family: 'DM Sans', sans-serif; 
   font-size: 13.5px;
   line-height: 1.75;
   color: white;
@@ -229,6 +230,7 @@
 }
 
 .sidebar-lyrics__line--active {
+  font-family: 'DM Sans', sans-serif; 
   opacity: 1;
   color: var(--sl-green);
   font-weight: 400;
