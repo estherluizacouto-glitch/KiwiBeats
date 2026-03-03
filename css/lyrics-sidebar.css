@@ -112,7 +112,7 @@
 .sidebar-lyrics__cover-wrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 1;
+  aspect-ratio: 1 / 0.8;
   overflow: hidden;
 
   border-top-left-radius: 20px;
@@ -128,10 +128,14 @@
 
 /* ── Info da música ──────────────────────────────────────── */
 .sidebar-lyrics__info {
-  padding: 0 20px 16px;
-  margin-top: 0px;
+  margin-top: -20px;
+  padding: 20px;
   position: relative;
   z-index: 2;
+  background: rgba(10, 8, 7, 0.85);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
 }
 .sidebar-lyrics__title {
   font-size: 17px;
