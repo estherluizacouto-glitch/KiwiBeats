@@ -39,34 +39,42 @@ function initMusicPlayer() {
 
   
   // ⏱ Progresso
-  (function() {
-    let dragging = false;
+  let progressDragging = false;
+
+  function getProgressPercent(e) {
+    const rect = progressBar.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    return Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1);
+  }
   
-    function getPercent(e) {
-      const rect = progressBar.getBoundingClientRect();
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      return Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1);
+  function setProgressVisual(e) {
+    const percent = getProgressPercent(e);
+    progressFill.style.width = (percent * 100) + "%";
+  }
+  
+  function commitProgress(e) {
+    const percent = getProgressPercent(e);
+    progressFill.style.width = (percent * 100) + "%";
+    audio.currentTime = percent * audio.duration;
+    progressDragging = false;
+  }
+  
+  progressBar.addEventListener("mousedown", (e) => { progressDragging = true; setProgressVisual(e); });
+  progressBar.addEventListener("touchstart", (e) => { progressDragging = true; setProgressVisual(e); });
+  document.addEventListener("mousemove", (e) => { if (progressDragging) setProgressVisual(e); });
+  document.addEventListener("touchmove", (e) => { if (progressDragging) setProgressVisual(e); });
+  document.addEventListener("mouseup", (e) => { if (progressDragging) commitProgress(e); });
+  document.addEventListener("touchend", (e) => { if (progressDragging) commitProgress(e); });
+  
+  // ⏱ timeupdate — respeita o drag
+  audio.addEventListener("timeupdate", () => {
+    if (!progressDragging) {
+      const percent = (audio.currentTime / audio.duration) * 100;
+      progressFill.style.width = percent + "%";
     }
-  
-    function setProgress(e) {
-      const percent = getPercent(e);
-      progressFill.style.width = (percent * 100) + "%"; // só move o visual
-    }
-  
-    function commitProgress(e) {
-      const percent = getPercent(e);
-      progressFill.style.width = (percent * 100) + "%";
-      audio.currentTime = percent * audio.duration; // aplica só ao soltar
-      dragging = false;
-    }
-  
-    progressBar.addEventListener("mousedown", (e) => { dragging = true; setProgress(e); });
-    progressBar.addEventListener("touchstart", (e) => { dragging = true; setProgress(e); });
-    document.addEventListener("mousemove", (e) => { if (dragging) setProgress(e); });
-    document.addEventListener("touchmove", (e) => { if (dragging) setProgress(e); });
-    document.addEventListener("mouseup", (e) => { if (dragging) commitProgress(e); });
-    document.addEventListener("touchend", (e) => { if (dragging) commitProgress(e); });
-  })();
+    currentTimeEl.textContent = formatTime(audio.currentTime);
+    saveState();
+  });
 
   
   // 🎤 Botão de letras
