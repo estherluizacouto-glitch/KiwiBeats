@@ -149,7 +149,7 @@
 /* ── Info da música ──────────────────────────────────────── */
 .sidebar-lyrics__info {
   padding: 0 20px 16px;
-  margin-top: -16px;
+  margin-top: -8px;
   position: relative;
   z-index: 2;
 }
