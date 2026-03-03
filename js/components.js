@@ -60,11 +60,6 @@ document.addEventListener("DOMContentLoaded", async () => {
               }
             }
           );
-          
-          // Só depois inicia o player (que vai usar openLyricsSidebar)
-          if (typeof initMusicPlayer === "function") {
-            initMusicPlayer();
-          }
         }
       );
     }
