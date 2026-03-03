@@ -15,7 +15,7 @@ function initMusicPlayer() {
 
   let isPlaying = false;
 
-  audio.volume = 0.7;
+  audio.volume = 1;
 
   // ▶ Play / Pause
   playBtn.addEventListener("click", () => {
