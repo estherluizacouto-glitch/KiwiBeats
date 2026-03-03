@@ -135,7 +135,7 @@
   padding: 20px;
   position: relative;
   z-index: 2;
-  background: rgba(10, 8, 7, 0.4);
+  background: rgba(10, 8, 7, 0.33);
 }
 
 .sidebar-lyrics__title {
