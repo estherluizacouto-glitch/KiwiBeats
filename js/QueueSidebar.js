@@ -244,7 +244,7 @@ const QueueSidebar = (() => {
 
 })();
 
-export default QueueSidebar;
+window.QueueSidebar = QueueSidebar;
 
 // ============================================================
 //  Como usar no seu player (ex: main.js ou player.js):
