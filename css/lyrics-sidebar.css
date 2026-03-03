@@ -72,17 +72,6 @@
   opacity: 0.6;
 }
 
-.sidebar-lyrics::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 220px;
-  background: var(--sl-green-subtle);
-  pointer-events: none;
-  z-index: 1;
-}
 
 /* ── Botão fechar ────────────────────────────────────────── */
 .sidebar-lyrics__close {
