@@ -109,6 +109,7 @@
 
 /* ── Capa ────────────────────────────────────────────────── */
 .sidebar-lyrics__cover-wrap {
+  position: relative;
   width: 100%;
   aspect-ratio: 1;
   overflow: hidden;
@@ -121,16 +122,6 @@
   height: 100%;
   object-fit: cover;
   display: block;
-}
-.sidebar-lyrics__cover-gradient {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 40%,
-    rgba(22, 22, 22, 0.7) 75%,
-    var(--sl-surface) 100%
-  );
 }
 
 /* ── Info da música ──────────────────────────────────────── */
