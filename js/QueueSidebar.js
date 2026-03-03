@@ -1,8 +1,4 @@
-// ============================================================
-//  queueSidebar.js  —  Vanilla JS + Supabase
-// ============================================================
-
-import { supabase } from "./supabaseClient.js"; // ajuste o caminho se necessário
+import supabase from "./supabaseClient.js";
 
 const QueueSidebar = (() => {
 
