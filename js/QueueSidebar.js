@@ -172,6 +172,7 @@ const QueueSidebar = (() => {
     _currentIndex = index;
     render();
     sidebar.dispatchEvent(new CustomEvent("queueSelect", {
+      bubbles: true
       detail: { index, song: _queue[index] }
     }));
   }
