@@ -132,6 +132,8 @@ export function syncLyrics(player, lyrics) {
 // =======================
 
 function highlightLine(index) {
+  console.log("Linha ativa:", index);
+  
   const lines = document.querySelectorAll('.sidebar-lyrics__line');
 
   lines.forEach(line =>
