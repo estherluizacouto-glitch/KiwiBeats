@@ -52,7 +52,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             "components/QueueSidebar.html",
             () => {
               if (window.QueueSidebar) {
+                window.QueueSidebar.init();
                 window.QueueSidebar.loadFromSupabase();
+              }
+              if (typeof initMusicPlayer === "function") {
+                initMusicPlayer();
               }
             }
           );
