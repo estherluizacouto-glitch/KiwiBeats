@@ -8,11 +8,8 @@ const QueueSidebar = (() => {
   let _shuffleOn    = false;
   let _isOpen       = false;
 
-  // ---------- elementos do DOM ----------
-  const sidebar    = document.getElementById("queueSidebar");
-  const listEl     = document.getElementById("queueList");
-  const closeBtn   = document.getElementById("queueCloseBtn");
-  const shuffleBtn = document.getElementById("queueShuffleBtn");
+  // ---------- elementos do DOM (inicializados no init()) ----------
+  let sidebar, listEl, closeBtn, shuffleBtn;
 
   // ---------- busca músicas do Supabase ----------
   async function loadFromSupabase() {
@@ -34,7 +31,6 @@ const QueueSidebar = (() => {
       return;
     }
 
-    // Mapeia para o formato interno do componente
     const songs = data.map(s => ({
       id:       s.id,
       title:    s.title,
@@ -88,6 +84,7 @@ const QueueSidebar = (() => {
 
   // ---------- renderização ----------
   function render() {
+    if (!listEl) return;
     listEl.innerHTML = "";
 
     if (_queue.length === 0) {
@@ -174,7 +171,6 @@ const QueueSidebar = (() => {
     if (index < 0 || index >= _queue.length) return;
     _currentIndex = index;
     render();
-    // Dispara evento customizado para o player principal ouvir
     sidebar.dispatchEvent(new CustomEvent("queueSelect", {
       detail: { index, song: _queue[index] }
     }));
@@ -212,20 +208,40 @@ const QueueSidebar = (() => {
     render();
   }
 
-  // ---------- eventos internos ----------
-  closeBtn.addEventListener("click", close);
+  // ---------- inicialização (chamada após DOM pronto) ----------
+  function init() {
+    sidebar    = document.getElementById("queueSidebar");
+    listEl     = document.getElementById("queueList");
+    closeBtn   = document.getElementById("queueCloseBtn");
+    shuffleBtn = document.getElementById("queueShuffleBtn");
 
-  shuffleBtn.addEventListener("click", () => {
-    _shuffleOn = !_shuffleOn;
-    shuffleBtn.classList.toggle("active", _shuffleOn);
-  });
+    if (!sidebar || !listEl || !closeBtn || !shuffleBtn) {
+      console.error("QueueSidebar: elementos do DOM não encontrados. Verifique os IDs no HTML.");
+      return;
+    }
+
+    closeBtn.addEventListener("click", close);
+
+    shuffleBtn.addEventListener("click", () => {
+      _shuffleOn = !_shuffleOn;
+      shuffleBtn.classList.toggle("active", _shuffleOn);
+    });
+  }
+
+  // Inicializa automaticamente quando o DOM estiver pronto
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    // DOM já está pronto (script carregado com defer/async ou no fim do body)
+    init();
+  }
 
   // ---------- API pública ----------
   return {
     open,
     close,
     toggle,
-    loadFromSupabase,   // chame isso na inicialização da página
+    loadFromSupabase,
     setQueue,
     selectSong,
     setCurrentIndex,
@@ -241,30 +257,3 @@ const QueueSidebar = (() => {
 })();
 
 window.QueueSidebar = QueueSidebar;
-
-// ============================================================
-//  Como usar no seu player (ex: main.js ou player.js):
-//
-//  import QueueSidebar from "./js/queueSidebar.js";
-//
-//  // Carrega músicas do Supabase ao abrir a página:
-//  QueueSidebar.loadFromSupabase();
-//
-//  // Botão de abrir/fechar:
-//  document.getElementById("btnQueue")
-//    .addEventListener("click", QueueSidebar.toggle);
-//
-//  // Ouvir quando o usuário clica em uma música na fila:
-//  document.getElementById("queueSidebar")
-//    .addEventListener("queueSelect", (e) => {
-//      const { index, song } = e.detail;
-//      tocarMusica(song.audioUrl); // sua função de tocar
-//    });
-//
-//  // Sincronizar ao trocar de faixa no player:
-//  QueueSidebar.setCurrentIndex(novoIndice);
-//
-//  // Avançar/voltar faixa:
-//  QueueSidebar.next();
-//  QueueSidebar.prev();
-// ============================================================
