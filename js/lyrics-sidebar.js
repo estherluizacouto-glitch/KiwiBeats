@@ -18,13 +18,14 @@ function initLyricsSidebar() {
 
     // Letra
     const scroll = document.getElementById('sidebar-lyrics-scroll');
-    if (song.lyrics) {
-      const lines = song.lyrics.split('\n');
-      scroll.innerHTML = lines.map(line =>
-        line.trim() === ''
-          ? '<div style="height:12px"></div>'
-          : `<div class="sidebar-lyrics__line">${line}</div>`
-      ).join('');
+    if (song.lyrics_lrc) {
+
+      const lyrics = parseLRC(song.lyrics_lrc);
+      renderLyrics(lyrics);
+    
+      const player = document.getElementById('player');
+      syncLyrics(player, lyrics);
+    
     } else {
       scroll.innerHTML = '<div class="sidebar-lyrics__line sidebar-lyrics__line--dim">Nenhuma letra disponível.</div>';
     }
@@ -60,4 +61,49 @@ export function parseLRC(lrcText) {
   });
 
   return lyrics;
+}
+
+export function renderLyrics(lyrics) {
+  const container = document.getElementById('sidebar-lyrics-scroll');
+  container.innerHTML = '';
+
+  lyrics.forEach((line, index) => {
+    const div = document.createElement('div');
+    div.classList.add('sidebar-lyrics-scroll');
+    div.dataset.index = index;
+    div.textContent = line.text;
+    container.appendChild(div);
+  });
+}
+
+export function syncLyrics(player, lyrics) {
+  player.addEventListener('timeupdate', () => {
+    const currentTime = player.currentTime;
+
+    for (let i = 0; i < lyrics.length; i++) {
+      if (
+        currentTime >= lyrics[i].time &&
+        (!lyrics[i + 1] || currentTime < lyrics[i + 1].time)
+      ) {
+        highlightLine(i);
+        break;
+      }
+    }
+  });
+}
+
+function highlightLine(index) {
+  const lines = document.querySelectorAll('.sidebar-lyrics__line');
+
+  lines.forEach(line => line.classList.remove('sidebar-lyrics__line--active'));
+
+  const activeLine = lines[index];
+  if (activeLine) {
+    activeLine.classList.add('sidebar-lyrics__line--active');
+
+    activeLine.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  }
 }
