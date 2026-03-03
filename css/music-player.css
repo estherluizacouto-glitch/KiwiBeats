@@ -236,7 +236,7 @@
 }
 
 .volume-fill {
-    width: 70%; /* Nível padrão do volume */
+    width: 100%; /* Nível padrão do volume */
     height: 100%;
     background: var(--text-secondary);
     border-radius: 2px;
