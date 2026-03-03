@@ -42,20 +42,30 @@ function initMusicPlayer() {
   (function() {
     let dragging = false;
   
-    function setProgress(e) {
+    function getPercent(e) {
       const rect = progressBar.getBoundingClientRect();
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const percent = Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1);
-      audio.currentTime = percent * audio.duration;
+      return Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1);
+    }
+  
+    function setProgress(e) {
+      const percent = getPercent(e);
+      progressFill.style.width = (percent * 100) + "%"; // só move o visual
+    }
+  
+    function commitProgress(e) {
+      const percent = getPercent(e);
       progressFill.style.width = (percent * 100) + "%";
+      audio.currentTime = percent * audio.duration; // aplica só ao soltar
+      dragging = false;
     }
   
     progressBar.addEventListener("mousedown", (e) => { dragging = true; setProgress(e); });
     progressBar.addEventListener("touchstart", (e) => { dragging = true; setProgress(e); });
     document.addEventListener("mousemove", (e) => { if (dragging) setProgress(e); });
     document.addEventListener("touchmove", (e) => { if (dragging) setProgress(e); });
-    document.addEventListener("mouseup", () => dragging = false);
-    document.addEventListener("touchend", () => dragging = false);
+    document.addEventListener("mouseup", (e) => { if (dragging) commitProgress(e); });
+    document.addEventListener("touchend", (e) => { if (dragging) commitProgress(e); });
   })();
 
   
