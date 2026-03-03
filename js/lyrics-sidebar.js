@@ -24,6 +24,7 @@ function initLyricsSidebar() {
     if (song.lyrics_lrc) {
 
       const lyrics = parseLRC(song.lyrics_lrc);
+      console.log("Lyrics convertida:", lyrics);
       renderLyrics(lyrics);
 
       const player = document.getElementById('music-player');
