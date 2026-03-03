@@ -223,15 +223,15 @@
 .sidebar-lyrics__line {
   font-size: 13.5px;
   line-height: 1.75;
-  color: var(--sl-text);
-  font-weight: 300;
-  opacity: 0.4;
+  color: white;
+  font-weight: 400;
   transition: 0.3s ease;
 }
 
 .sidebar-lyrics__line--active {
   opacity: 1;
-  font-weight: bold;
+  color: var(--sl-green);
+  font-weight: 400;
   font-size: 18px;
 }
 
