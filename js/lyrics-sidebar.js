@@ -1,5 +1,7 @@
 import supabase from './supabaseClient.js'
 
+let currentTimeUpdateHandler = null;
+
 function initLyricsSidebar() {
   const sidebar = document.getElementById('sidebar-lyrics');
   const overlay = document.getElementById('sidebar-lyrics-overlay');
@@ -11,23 +13,28 @@ function initLyricsSidebar() {
   }
 
   window.openLyricsSidebar = function(song) {
-    // Preenche os dados
+    // Preenche dados
     document.getElementById('sidebar-lyrics-cover').src = song.cover_url || '';
     document.getElementById('sidebar-lyrics-title').innerText = song.title || '—';
     document.getElementById('sidebar-lyrics-genre').innerText = song.style || '—';
 
-    // Letra
     const scroll = document.getElementById('sidebar-lyrics-scroll');
+    scroll.innerHTML = '';
+
     if (song.lyrics_lrc) {
 
       const lyrics = parseLRC(song.lyrics_lrc);
       renderLyrics(lyrics);
-    
-      const player = document.getElementById('player');
-      syncLyrics(player, lyrics);
-    
+
+      const player = document.getElementById('music-player');
+
+      if (player && lyrics.length > 0) {
+        syncLyrics(player, lyrics);
+      }
+
     } else {
-      scroll.innerHTML = '<div class="sidebar-lyrics__line sidebar-lyrics__line--dim">Nenhuma letra disponível.</div>';
+      scroll.innerHTML =
+        '<div class="sidebar-lyrics__line sidebar-lyrics__line--dim">Nenhuma letra disponível.</div>';
     }
 
     sidebar.classList.remove('closed');
@@ -39,6 +46,12 @@ function initLyricsSidebar() {
 }
 
 window.initLyricsSidebar = initLyricsSidebar;
+
+
+
+// =======================
+// PARSE LRC
+// =======================
 
 export function parseLRC(lrcText) {
   if (!lrcText) return [];
@@ -63,21 +76,39 @@ export function parseLRC(lrcText) {
   return lyrics;
 }
 
+
+
+// =======================
+// RENDER LYRICS
+// =======================
+
 export function renderLyrics(lyrics) {
   const container = document.getElementById('sidebar-lyrics-scroll');
   container.innerHTML = '';
 
   lyrics.forEach((line, index) => {
     const div = document.createElement('div');
-    div.classList.add('sidebar-lyrics-scroll');
+    div.classList.add('sidebar-lyrics__line');
     div.dataset.index = index;
     div.textContent = line.text;
     container.appendChild(div);
   });
 }
 
+
+
+// =======================
+// SYNC LYRICS
+// =======================
+
 export function syncLyrics(player, lyrics) {
-  player.addEventListener('timeupdate', () => {
+
+  // Remove listener antigo se existir
+  if (currentTimeUpdateHandler) {
+    player.removeEventListener('timeupdate', currentTimeUpdateHandler);
+  }
+
+  currentTimeUpdateHandler = function() {
     const currentTime = player.currentTime;
 
     for (let i = 0; i < lyrics.length; i++) {
@@ -89,21 +120,32 @@ export function syncLyrics(player, lyrics) {
         break;
       }
     }
-  });
+  };
+
+  player.addEventListener('timeupdate', currentTimeUpdateHandler);
 }
+
+
+
+// =======================
+// HIGHLIGHT LINE
+// =======================
 
 function highlightLine(index) {
   const lines = document.querySelectorAll('.sidebar-lyrics__line');
 
-  lines.forEach(line => line.classList.remove('sidebar-lyrics__line--active'));
+  lines.forEach(line =>
+    line.classList.remove('sidebar-lyrics__line--active')
+  );
 
   const activeLine = lines[index];
+
   if (activeLine) {
     activeLine.classList.add('sidebar-lyrics__line--active');
 
     activeLine.scrollIntoView({
-      behavior: "smooth",
-      block: "center"
+      behavior: 'smooth',
+      block: 'center'
     });
   }
 }
