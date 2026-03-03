@@ -17,6 +17,7 @@ function initMusicPlayer() {
 
   audio.volume = 1;
 
+  
   // ▶ Play / Pause
   playBtn.addEventListener("click", () => {
     if (!audio.src) return;
@@ -36,6 +37,7 @@ function initMusicPlayer() {
     saveState();
   });
 
+  
   // ⏱ Progresso
   let progressDragging = false;
 
@@ -64,6 +66,7 @@ function initMusicPlayer() {
   document.addEventListener("mouseup", (e) => { if (progressDragging) commitProgress(e); });
   document.addEventListener("touchend", (e) => { if (progressDragging) commitProgress(e); });
 
+  
   // ⏱ timeupdate
   audio.addEventListener("timeupdate", () => {
     if (!progressDragging) {
@@ -74,6 +77,7 @@ function initMusicPlayer() {
     saveState();
   });
 
+  
   // ⏱ Duração
   function updateDuration() {
     if (!isNaN(audio.duration)) {
@@ -83,6 +87,7 @@ function initMusicPlayer() {
   audio.addEventListener("loadedmetadata", updateDuration);
   audio.addEventListener("durationchange", updateDuration);
 
+  
   // 🎤 Botão de letras
   document.querySelector('[title="Letras"]').addEventListener('click', () => {
     const state = JSON.parse(localStorage.getItem('playerState') || '{}');
@@ -94,6 +99,7 @@ function initMusicPlayer() {
     }
   });
 
+  
   // 🎵 Botão de fila
   document.getElementById("btnQueue").addEventListener("click", () => {
     if (window.QueueSidebar) window.QueueSidebar.toggle();
@@ -112,6 +118,7 @@ function initMusicPlayer() {
     playerContainer.classList.add("player-visible");
   });
 
+  
   // 🔊 Volume
   (function() {
     let dragging = false;
@@ -132,6 +139,7 @@ function initMusicPlayer() {
     document.addEventListener("touchend", () => dragging = false);
   })();
 
+  
   // ❌ Fechar player
   closeBtn.addEventListener("click", () => {
     audio.pause();
@@ -147,6 +155,7 @@ function initMusicPlayer() {
     return `${min}:${sec.toString().padStart(2, "0")}`;
   }
 
+  
   // 💾 Salvar estado
   function saveState() {
     const state = JSON.parse(localStorage.getItem("playerState") || "{}");
@@ -156,6 +165,7 @@ function initMusicPlayer() {
     }
   }
 
+  
   // 🔄 Retomar estado ao carregar
   function restoreState() {
     const state = JSON.parse(localStorage.getItem("playerState") || "{}");
@@ -174,6 +184,7 @@ function initMusicPlayer() {
     coverEl.style.backgroundPosition = "center";
   }
 
+  
   // 🎵 Função global chamada pela biblioteca
   window.setPlayerSong = function(song) {
     applySongToPlayer(song);
@@ -192,6 +203,7 @@ function initMusicPlayer() {
     }, 300);
   };
 
+  
   // 🎶 Carrega músicas do Supabase na fila ao iniciar
   if (window.QueueSidebar) window.QueueSidebar.loadFromSupabase();
 
