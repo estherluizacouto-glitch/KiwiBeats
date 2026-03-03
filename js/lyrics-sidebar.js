@@ -36,3 +36,5 @@ function initLyricsSidebar() {
   closeBtn.addEventListener('click', closeLyricsSidebar);
   overlay.addEventListener('click', closeLyricsSidebar);
 }
+
+window.initLyricsSidebar = initLyricsSidebar;
