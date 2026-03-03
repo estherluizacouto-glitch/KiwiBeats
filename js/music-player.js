@@ -17,7 +17,6 @@ function initMusicPlayer() {
 
   audio.volume = 1;
 
-  
   // ▶ Play / Pause
   playBtn.addEventListener("click", () => {
     if (!audio.src) return;
@@ -37,7 +36,6 @@ function initMusicPlayer() {
     saveState();
   });
 
-  
   // ⏱ Progresso
   let progressDragging = false;
 
@@ -46,26 +44,26 @@ function initMusicPlayer() {
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     return Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1);
   }
-  
+
   function setProgressVisual(e) {
     const percent = getProgressPercent(e);
     progressFill.style.width = (percent * 100) + "%";
   }
-  
+
   function commitProgress(e) {
     const percent = getProgressPercent(e);
     progressFill.style.width = (percent * 100) + "%";
     audio.currentTime = percent * audio.duration;
     progressDragging = false;
   }
-  
+
   progressBar.addEventListener("mousedown", (e) => { progressDragging = true; setProgressVisual(e); });
   progressBar.addEventListener("touchstart", (e) => { progressDragging = true; setProgressVisual(e); });
   document.addEventListener("mousemove", (e) => { if (progressDragging) setProgressVisual(e); });
   document.addEventListener("touchmove", (e) => { if (progressDragging) setProgressVisual(e); });
   document.addEventListener("mouseup", (e) => { if (progressDragging) commitProgress(e); });
   document.addEventListener("touchend", (e) => { if (progressDragging) commitProgress(e); });
-  
+
   // ⏱ timeupdate — respeita o drag
   audio.addEventListener("timeupdate", () => {
     if (!progressDragging) {
@@ -76,7 +74,15 @@ function initMusicPlayer() {
     saveState();
   });
 
-  
+  // ⏱ Duração — fallback com durationchange caso loadedmetadata já tenha disparado
+  function updateDuration() {
+    if (!isNaN(audio.duration)) {
+      durationEl.textContent = formatTime(audio.duration);
+    }
+  }
+  audio.addEventListener("loadedmetadata", updateDuration);
+  audio.addEventListener("durationchange", updateDuration);
+
   // 🎤 Botão de letras
   document.querySelector('[title="Letras"]').addEventListener('click', () => {
     const state = JSON.parse(localStorage.getItem('playerState') || '{}');
@@ -88,11 +94,10 @@ function initMusicPlayer() {
     }
   });
 
-  
   // 🔊 Volume
   (function() {
     let dragging = false;
-  
+
     function setVolume(e) {
       const rect = volumeBar.getBoundingClientRect();
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -109,7 +114,6 @@ function initMusicPlayer() {
     document.addEventListener("touchend", () => dragging = false);
   })();
 
-  
   // ❌ Fechar player
   closeBtn.addEventListener("click", () => {
     audio.pause();
@@ -125,7 +129,6 @@ function initMusicPlayer() {
     return `${min}:${sec.toString().padStart(2, "0")}`;
   }
 
-  
   // 💾 Salvar estado
   function saveState() {
     const state = JSON.parse(localStorage.getItem("playerState") || "{}");
@@ -135,7 +138,6 @@ function initMusicPlayer() {
     }
   }
 
-  
   // 🔄 Retomar estado ao carregar
   function restoreState() {
     const state = JSON.parse(localStorage.getItem("playerState") || "{}");
@@ -154,7 +156,6 @@ function initMusicPlayer() {
     coverEl.style.backgroundPosition = "center";
   }
 
-  
   // 🎵 Função global chamada pela biblioteca
   window.setPlayerSong = function(song) {
     applySongToPlayer(song);
@@ -162,8 +163,6 @@ function initMusicPlayer() {
     playerContainer.classList.add("player-visible");
     localStorage.setItem("playerState", JSON.stringify({ song, currentTime: 0 }));
 
-    
-    // Abre a sidebar de letras automaticamente ao dar play
     setTimeout(() => {
       if (window.openLyricsSidebar) {
         window.openLyricsSidebar(song);
