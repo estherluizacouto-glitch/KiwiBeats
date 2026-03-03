@@ -15,6 +15,8 @@ function initMusicPlayer() {
 
   let isPlaying = false;
 
+  audio.volume = 0.7;
+
   // ▶ Play / Pause
   playBtn.addEventListener("click", () => {
     if (!audio.src) return;
@@ -63,7 +65,8 @@ function initMusicPlayer() {
 
   // 🔊 Volume
   volumeBar.addEventListener("click", (e) => {
-    const vol = e.offsetX / volumeBar.clientWidth;
+    const rect = volumeBar.getBoundingClientRect();
+    const vol = Math.min(Math.max((e.clientX - rect.left) / rect.width, 0), 1);
     audio.volume = vol;
     volumeFill.style.width = (vol * 100) + "%";
   });
