@@ -149,12 +149,12 @@ const QueueSidebar = (() => {
   // ---------- ações públicas ----------
   function open() {
     _isOpen = true;
+    if (window.closeLyricsSidebar) window.closeLyricsSidebar();
     sidebar.classList.add("open");
   }
 
   function close() {
     _isOpen = false;
-    if (window.closeLyricsSidebar) window.closeLyricsSidebar();
     sidebar.classList.remove("open");
   }
 
