@@ -17,7 +17,7 @@ function initMusicPlayer() {
 
   audio.volume = 1;
 
-  
+
   // ▶ Play / Pause
   playBtn.addEventListener("click", () => {
     if (!audio.src) return;
@@ -37,7 +37,7 @@ function initMusicPlayer() {
     saveState();
   });
 
-  
+
   // ⏱ Progresso
   let progressDragging = false;
 
@@ -66,7 +66,7 @@ function initMusicPlayer() {
   document.addEventListener("mouseup", (e) => { if (progressDragging) commitProgress(e); });
   document.addEventListener("touchend", (e) => { if (progressDragging) commitProgress(e); });
 
-  
+
   // ⏱ timeupdate
   audio.addEventListener("timeupdate", () => {
     if (!progressDragging) {
@@ -77,7 +77,7 @@ function initMusicPlayer() {
     saveState();
   });
 
-  
+
   // ⏱ Duração
   function updateDuration() {
     if (!isNaN(audio.duration)) {
@@ -87,7 +87,7 @@ function initMusicPlayer() {
   audio.addEventListener("loadedmetadata", updateDuration);
   audio.addEventListener("durationchange", updateDuration);
 
-  
+
   // 🎤 Botão de letras
   document.querySelector('[title="Letras"]').addEventListener('click', () => {
     const state = JSON.parse(localStorage.getItem('playerState') || '{}');
@@ -99,7 +99,7 @@ function initMusicPlayer() {
     }
   });
 
-  
+
   // 🎵 Botão de fila
   document.getElementById("btnQueue").addEventListener("click", () => {
     if (window.QueueSidebar) window.QueueSidebar.toggle();
@@ -107,7 +107,7 @@ function initMusicPlayer() {
 
   // Ouve quando o usuário clica em uma música na fila
   document.addEventListener("queueSelect", (e) => {
-    const { song } = e.detail;
+    const { song, index } = e.detail;
     applySongToPlayer({
       audio_url: song.audioUrl,
       title:     song.title,
@@ -116,21 +116,31 @@ function initMusicPlayer() {
     });
     audio.play();
     playerContainer.classList.add("player-visible");
+    // Salva estado com a música correta
+    localStorage.setItem("playerState", JSON.stringify({
+      song: {
+        audio_url: song.audioUrl,
+        title:     song.title,
+        cover_url: song.cover,
+        style:     song.artist ?? "",
+      },
+      currentTime: 0,
+    }));
   });
 
-  
+
   // ⏭ Próxima música
   document.querySelector('[data-lucide="skip-forward"]').closest('button').addEventListener("click", () => {
     if (window.QueueSidebar) window.QueueSidebar.next();
   });
 
-  
+
   // ⏮ Música anterior
   document.querySelector('[data-lucide="skip-back"]').closest('button').addEventListener("click", () => {
     if (window.QueueSidebar) window.QueueSidebar.prev();
   });
 
-  
+
   // 🔀 Shuffle
   const shuffleBtn = document.querySelector('[data-lucide="shuffle"]').closest('button');
   shuffleBtn.addEventListener("click", () => {
@@ -140,19 +150,19 @@ function initMusicPlayer() {
     shuffleBtn.style.color = isOn ? "#88C549" : "";
   });
 
-  
+
   // 🔁 Repeat
   let repeatMode = 0; // 0 = off, 1 = fila, 2 = música
   const repeatBtn = document.querySelector('[data-lucide="repeat"]').closest('button');
-  
+
   repeatBtn.addEventListener("click", () => {
     repeatMode = (repeatMode + 1) % 3;
-  
+
     repeatBtn.style.color = repeatMode > 0 ? "#88C549" : "";
-    
+
     // remove bolinha se existir
     repeatBtn.querySelector(".repeat-dot")?.remove();
-  
+
     if (repeatMode === 2) {
       const dot = document.createElement("span");
       dot.className = "repeat-dot";
@@ -162,15 +172,25 @@ function initMusicPlayer() {
     }
   });
 
-  
+
   // Quando música termina
   audio.addEventListener("ended", () => {
     if (repeatMode === 2) {
+      // Repete só essa música
       audio.currentTime = 0;
       audio.play();
     } else if (repeatMode === 1) {
-      if (window.QueueSidebar) window.QueueSidebar.next();
+      // Repete a fila — avança, e se for a última volta ao início
+      if (window.QueueSidebar) {
+        const q = window.QueueSidebar;
+        if (q.currentIndex < q.queue.length - 1) {
+          q.next();
+        } else {
+          q.selectSong(0); // volta ao início da fila
+        }
+      }
     } else {
+      // Sem repeat — avança só se não for a última
       if (window.QueueSidebar) {
         const q = window.QueueSidebar;
         if (q.currentIndex < q.queue.length - 1) {
@@ -180,7 +200,7 @@ function initMusicPlayer() {
     }
   });
 
-  
+
   // 🔊 Volume
   (function() {
     let dragging = false;
@@ -201,7 +221,7 @@ function initMusicPlayer() {
     document.addEventListener("touchend", () => dragging = false);
   })();
 
-  
+
   // ❌ Fechar player
   closeBtn.addEventListener("click", () => {
     audio.pause();
@@ -217,7 +237,7 @@ function initMusicPlayer() {
     return `${min}:${sec.toString().padStart(2, "0")}`;
   }
 
-  
+
   // 💾 Salvar estado
   function saveState() {
     const state = JSON.parse(localStorage.getItem("playerState") || "{}");
@@ -227,7 +247,7 @@ function initMusicPlayer() {
     }
   }
 
-  
+
   // 🔄 Retomar estado ao carregar
   function restoreState() {
     const state = JSON.parse(localStorage.getItem("playerState") || "{}");
@@ -246,7 +266,7 @@ function initMusicPlayer() {
     coverEl.style.backgroundPosition = "center";
   }
 
-  
+
   // 🎵 Função global chamada pela biblioteca
   window.setPlayerSong = function(song) {
     applySongToPlayer(song);
@@ -267,7 +287,7 @@ function initMusicPlayer() {
     }, 300);
   };
 
-  
+
   // 🎶 Carrega músicas do Supabase na fila ao iniciar
   if (window.QueueSidebar) window.QueueSidebar.loadFromSupabase();
 
