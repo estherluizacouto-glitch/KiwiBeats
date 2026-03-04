@@ -139,7 +139,7 @@ function initMusicPlayer() {
     window.QueueSidebar.toggle ? null : null;
     // toggle shuffle interno
     document.getElementById("queueShuffleBtn")?.click();
-    shuffleBtn.style.color = !isOn ? "#1ed760" : "";
+    shuffleBtn.style.color = !isOn ? "#88C549" : "";
   });
 
   
@@ -150,7 +150,7 @@ function initMusicPlayer() {
   repeatBtn.addEventListener("click", () => {
     repeatMode = (repeatMode + 1) % 3;
   
-    repeatBtn.style.color = repeatMode > 0 ? "#1ed760" : "";
+    repeatBtn.style.color = repeatMode > 0 ? "#88C549" : "";
     
     // remove bolinha se existir
     repeatBtn.querySelector(".repeat-dot")?.remove();
@@ -158,7 +158,7 @@ function initMusicPlayer() {
     if (repeatMode === 2) {
       const dot = document.createElement("span");
       dot.className = "repeat-dot";
-      dot.style.cssText = "position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:#1ed760;";
+      dot.style.cssText = "position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:#88C549;";
       repeatBtn.style.position = "relative";
       repeatBtn.appendChild(dot);
     }
