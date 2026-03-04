@@ -119,6 +119,70 @@ function initMusicPlayer() {
   });
 
   
+  // ⏭ Próxima música
+  document.querySelector('[data-lucide="skip-forward"]').closest('button').addEventListener("click", () => {
+    if (window.QueueSidebar) window.QueueSidebar.next();
+  });
+
+  
+  // ⏮ Música anterior
+  document.querySelector('[data-lucide="skip-back"]').closest('button').addEventListener("click", () => {
+    if (window.QueueSidebar) window.QueueSidebar.prev();
+  });
+
+  
+  // 🔀 Shuffle
+  const shuffleBtn = document.querySelector('[data-lucide="shuffle"]').closest('button');
+  shuffleBtn.addEventListener("click", () => {
+    if (!window.QueueSidebar) return;
+    const isOn = window.QueueSidebar.shuffleOn;
+    window.QueueSidebar.toggle ? null : null;
+    // toggle shuffle interno
+    document.getElementById("queueShuffleBtn")?.click();
+    shuffleBtn.style.color = !isOn ? "#1ed760" : "";
+  });
+
+  
+  // 🔁 Repeat
+  let repeatMode = 0; // 0 = off, 1 = fila, 2 = música
+  const repeatBtn = document.querySelector('[data-lucide="repeat"]').closest('button');
+  
+  repeatBtn.addEventListener("click", () => {
+    repeatMode = (repeatMode + 1) % 3;
+  
+    repeatBtn.style.color = repeatMode > 0 ? "#1ed760" : "";
+    
+    // remove bolinha se existir
+    repeatBtn.querySelector(".repeat-dot")?.remove();
+  
+    if (repeatMode === 2) {
+      const dot = document.createElement("span");
+      dot.className = "repeat-dot";
+      dot.style.cssText = "position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:#1ed760;";
+      repeatBtn.style.position = "relative";
+      repeatBtn.appendChild(dot);
+    }
+  });
+
+  
+  // Quando música termina
+  audio.addEventListener("ended", () => {
+    if (repeatMode === 2) {
+      audio.currentTime = 0;
+      audio.play();
+    } else if (repeatMode === 1) {
+      if (window.QueueSidebar) window.QueueSidebar.next();
+    } else {
+      if (window.QueueSidebar) {
+        const q = window.QueueSidebar;
+        if (q.currentIndex < q.queue.length - 1) {
+          q.next();
+        }
+      }
+    }
+  });
+
+  
   // 🔊 Volume
   (function() {
     let dragging = false;
