@@ -71,12 +71,12 @@
 }
 
 .queue-icon-btn:hover {
-  color: #1ed760;
+  color: #88C549;
   background: rgba(30, 215, 96, 0.1);
 }
 
 .queue-icon-btn.active {
-  color: #1ed760;
+  color: #88C549;
 }
 
 /* Labels de seção */
@@ -96,7 +96,7 @@
   overflow-y: auto;
   padding: 4px 0 16px;
   scrollbar-width: thin;
-  scrollbar-color: rgba(30, 215, 96, 0.25) transparent;
+  scrollbar-color: rgba(136, 197, 73, 0.25) transparent;
 }
 
 .queue-list::-webkit-scrollbar {
@@ -108,7 +108,7 @@
 }
 
 .queue-list::-webkit-scrollbar-thumb {
-  background: rgba(30, 215, 96, 0.25);
+  background: rgba(136, 197, 73, 0.25);
   border-radius: 4px;
 }
 
@@ -133,11 +133,11 @@
 }
 
 .queue-item.active {
-  background: rgba(30, 215, 96, 0.08);
+  rgba(136, 197, 73, 0.08);
 }
 
 .queue-item.active .queue-item-title {
-  color: #1ed760;
+  color: #88C549;
 }
 
 /* Thumbnail */
@@ -163,12 +163,12 @@
   width: 44px;
   height: 44px;
   border-radius: 8px;
-  background: linear-gradient(135deg, rgba(30, 215, 96, 0.15), rgba(30, 215, 96, 0.05));
+  background: linear-gradient(135deg, rgba(136, 197, 73, 0.15), rgba(136, 197, 73, 0.05));
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: rgba(30, 215, 96, 0.5);
+  color: rgba(136, 197, 73, 0.5);
 }
 
 /* Info */
@@ -250,7 +250,7 @@
 .queue-playing-indicator span {
   display: block;
   width: 3px;
-  background: #1ed760;
+  color: #88C549;
   border-radius: 2px;
   animation: queueBar 0.9s ease-in-out infinite alternate;
 }
