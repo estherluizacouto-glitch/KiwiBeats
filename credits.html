@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Créditos — KiwiBeats</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/credits.css" />
+  <link rel="stylesheet" href="css/music-player.css">
+  <link rel="stylesheet" href="css/lyrics-sidebar.css">
+  <link rel="stylesheet" href="css/queue-sidebar.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <div class="page">
+    <div class="bg-glow"></div>
+    <div class="bg-grain"></div>
+
+    <div class="credits-page">
+
+      <div class="credits-header">
+        <h1 class="credits-title">Gerencie seu plano</h1>
+        <p class="credits-subtitle">Escolha o plano que melhor se adapta às suas necessidades</p>
+
+        <div class="billing-toggle">
+          <label class="toggle-option">
+            <input type="radio" name="billing" value="monthly" id="billing-monthly">
+            <span>Mensal</span>
+          </label>
+          <label class="toggle-option">
+            <input type="radio" name="billing" value="yearly" id="billing-yearly" checked>
+            <span>Anual</span>
+            <span class="save-badge">ECONOMIZE 20%</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="plans-grid">
+
+        <!-- Plano Gratuito -->
+        <div class="plan-card" id="plan-free">
+          <div class="plan-top">
+            <h2 class="plan-name">Plano Gratuito</h2>
+            <p class="plan-desc">Nosso plano inicial.</p>
+            <div class="plan-price">
+              <span class="price-amount">R$ 0</span>
+              <span class="price-period">/mês</span>
+            </div>
+          </div>
+          <div class="plan-action">
+            <button class="plan-btn plan-btn--current" disabled>Plano Atual</button>
+          </div>
+          <ul class="plan-features">
+            <li class="feat feat--yes">Acesso ao modelo v4.5</li>
+            <li class="feat feat--yes">50 créditos diários (10 músicas)</li>
+            <li class="feat feat--no">Sem uso comercial</li>
+            <li class="feat feat--yes">Funcionalidades padrão</li>
+            <li class="feat feat--yes">Upload de até 1 min de áudio</li>
+            <li class="feat feat--yes">Fila de criação compartilhada</li>
+            <li class="feat feat--no">Sem compra de créditos extras</li>
+          </ul>
+        </div>
+
+        <!-- Plano Pro -->
+        <div class="plan-card plan-card--featured" id="plan-pro">
+          <div class="plan-badge">❤ MAIS POPULAR</div>
+          <div class="plan-top">
+            <h2 class="plan-name">Plano Pro</h2>
+            <p class="plan-desc">Acesso aos melhores modelos e ferramentas de edição.</p>
+            <div class="plan-price">
+              <span class="price-amount" data-monthly="R$ 80" data-yearly="R$ 40">R$ 40</span>
+              <span class="price-period">/mês</span>
+            </div>
+            <p class="price-savings" data-yearly="Economize R$ 120 pagando anualmente!" data-monthly="">Economize R$ 120 pagando anualmente!</p>
+            <p class="price-tax">Impostos calculados no checkout</p>
+          </div>
+          <div class="plan-action">
+            <button class="plan-btn plan-btn--subscribe">Assinar</button>
+          </div>
+          <ul class="plan-features">
+            <li class="feat feat--yes">Acesso ao modelo v5 mais avançado</li>
+            <li class="feat feat--yes">2.500 créditos (até 500 músicas), renova mensalmente</li>
+            <li class="feat feat--yes">Direitos de uso comercial</li>
+            <li class="feat feat--yes">Funcionalidades padrão + Pro</li>
+            <li class="feat feat--yes">Upload de até 8 min de áudio</li>
+            <li class="feat feat--yes">Adicione vocais e instrumentais</li>
+            <li class="feat feat--yes">Acesso antecipado a novidades</li>
+            <li class="feat feat--yes">Compra de créditos extras</li>
+            <li class="feat feat--yes">Fila prioritária, até 10 músicas simultâneas</li>
+          </ul>
+        </div>
+
+        <!-- Plano Premier -->
+        <div class="plan-card" id="plan-premier">
+          <div class="plan-badge plan-badge--subtle">MELHOR VALOR</div>
+          <div class="plan-top">
+            <h2 class="plan-name">Plano Premier</h2>
+            <p class="plan-desc">Créditos máximos e todos os recursos desbloqueados.</p>
+            <div class="plan-price">
+              <span class="price-amount" data-monthly="R$ 240" data-yearly="R$ 120">R$ 120</span>
+              <span class="price-period">/mês</span>
+            </div>
+            <p class="price-savings" data-yearly="Economize R$ 360 pagando anualmente!" data-monthly="">Economize R$ 360 pagando anualmente!</p>
+            <p class="price-tax">Impostos calculados no checkout</p>
+          </div>
+          <div class="plan-action">
+            <button class="plan-btn plan-btn--subscribe plan-btn--outline">Assinar</button>
+          </div>
+          <ul class="plan-features">
+            <li class="feat feat--yes">Acesso ao Kiwi Studio</li>
+            <li class="feat feat--yes">Acesso ao modelo v5 mais avançado</li>
+            <li class="feat feat--yes">10.000 créditos (até 2.000 músicas), renova mensalmente</li>
+            <li class="feat feat--yes">Direitos de uso comercial</li>
+            <li class="feat feat--yes">Funcionalidades padrão + Pro</li>
+            <li class="feat feat--yes">Upload de até 8 min de áudio</li>
+            <li class="feat feat--yes">Adicione vocais e instrumentais</li>
+            <li class="feat feat--yes">Acesso antecipado a novidades</li>
+            <li class="feat feat--yes">Compra de créditos extras</li>
+            <li class="feat feat--yes">Fila prioritária, até 10 músicas simultâneas</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div id="sidebar-container"></div>
+  <div id="music-player-container"></div>
+  <div id="lyrics-sidebar"></div>
+  <div id="queueSidebar" class="queue-sidebar">
+    <div id="queueSidebarContainer"></div>
+  </div>
+
+  <script src="js/credits.js"></script>
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/components.js"></script>
+  <script src="js/music-player.js"></script>
+  <script type="module" src="js/lyrics-sidebar.js"></script>
+
+  
+</body>
+</html>
