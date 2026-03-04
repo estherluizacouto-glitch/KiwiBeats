@@ -12,7 +12,16 @@ function initLyricsSidebar() {
     overlay.classList.add('closed');
   }
 
+  window.closeLyricsSidebar = closeLyricsSidebar;
+
   window.openLyricsSidebar = function(song) {
+    if (!sidebar.classList.contains('closed')) {
+      closeLyricsSidebar();
+      return;
+    }
+
+    if (window.QueueSidebar) window.QueueSidebar.close();
+    
     // Preenche dados
     document.getElementById('sidebar-lyrics-cover').src = song.cover_url || '';
     document.getElementById('sidebar-lyrics-title').innerText = song.title || '—';
