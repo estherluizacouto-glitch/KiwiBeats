@@ -256,7 +256,9 @@ function initMusicPlayer() {
 
     // Sincroniza a fila com a música tocando agora
     if (window.QueueSidebar) {
-      const idx = window.QueueSidebar.queue.findIndex(s => s.audioUrl === song.audio_url);
+      const idx = window.QueueSidebar.queue.findIndex(
+        s => s.audioUrl === song.audio_url || s.title === song.title
+      );
       if (idx !== -1) window.QueueSidebar.setCurrentIndex(idx);
     }
 
