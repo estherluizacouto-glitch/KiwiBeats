@@ -24,7 +24,7 @@ const QueueSidebar = (() => {
       .from("songs")
       .select("id, title, cover_url, audio_url")
       .eq("user_id", user.id)
-      .order("created_at", { ascending: true });
+      .order("created_at", { ascending: false });
 
     if (error) {
       console.error("QueueSidebar: erro ao buscar músicas:", error.message);
