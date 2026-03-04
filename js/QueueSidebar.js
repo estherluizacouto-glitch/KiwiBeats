@@ -154,6 +154,7 @@ const QueueSidebar = (() => {
 
   function close() {
     _isOpen = false;
+    if (window.closeLyricsSidebar) window.closeLyricsSidebar();
     sidebar.classList.remove("open");
   }
 
