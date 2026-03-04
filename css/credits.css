@@ -152,7 +152,7 @@ body {
 }
 
 .plan-card--featured:hover {
-  box-shadow: 0 0 50px rgba(136, 197, 73, 0.15);
+  border-color: var(--kiwi);
 }
 
 /* ── Badge ───────────────────────────────────────── */
@@ -172,7 +172,7 @@ body {
 }
 
 .plan-badge--subtle {
-  background: rgba(255, 255, 255, 0.1);
+  background: #1a1a1a;
   color: var(--text-muted);
   border: 1px solid var(--card-border);
 }
