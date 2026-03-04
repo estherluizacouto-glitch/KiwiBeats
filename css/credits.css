@@ -12,6 +12,10 @@
   --card-border:  rgba(255, 255, 255, 0.08);
 }
 
+body {
+  font-family: 'DM Sans', sans-serif;
+}
+
 /* ── Página ──────────────────────────────────────── */
 .page {
   min-height: 100vh;
