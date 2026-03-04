@@ -158,7 +158,7 @@ function initMusicPlayer() {
     if (repeatMode === 2) {
       const dot = document.createElement("span");
       dot.className = "repeat-dot";
-      dot.style.cssText = "position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:#88C549;";
+      dot.style.cssText = "position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:#88C549;";
       repeatBtn.style.position = "relative";
       repeatBtn.appendChild(dot);
     }
