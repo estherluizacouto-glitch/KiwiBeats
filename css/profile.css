@@ -98,7 +98,7 @@ body {
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  border: 2.5px solid var(--kiwi);
+  border: 1.5px solid var(--kiwi);
   box-shadow: 0 0 20px var(--kiwi-glow);
   overflow: hidden;
   flex-shrink: 0;
