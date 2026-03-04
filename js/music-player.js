@@ -268,7 +268,7 @@ function initMusicPlayer() {
 
 
   // 🎵 Função global chamada pela biblioteca
-  window.setPlayerSong = function(song) {
+  window.setPlayerSong = async function(song) {
     applySongToPlayer(song);
     audio.play();
     playerContainer.classList.add("player-visible");
@@ -277,9 +277,18 @@ function initMusicPlayer() {
     // Sincroniza a fila com a música tocando agora
     if (window.QueueSidebar) {
       const idx = window.QueueSidebar.queue.findIndex(
-        s => s.audioUrl === song.audio_url || s.title === song.title
+        s => s.audioUrl === song.audio_url
       );
-      if (idx !== -1) window.QueueSidebar.setCurrentIndex(idx);
+      if (idx !== -1) {
+        window.QueueSidebar.setCurrentIndex(idx);
+      } else {
+        // Se não achou, recarrega a fila e tenta de novo
+        await window.QueueSidebar.loadFromSupabase();
+        const idx2 = window.QueueSidebar.queue.findIndex(
+          s => s.audioUrl === song.audio_url
+        );
+        if (idx2 !== -1) window.QueueSidebar.setCurrentIndex(idx2);
+      }
     }
 
     setTimeout(() => {
