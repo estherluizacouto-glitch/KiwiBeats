@@ -237,6 +237,10 @@ body {
   height: 15px;
 }
 
+.sidebar .profile-info {
+  gap: 0;
+}
+
 /* ── Área principal ──────────────────────────────── */
 .main {
   display: flex;
