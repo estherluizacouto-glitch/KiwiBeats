@@ -1,0 +1,344 @@
+/* ── Variáveis ───────────────────────────────────── */
+:root {
+  --kiwi:         #88C549;
+  --kiwi-dark:    #5fa010;
+  --kiwi-glow:    rgba(136, 197, 73, 0.18);
+  --bg:           #0a0a0a;
+  --text:         #ffffff;
+  --text-muted:   #888888;
+  --text-dim:     #555555;
+  --border:       rgba(255, 255, 255, 0.07);
+  --card-bg:      rgba(255, 255, 255, 0.03);
+  --card-border:  rgba(255, 255, 255, 0.08);
+}
+
+/* ── Página ──────────────────────────────────────── */
+.page {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.bg-glow {
+  position: fixed;
+  top: -200px;
+  left: -200px;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--kiwi-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-grain {
+  position: fixed;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Layout da página de créditos ────────────────── */
+.credits-page {
+  position: relative;
+  z-index: 1;
+  padding: 60px 48px 100px;
+  padding-left: calc(84px + 48px); /* espaço sidebar */
+  max-width: 1300px;
+  margin: 0 auto;
+  animation: fadeIn 0.4s ease both;
+}
+
+/* ── Header ──────────────────────────────────────── */
+.credits-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.credits-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 42px;
+  font-weight: 400;
+  color: var(--text);
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+}
+
+.credits-subtitle {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+
+/* ── Toggle Mensal/Anual ─────────────────────────── */
+.billing-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--card-border);
+  border-radius: 50px;
+  padding: 5px 8px;
+}
+
+.toggle-option {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-muted);
+  transition: background 0.2s, color 0.2s;
+  user-select: none;
+}
+
+.toggle-option input[type="radio"] {
+  display: none;
+}
+
+.toggle-option:has(input:checked) {
+  background: rgba(136, 197, 73, 0.15);
+  color: var(--kiwi);
+}
+
+.save-badge {
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--kiwi);
+  color: #0a0a0a;
+  padding: 2px 7px;
+  border-radius: 50px;
+  letter-spacing: 0.3px;
+}
+
+/* ── Grid de planos ──────────────────────────────── */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+/* ── Card de plano ───────────────────────────────── */
+.plan-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 28px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  animation: fadeIn 0.5s ease both;
+}
+
+.plan-card:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.plan-card--featured {
+  border-color: var(--kiwi);
+  background: rgba(136, 197, 73, 0.04);
+  box-shadow: 0 0 40px rgba(136, 197, 73, 0.1);
+}
+
+.plan-card--featured:hover {
+  box-shadow: 0 0 50px rgba(136, 197, 73, 0.15);
+}
+
+/* ── Badge ───────────────────────────────────────── */
+.plan-badge {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--kiwi);
+  color: #0a0a0a;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 50px;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+
+.plan-badge--subtle {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  border: 1px solid var(--card-border);
+}
+
+/* ── Topo do card ────────────────────────────────── */
+.plan-top {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.plan-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+
+.plan-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.plan-price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.price-amount {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -1px;
+}
+
+.price-period {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.price-savings {
+  font-size: 12px;
+  color: var(--kiwi);
+  min-height: 16px;
+}
+
+.price-tax {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* ── Botões ──────────────────────────────────────── */
+.plan-action {
+  margin: 4px 0;
+}
+
+.plan-btn {
+  width: 100%;
+  padding: 13px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.plan-btn--current {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-muted);
+  cursor: default;
+  border: 1px solid var(--card-border);
+}
+
+.plan-btn--subscribe {
+  background: var(--text);
+  color: #0a0a0a;
+}
+
+.plan-btn--subscribe:hover {
+  background: var(--kiwi);
+  color: #0a0a0a;
+  box-shadow: 0 4px 20px rgba(136, 197, 73, 0.3);
+}
+
+.plan-btn--outline {
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+}
+
+.plan-btn--outline:hover {
+  border-color: var(--kiwi);
+  color: var(--kiwi);
+  background: rgba(136, 197, 73, 0.08);
+}
+
+/* ── Lista de features ───────────────────────────── */
+.plan-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 4px;
+  border-top: 1px solid var(--border);
+}
+
+.feat {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.5;
+}
+
+.feat::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 1px;
+  background-size: 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.feat--yes::before {
+  background-color: rgba(136, 197, 73, 0.15);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2388C549' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+}
+
+.feat--no::before {
+  background-color: rgba(255, 255, 255, 0.06);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E");
+}
+
+.feat--no {
+  color: var(--text-dim);
+}
+
+/* ── Animações ───────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.plan-card:nth-child(1) { animation-delay: 0.05s; }
+.plan-card:nth-child(2) { animation-delay: 0.1s; }
+.plan-card:nth-child(3) { animation-delay: 0.15s; }
+
+/* ── Responsivo ──────────────────────────────────── */
+@media (max-width: 900px) {
+  .plans-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .credits-page {
+    padding: 40px 20px 100px;
+    padding-left: calc(84px + 20px);
+  }
+
+  .credits-title {
+    font-size: 30px;
+  }
+}
