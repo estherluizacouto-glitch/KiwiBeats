@@ -135,11 +135,9 @@ function initMusicPlayer() {
   const shuffleBtn = document.querySelector('[data-lucide="shuffle"]').closest('button');
   shuffleBtn.addEventListener("click", () => {
     if (!window.QueueSidebar) return;
-    const isOn = window.QueueSidebar.shuffleOn;
-    window.QueueSidebar.toggle ? null : null;
-    // toggle shuffle interno
     document.getElementById("queueShuffleBtn")?.click();
-    shuffleBtn.style.color = !isOn ? "#88C549" : "";
+    const isOn = window.QueueSidebar.shuffleOn;
+    shuffleBtn.style.color = isOn ? "#88C549" : "";
   });
 
   
