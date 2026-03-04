@@ -256,6 +256,7 @@ const QueueSidebar = (() => {
     
       render();
     });
+  }
 
   // ---------- API pública ----------
   return {
