@@ -213,6 +213,15 @@ const QueueSidebar = (() => {
     render();
   }
 
+  function shuffleArray(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
   // ---------- inicialização (chamada após DOM pronto) ----------
   function init() {
     sidebar    = document.getElementById("queueSidebar");
@@ -230,8 +239,23 @@ const QueueSidebar = (() => {
     shuffleBtn.addEventListener("click", () => {
       _shuffleOn = !_shuffleOn;
       shuffleBtn.classList.toggle("active", _shuffleOn);
+    
+      if (_shuffleOn) {
+        // Pega a música atual
+        const current = _queue[_currentIndex];
+        // Embaralha as outras
+        const rest = _queue.filter((_, i) => i !== _currentIndex);
+        const shuffled = shuffleArray(rest);
+        // Reconstrói a fila: atual primeiro, depois as embaralhadas
+        _queue = [current, ...shuffled];
+        _currentIndex = 0;
+      } else {
+        // Volta à ordem original (recarrega do Supabase)
+        loadFromSupabase();
+      }
+    
+      render();
     });
-  }
 
   // ---------- API pública ----------
   return {
