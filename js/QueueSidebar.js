@@ -236,7 +236,7 @@ const QueueSidebar = (() => {
 
     closeBtn.addEventListener("click", close);
 
-    shuffleBtn.addEventListener("click", () => {
+    shuffleBtn.addEventListener("click", async () => {
       _shuffleOn = !_shuffleOn;
       shuffleBtn.classList.toggle("active", _shuffleOn);
     
@@ -250,13 +250,21 @@ const QueueSidebar = (() => {
         _queue = [current, ...shuffled];
         _currentIndex = 0;
       } else {
-        // Volta à ordem original (recarrega do Supabase)
-        loadFromSupabase();
+        // Guarda o audioUrl da música tocando agora
+        const currentAudioUrl = _queue[_currentIndex]?.audioUrl;
+        // Recarrega na ordem original
+        await loadFromSupabase();
+        // Reposiciona no índice correto
+        const idx = _queue.findIndex(s => s.audioUrl === currentAudioUrl);
+        if (idx !== -1) {
+          _currentIndex = idx;
+          render();
+        }
       }
     
       render();
     });
-  }
+    }
 
   // ---------- API pública ----------
   return {
