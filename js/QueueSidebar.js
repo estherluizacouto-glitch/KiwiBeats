@@ -185,12 +185,16 @@ const QueueSidebar = (() => {
       while (n === _currentIndex && _queue.length > 1);
       selectSong(n);
     } else {
-      selectSong((_currentIndex + 1) % _queue.length);
+      if (_currentIndex < _queue.length - 1) {
+        selectSong((_currentIndex + 1) % _queue.length);
+      }
     }
   }
 
   function prev() {
-    selectSong((_currentIndex - 1 + _queue.length) % _queue.length);
+    if (_currentIndex > 0) {
+      selectSong((_currentIndex - 1 + _queue.length) % _queue.length);
+    }
   }
 
   function addSong(song) {
