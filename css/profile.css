@@ -1,15 +1,15 @@
 /* ── Variáveis ───────────────────────────────────── */
 :root {
-  --kiwi:         #7ec620;
+  --kiwi:         #88C549;
   --kiwi-dark:    #5fa010;
-  --kiwi-glow:    rgba(126, 198, 32, 0.18);
+  --kiwi-glow:    rgba(136, 197, 73, 0.18);
   --bg:           #0a0a0a;
   --text:         #ffffff;
-  --text-muted:   #666666;
+  --text-muted:   #888888;
   --text-dim:     #444444;
-  --border:       rgba(255, 255, 255, 0.06);
+  --border:       rgba(255, 255, 255, 0.07);
   --border-btn:   rgba(255, 255, 255, 0.15);
-  --overlay:      rgba(255, 255, 255, 0.07);
+  --overlay:      rgba(255, 255, 255, 0.05);
 }
 
 /* ── Reset ───────────────────────────────────────── */
@@ -25,7 +25,6 @@ body {
   color: var(--text);
 }
 
-/* ── Utilitário ──────────────────────────────────── */
 .hidden {
   display: none !important;
 }
@@ -71,50 +70,36 @@ body {
   gap: 12px;
 }
 
-.spinner {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 3px solid rgba(126, 198, 32, 0.2);
-  border-top-color: var(--kiwi);
-  animation: spin 0.8s linear infinite;
-}
-
 .loading-text {
   color: var(--text-muted);
   font-size: 14px;
 }
 
-/* ── Conteúdo principal ──────────────────────────── */
+/* ── Conteúdo ────────────────────────────────────── */
 .content {
   position: relative;
   z-index: 1;
+  padding-left: 84px; /* espaço para sidebar colapsada */
   animation: fadeIn 0.4s ease both;
 }
 
-/* ── Header ──────────────────────────────────────── */
-.header {
+/* ── Card de perfil ──────────────────────────────── */
+.profile-card {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 28px 36px;
+  gap: 24px;
+  padding: 36px 48px;
   border-bottom: 1px solid var(--border);
-}
-
-.profile-section {
-  display: flex;
-  align-items: center;
-  gap: 20px;
 }
 
 /* ── Avatar ──────────────────────────────────────── */
 .avatar-ring {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   border: 2.5px solid var(--kiwi);
-  box-shadow: 0 0 18px var(--kiwi-glow);
+  box-shadow: 0 0 20px var(--kiwi-glow);
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -134,10 +119,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 700;
-  color: var(--bg);
-  line-height: 1;
+  color: #0a0a0a;
 }
 
 .avatar-glow-overlay {
@@ -148,11 +132,12 @@ body {
   pointer-events: none;
 }
 
-/* ── Informações do perfil ───────────────────────── */
+/* ── Info do perfil ──────────────────────────────── */
 .profile-info {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .name-row {
@@ -162,7 +147,7 @@ body {
 }
 
 .name {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 700;
   letter-spacing: -0.5px;
   line-height: 1.1;
@@ -170,26 +155,33 @@ body {
 
 .edit-btn {
   background: var(--overlay);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   color: var(--text-muted);
   cursor: pointer;
   padding: 5px 7px;
   display: flex;
   align-items: center;
+  justify-content: center;
   transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
 .edit-btn:hover {
-  background: rgba(126, 198, 32, 0.15);
+  background: rgba(136, 197, 73, 0.12);
   border-color: var(--kiwi);
   color: var(--kiwi);
+}
+
+.edit-btn svg {
+  width: 14px;
+  height: 14px;
 }
 
 /* ── Estatísticas ────────────────────────────────── */
 .stats-row {
   display: flex;
-  gap: 16px;
+  align-items: center;
+  gap: 14px;
 }
 
 .stat-chip {
@@ -201,6 +193,7 @@ body {
 .stat-value {
   font-size: 15px;
   font-weight: 700;
+  color: var(--text);
 }
 
 .stat-label {
@@ -209,12 +202,19 @@ body {
   font-weight: 400;
 }
 
+.stat-divider {
+  width: 1px;
+  height: 14px;
+  background: var(--border);
+}
+
 /* ── Botão Sair ──────────────────────────────────── */
 .sign-out-btn {
+  margin-left: auto;
   display: flex;
   align-items: center;
   gap: 7px;
-  padding: 9px 18px;
+  padding: 9px 20px;
   border-radius: 50px;
   border: 1.5px solid var(--border-btn);
   background: transparent;
@@ -224,7 +224,6 @@ body {
   cursor: pointer;
   transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
   font-family: inherit;
-  letter-spacing: 0.01em;
 }
 
 .sign-out-btn:hover {
@@ -233,12 +232,17 @@ body {
   box-shadow: 0 0 12px var(--kiwi-glow);
 }
 
-/* ── Área principal / Estado vazio ───────────────── */
+.sign-out-btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* ── Área principal ──────────────────────────────── */
 .main {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 141px);
+  min-height: calc(100vh - 163px);
 }
 
 .empty-state {
@@ -249,13 +253,23 @@ body {
   animation: fadeIn 0.5s ease 0.1s both;
 }
 
-.icon-wrap {
-  margin-bottom: 4px;
-  filter: drop-shadow(0 0 24px var(--kiwi-glow));
+.empty-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(136, 197, 73, 0.08);
+  border: 1px solid rgba(136, 197, 73, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--kiwi);
+  margin-bottom: 6px;
+  box-shadow: 0 0 24px var(--kiwi-glow);
 }
 
-.music-icon {
-  display: block;
+.empty-icon svg {
+  width: 28px;
+  height: 28px;
 }
 
 .empty-text {
@@ -272,10 +286,6 @@ body {
 }
 
 /* ── Animações ───────────────────────────────────── */
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
 @keyframes fadeIn {
   from {
     opacity: 0;
