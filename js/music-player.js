@@ -91,15 +91,12 @@ function initMusicPlayer() {
   // 🎤 Botão de letras
   document.querySelector('[title="Letras"]').addEventListener('click', () => {
     const state = JSON.parse(localStorage.getItem('playerState') || '{}');
-    if (!state.song) return;
-    if (window.openLyricsSidebar) {
+    if (window.openLyricsSidebar && state.song) {
       window.openLyricsSidebar(state.song);
-    } else {
-      console.warn("openLyricsSidebar ainda não está disponível");
     }
   });
 
-
+  
   // 🎵 Botão de fila
   document.getElementById("btnQueue").addEventListener("click", () => {
     if (window.QueueSidebar) window.QueueSidebar.toggle();
